@@ -1,0 +1,14 @@
+{
+"WYU-WARRIOR_POWER.description": "你的攻击伤害会随当前生命降低而线性提高。满血时为100%，生命为0时为200%。",
+"WYU-WARRIOR_POWER.smartDescription": "你的攻击伤害会随当前生命降低而线性提高。满血时为100%，生命为0时为200%。",
+"WYU-WARRIOR_POWER.flavor": "[red]这个力量的细节将在未来揭晓……[/red]",
+"WYU-WARRIOR_POWER.title": "武者力量",
+"WYU-TORNADO_POWER.description": "下一回合清除所有层数,并对目标造成等同于层数的伤害。",
+"WYU-TORNADO_POWER.smartDescription": "在{_turnsUntilTrigger}回合后(敌人行动{round}次后)清除所有层数,并对目标造成等同于层数的伤害。",
+"WYU-TORNADO_POWER.flavor": "[red]这个力量的细节将在未来揭晓……[/red]",
+"WYU-TORNADO_POWER.title": "龙卷风",
+"WYU-FENG_YAN_POWER.description": "每回合开始对随机敌人造成伤害。",
+"WYU-FENG_YAN_POWER.smartDescription": "每回合开始对随机敌人造成伤害。",
+"WYU-FENG_YAN_POWER.flavor": "[red]这个力量的细节将在未来揭晓……[/red]",
+"WYU-FENG_YAN_POWER.title": "封烟行刑场"
+}
