@@ -1,16 +1,7 @@
-using BaseLib.Abstracts;
-using BaseLib.Extensions;
-using BaseLib.Utils;
-using wyu.wyuCode.Character;
-using wyu.wyuCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Logging;
-
 using MegaCrit.Sts2.Core.Commands;
-
-// 提供数值
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
@@ -54,7 +45,7 @@ public class Intimidation():
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-
+        
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

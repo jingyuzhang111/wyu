@@ -18,51 +18,62 @@ using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.ValueProps;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
+
+
+using MegaCrit.Sts2.Core.Helpers;
+
 
 
 namespace wyu.wyuCode.Cards;
 
-public class Attack():
+public class XiaoKeAttack():
     wyuCard(cost: 1, 
     type: CardType.Attack,
-    rarity: CardRarity.Basic,
+    rarity: CardRarity.Common,
     target: TargetType.AnyEnemy
     )
 {
     // 自定义边框
     // public override bool HasBuiltInOverlay => true;
 
-    // 添加打击标签(Strike)
-    protected override HashSet<CardTag> CanonicalTags => [CardTag.Strike];
 
     // 数值调整的地方, 可添加各种具体效果,定义牌的可变数值
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(6, ValueProp.Move),
-        // new PowerVar<PoisonPower>("PoisonPower", 3m)
+        new DamageVar(8, ValueProp.Move),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
+
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         // 卡牌效果的实现地方,在CommonActions里有一些写好的函数,如攻防抽牌烧牌
-        // 这里是, 使用this对cardPlay.Target攻击,先上毒,再攻击
-        if (cardPlay.Target == null)
-            return;
-        // await CommonActions.Apply<PoisonPower>(cardPlay.Target, this, DynamicVars.Poison.BaseValue);
-        await CommonActions.CardAttack(this, cardPlay.Target).Execute(choiceContext);
+        ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
+		await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this)
+            .WithWaitBeforeHit(0.05f,0.1f)
+			.Targeting(cardPlay.Target)
+			.WithHitFx("vfx/vfx_attack_slash")
+			.Execute(choiceContext);
+
+        if (cardPlay.Target.Block > 0)
+        {
+            var extraDamage = cardPlay.Target.Block * 0.5m;
+            Log.Info($"小刻要对{cardPlay.Target.Name}造成额外伤害：{extraDamage}");
+            await CreatureCmd.Damage(choiceContext, cardPlay.Target, extraDamage, ValueProp.Unblockable | ValueProp.Unpowered, null, null);
+        }
+
     }
 
     // 升级
     protected override void OnUpgrade()
     {
-        // 这里是对毒伤加层
-        // DynamicVars.Poison.UpgradeValueBy(2);
-
-        DynamicVars.Damage.UpgradeValueBy(3);
+        DynamicVars.Damage.UpgradeValueBy(1m);
     }
 
 

@@ -49,8 +49,6 @@ public class XingXian():
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        // 这里添加提示, 但与实际效果没有任何关系, 只是添加一些关键词的解释,比如可以给打击挂一个回响形态的解释,但本身没有回响的效果
-        HoverTipFactory.FromPower<DemonFormPower>()
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

@@ -27,22 +27,9 @@ public class wyu : PlaceholderCharacterModel
     
     public override IEnumerable<CardModel> StartingDeck => [
         ModelDb.Card<Attack>(),
-        ModelDb.Card<Attack>(),
-        ModelDb.Card<Attack>(),
-        ModelDb.Card<Block>(),
-        ModelDb.Card<Block>(),
-        ModelDb.Card<Block>(),
         ModelDb.Card<Warrior>(),
-        ModelDb.Card<XingXian>(),
-        ModelDb.Card<YouXuYouYan>(),
-        ModelDb.Card<SiyeReward>(),
-        ModelDb.Card<Harvest>(),
-        ModelDb.Card<Thorns>(),
-        ModelDb.Card<Death>(),
-        ModelDb.Card<Tornado>(),
-        ModelDb.Card<Intimidation>(),
-        ModelDb.Card<FengYan>(),
-
+        ModelDb.Card<JianHao>(),
+        ModelDb.Card<Armor>(),
     ];
 
     public override IReadOnlyList<RelicModel> StartingRelics =>

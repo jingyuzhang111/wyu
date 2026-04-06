@@ -18,7 +18,7 @@ namespace wyu.wyuCode.Cards;
 using wyu.wyuCode.Powers;
 
 public class FengYan():
-    wyuCard(cost: 1, 
+    wyuCard(cost: 2, 
     type: CardType.Power,
     rarity: CardRarity.Rare,    // common uncommon rare 三个稀有度
     target: TargetType.Self

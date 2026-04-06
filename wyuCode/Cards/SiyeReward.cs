@@ -33,14 +33,12 @@ public class SiyeReward():
     // 自定义边框
     // public override bool HasBuiltInOverlay => true;
 
-    // 添加打击标签(Strike)
-    protected override HashSet<CardTag> CanonicalTags => [CardTag.Strike];
 
     // 数值调整的地方, 可添加各种具体效果,定义牌的可变数值
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new EnergyVar(1),
-        new CardsVar(2),
+        new CardsVar(3),
     ];
 
 	public override IEnumerable<CardKeyword> CanonicalKeywords => [
@@ -52,6 +50,8 @@ public class SiyeReward():
     [
         base.EnergyHoverTip,
     ];
+
+
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

@@ -36,26 +36,9 @@ public class FengYanPower : wyuPower
 
 	public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
 	{
-        // 抽卡之前触发
-
-		if (base.Amount <= 0)
-		{
-			await PowerCmd.Remove(this);
-			return;
-		}
-
         await AttackRandomly(player, combatState, choiceContext);
-        await PowerCmd.Apply<FengYanPower>(base.Owner, -1m, base.Owner, null);
-        
-        if (base.Amount <= 0){
-            Log.Info($"清空层数");
-            await CreatureCmd.Damage(choiceContext, base.Owner, base.Amount, ValueProp.Unblockable | ValueProp.Unpowered, null, null);
-            await PowerCmd.Remove(this);
-        }
+		await PowerCmd.TickDownDuration(this);  // 自动衰减层数，这么好用的东西，我之前都做的什么依托。
 	}
-
-
-
 
     private async Task AttackRandomly(Player player, CombatState combatState, PlayerChoiceContext choiceContext)
     {
@@ -66,14 +49,14 @@ public class FengYanPower : wyuPower
 			{
 				continue;
 			}
-			// await DamageCmd.Attack(6m)
-            //     .WithWaitBeforeHit(0.05f, 0.1f)
-            //     .Targeting(enemy)
-            //     .WithHitFx("vfx/vfx_attack_slash")
-            //     .Execute(choiceContext);
 
-            await CreatureCmd.Damage(choiceContext, enemy, 6m, ValueProp.Unblockable | ValueProp.Unpowered, base.Owner, null);
+            await CreatureCmd.Damage(choiceContext, enemy, 3m, ValueProp.Unblockable | ValueProp.Unpowered, base.Owner, null);
         
         }
     }
+
+    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+	{
+		
+	}
 }

@@ -4,7 +4,7 @@ using BaseLib.Utils;
 using wyu.wyuCode.Character;
 using wyu.wyuCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
-
+using MegaCrit.Sts2.Core.Logging;
 namespace wyu.wyuCode.Cards;
 
 [Pool(typeof(wyuCardPool))]

@@ -29,7 +29,7 @@ public class tornadoPower : wyuPower
     ];
 
     // 效果类型Buff, Debuff...
-    public override PowerType Type => PowerType.Buff;
+    public override PowerType Type => PowerType.Debuff;
 
     // 效果堆叠类型 可堆叠与不可堆叠
 	public override PowerStackType StackType => PowerStackType.Counter;
