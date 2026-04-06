@@ -79,15 +79,17 @@ public class SangShenAttack():
             //         .FirstOrDefault(c => c != target && c.IsPrimaryEnemy && c.IsAlive && c.IsHittable);
             //     Log.Info($"次级敌人，尝试搜寻主要敌人并直接造成伤害: {leader?.Name}");
             // }
-            // if (leader is not null)
-            // {
-            //     Log.Info($"对主人造成双倍伤害: {base.DynamicVars.Damage.BaseValue * 2}");
-            //     await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue * 2).FromCard(this)
-            //         .WithWaitBeforeHit(0.05f,0.1f)
-            //         .Targeting(leader)
-            //         .WithHitFx("vfx/vfx_attack_slash")
-            //         .Execute(choiceContext);
-            // }
+            if (leader is not null && leader.IsPrimaryEnemy)
+            {
+                Log.Info($"对主人造成双倍伤害: {base.DynamicVars.Damage.BaseValue * 2}");
+                await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue * 2).FromCard(this)
+                    .WithWaitBeforeHit(0.05f,0.1f)
+                    .Targeting(leader)
+                    .WithHitFx("vfx/vfx_attack_slash")
+                    .Execute(choiceContext);
+                Log.Info("双倍伤害已造成");
+                return;
+            }
 
             if (target.IsSecondaryEnemy)
             {
@@ -102,6 +104,7 @@ public class SangShenAttack():
                     .Targeting(leader)
                     .WithHitFx("vfx/vfx_attack_slash")
                     .Execute(choiceContext);
+                return;
             }
             
         }

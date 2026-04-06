@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://1sb3yjut1s62"]
+
+[ext_resource type="Texture2D" uid="uid://c0h1devhku6y" path="res://wyu/images/Visual/Attack.png" id="1_ev5se"]
+[ext_resource type="Texture2D" uid="uid://bo6akir0qdr5k" path="res://wyu/images/Visual/Hit.png" id="2_mw261"]
+[ext_resource type="Texture2D" uid="uid://0gs8uk3ts26m" path="res://wyu/images/Visual/idle.png" id="3_86n57"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tldgi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ev5se")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.5,
+"texture": ExtResource("2_mw261")
+}],
+"loop": false,
+"name": &"Hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_86n57")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 12.0
+}]
+
+[node name="wyu" type="Node2D"]
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tldgi")
+animation = &"Attack"
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -121.0
+offset_top = -280.0
+offset_right = 121.0
+mouse_filter = 2
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -165)
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(20, -351)

@@ -24,57 +24,52 @@ using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 
 using MegaCrit.Sts2.Core.Helpers;
-
+using wyu.wyuCode.Powers;
 
 
 namespace wyu.wyuCode.Cards;
 
-public class XiaoKeAttack():
-    wyuCard(cost: 1, 
-    type: CardType.Attack,
+public class ArmorSmall():
+    wyuCard(cost: 0, 
+    type: CardType.Skill,
     rarity: CardRarity.Common,
-    target: TargetType.AnyEnemy
+    target: TargetType.AllAllies
     )
 {
     // 自定义边框
     // public override bool HasBuiltInOverlay => true;
 
+    // 添加打击标签(Strike)
+    protected override HashSet<CardTag> CanonicalTags => [CardTag.Defend];
 
     // 数值调整的地方, 可添加各种具体效果,定义牌的可变数值
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(8, ValueProp.Move),
-        new DynamicVar("ExtraDamage", 0),
+        new BlockVar(5, ValueProp.Move),
+        new PowerVar<ArmorPower>(6),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-
+        HoverTipFactory.FromPower<ArmorPower>()
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         // 卡牌效果的实现地方,在CommonActions里有一些写好的函数,如攻防抽牌烧牌
-        ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
-        if (cardPlay.Target.Block > 0)
-        {
-            var extraDamage = cardPlay.Target.Block * 0.5m;
-            DynamicVars["ExtraDamage"].BaseValue = extraDamage;
-            Log.Info($"小刻要对{cardPlay.Target.Name}造成额外伤害：{extraDamage}");
-            await CreatureCmd.Damage(choiceContext, cardPlay.Target, extraDamage, ValueProp.Unblockable | ValueProp.Unpowered, null, null);
-        }
-        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this)
-            .WithWaitBeforeHit(0.05f,0.1f)
-			.Targeting(cardPlay.Target)
-			.WithHitFx("vfx/vfx_attack_slash")
-			.Execute(choiceContext);
 
+        await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
+        foreach (var enemy in base.CombatState!.HittableEnemies)
+        {
+            await CreatureCmd.GainBlock(enemy, base.DynamicVars.Block, cardPlay);
+        }
+        await PowerCmd.Apply<ArmorPower>(base.CombatState!.HittableEnemies, base.DynamicVars["ArmorPower"].BaseValue, base.Owner.Creature, this);
     }
 
     // 升级
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(1m);
+        DynamicVars.Block.UpgradeValueBy(3m);
     }
 
 

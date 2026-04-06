@@ -19,62 +19,64 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.ValueProps;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 
 using MegaCrit.Sts2.Core.Helpers;
-
+using wyu.wyuCode.Powers;
+using wyu.wyuCode.Monsters;
 
 
 namespace wyu.wyuCode.Cards;
 
-public class XiaoKeAttack():
+public class YinYin3():
     wyuCard(cost: 1, 
     type: CardType.Attack,
-    rarity: CardRarity.Common,
+    rarity: CardRarity.Rare,
     target: TargetType.AnyEnemy
     )
 {
     // 自定义边框
     // public override bool HasBuiltInOverlay => true;
-
+    public override bool GainsBlock => true;
 
     // 数值调整的地方, 可添加各种具体效果,定义牌的可变数值
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(8, ValueProp.Move),
-        new DynamicVar("ExtraDamage", 0),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-
+        HoverTipFactory.FromPower<StealDefencePower>()
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        // 卡牌效果的实现地方,在CommonActions里有一些写好的函数,如攻防抽牌烧牌
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
-        if (cardPlay.Target.Block > 0)
-        {
-            var extraDamage = cardPlay.Target.Block * 0.5m;
-            DynamicVars["ExtraDamage"].BaseValue = extraDamage;
-            Log.Info($"小刻要对{cardPlay.Target.Name}造成额外伤害：{extraDamage}");
-            await CreatureCmd.Damage(choiceContext, cardPlay.Target, extraDamage, ValueProp.Unblockable | ValueProp.Unpowered, null, null);
-        }
-        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this)
-            .WithWaitBeforeHit(0.05f,0.1f)
-			.Targeting(cardPlay.Target)
-			.WithHitFx("vfx/vfx_attack_slash")
-			.Execute(choiceContext);
 
+        if (cardPlay.Target.Side == CombatSide.Enemy)
+        {
+            YinYinPlaceholderMinion minionModel = (YinYinPlaceholderMinion)ModelDb.Monster<YinYinPlaceholderMinion>().ToMutable();
+            minionModel.Leader = cardPlay.Target;
+            Creature summonedMinion = base.CombatState!.CreateCreature(minionModel, CombatSide.Enemy, null);
+            await CreatureCmd.Add(summonedMinion);
+            // 给新召唤单位挂“爪牙”效果，并将效果来源设为当前卡牌指定的敌方目标。
+            await PowerCmd.Apply<MinionPower>(summonedMinion, 1m, cardPlay.Target, this);
+        }
+
+        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue)
+            .FromCard(this)
+            .TargetingAllOpponents(base.CombatState!)    // 目标设为全体敌人
+            .Execute(choiceContext);                    // 执行动作
     }
 
     // 升级
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(1m);
+        DynamicVars.Damage.UpgradeValueBy(2m);
     }
 
 

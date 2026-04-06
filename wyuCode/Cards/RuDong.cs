@@ -54,9 +54,9 @@ public class RuDong():
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var currentHp = base.Owner.Creature.CurrentHp;
-        if (currentHp > 1)
+        if (currentHp > DynamicVars["Hp"].BaseValue)
         {
-            await CreatureCmd.SetCurrentHp(base.Owner.Creature, 1m);
+            await CreatureCmd.SetCurrentHp(base.Owner.Creature, DynamicVars["Hp"].BaseValue);
         }
         await PowerCmd.Apply<RuDongPower>(base.Owner.Creature, 1, base.Owner.Creature, this);
 

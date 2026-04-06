@@ -26,7 +26,7 @@
         <AutoSteamPath>$(registry:HKEY_CURRENT_USER\Software\Valve\Steam@SteamPath)\steamapps</AutoSteamPath>
         <SteamLibraryPath Condition="Exists('$(AutoSteamPath)/common/Slay the Spire 2')">$(AutoSteamPath)</SteamLibraryPath>
 
-        <GodotPath Condition="'$(GodotPath)' == ''">D:\godot\zip\godot-editor-windows-mono4.5.1\godot-4.2-4.5.1-stable-mono.exe</GodotPath>
+        <GodotPath Condition="'$(GodotPath)' == ''">D:\godot\Godot_v4.5.1-stable_mono_win64\Godot_v4.5.1-stable_mono_win64.exe</GodotPath>
         <!-- If on Windows and Slay the Spire 2 is not installed in your default steam library, adjust the following.-->
         <SteamLibraryPath Condition="'$(SteamLibraryPath)' == ''">E:/SteamLibrary/steamapps</SteamLibraryPath>
 
@@ -64,7 +64,7 @@
         <NoWarn>$(NoWarn);MSB3270</NoWarn>
     </PropertyGroup>
 
-    <ItemGroup Condition="Exists('$(Sts2DataDir)')">
+    <ItemGroup Condition="Exists('$(Sts2DataDir)')" >
         <Reference Include="0Harmony">
             <HintPath>$(Sts2DataDir)/0Harmony.dll</HintPath>
             <Private>false</Private>
@@ -81,9 +81,9 @@
 
     <ItemGroup>
         <PackageReference Include="Alchyr.Sts2.BaseLib" Version="*" PrivateAssets="All" />
-        <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="All" />
+        <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="All"/>
         <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="*" />
-        <AdditionalFiles Include="wyu/localization/**/*.json" /> <!-- Used by analyzer -->
+        <AdditionalFiles Include="wyu/localization/**/*.json"/> <!-- Used by analyzer -->
     </ItemGroup>
 
     <ItemGroup>
@@ -101,7 +101,7 @@
     <ItemGroup>
         <None Include=".gitignore" />
         <None Include="wyu.json" />
-        <None Include="project.godot" />
+        <None Include="project.godot"/>
         <None Include="wyu/**" />
     </ItemGroup>
 
@@ -111,9 +111,13 @@
       <Folder Include="wyu\images\relics\big\" />
     </ItemGroup>
     
-    <Target Name="CheckDependencyPaths">
-        <Error Text=" Slay the Spire 2 data not found at path '$(Sts2DataDir)'" Condition="'$(Sts2DataDir)' == '' or !Exists('$(Sts2DataDir)')" />
-        <Error Text=" Godot not found at path '$(GodotPath)'" Condition="'$(GodotPath)' == '' or !Exists('$(GodotPath)')" />
+    <Target Name="CheckDependencyPaths" >
+        <Error
+                Text=" Slay the Spire 2 data not found at path '$(Sts2DataDir)'"
+                Condition="'$(Sts2DataDir)' == '' or !Exists('$(Sts2DataDir)')" />
+        <Error
+                Text=" Godot not found at path '$(GodotPath)'"
+                Condition="'$(GodotPath)' == '' or !Exists('$(GodotPath)')" />
     </Target>
     
     <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent">
@@ -123,11 +127,13 @@
     </Target>
 
     <Target Name="GodotPublish" AfterTargets="Publish" Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)') and '$(IsInnerGodotExport)' != 'true'">
-        <Message Text="Exporting Godot .pck to mods folder" Importance="high" />
-        <Exec Command="&quot;$(GodotPath)&quot; --headless --export-pack &quot;BasicExport&quot; &quot;$(ModsPath)$(MSBuildProjectName)/$(MSBuildProjectName).pck&quot;" EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1" ContinueOnError="WarnAndContinue" />
+        <Message Text="Exporting Godot .pck to mods folder" Importance="high"/>
+        <Exec Command="&quot;$(GodotPath)&quot; --headless --export-pack &quot;BasicExport&quot; &quot;$(ModsPath)$(MSBuildProjectName)/$(MSBuildProjectName).pck&quot;"
+              EnvironmentVariables="IsInnerGodotExport=true;MSBUILDDISABLENODEREUSE=1"
+              ContinueOnError="WarnAndContinue"/>
     </Target>
 
     <Target Name="GodotPublishSkipped" AfterTargets="Publish" Condition="'$(GodotPath)' == '' or !Exists('$(GodotPath)')">
-        <Message Text="Skipping Godot .pck export because GodotPath is not configured." Importance="high" />
+        <Message Text="Skipping Godot .pck export because GodotPath is not configured." Importance="high"/>
     </Target>
 </Project>

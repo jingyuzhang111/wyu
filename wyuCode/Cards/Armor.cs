@@ -46,7 +46,7 @@ public class Armor():
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new BlockVar(15, ValueProp.Move),
-        new PowerVar<ArmorPower>(30)
+        new PowerVar<ArmorPower>(20),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -59,6 +59,10 @@ public class Armor():
         // 卡牌效果的实现地方,在CommonActions里有一些写好的函数,如攻防抽牌烧牌
 
         await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
+        foreach (var enemy in base.CombatState!.HittableEnemies)
+        {
+            await CreatureCmd.GainBlock(enemy, base.DynamicVars.Block, cardPlay);
+        }
         await PowerCmd.Apply<ArmorPower>(base.CombatState!.HittableEnemies, base.DynamicVars["ArmorPower"].BaseValue, base.Owner.Creature, this);
     }
 

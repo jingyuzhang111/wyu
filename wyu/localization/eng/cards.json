@@ -47,9 +47,14 @@
 "WYU-JIAN_HAO.title": "剑豪",
 "WYU-JIAN_HAO.description": "造成{Damage:diff()}点伤害2次。\n给予{VulnerablePower:diff()}层易伤。\n失去{HpLoss:diff()}点生命。",
 "WYU-ARMOR.title": "和平共处",
-"WYU-ARMOR.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n所有敌人获得{ArmorPower:diff()}层[gold]提前起防[/gold]",
+"WYU-ARMOR.description": "自己与敌人获得{Block:diff()}点[gold]格挡[/gold]。\n所有敌人获得{ArmorPower:diff()}层[gold]提前起防[/gold]",
+"WYU-ARMOR_SMALL.title": "互相叠甲",
+"WYU-ARMOR_SMALL.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n所有敌人获得{ArmorPower:diff()}层[gold]提前起防[/gold]",
 "WYU-XIAO_KE_ATTACK.title": "很傻的狗",
-"WYU-XIAO_KE_ATTACK.description": "造成{Damage:diff()}点伤害。\n额外造成目标当前格挡50%的伤害。",
+"WYU-XIAO_KE_ATTACK.description": "造成{Damage:diff()}点伤害。\n额外造成目标当前格挡50%({ExtraDamage:diff()})的伤害。",
 "WYU-XIAN_YU.title": "先祖卡占位符",
-"WYU-XIAN_YU.description": "这是一个占位符卡牌，先祖卡的效果还没有设计好，所以先放在这里了。"
+"WYU-XIAN_YU.description": "这是一个占位符卡牌，先祖卡的效果还没有设计好，所以先放在这里了。",
+"WYU-YIN_YIN_PLACEHOLDER_MINION.name": "心烛",
+"WYU-YIN_YIN3.title": "隐隐",
+"WYU-YIN_YIN3.description": "为目标生成一个心烛，心烛受到的伤害会共享给其主人\n对全体敌人造成{Damage:diff()}点伤害。"
 }
