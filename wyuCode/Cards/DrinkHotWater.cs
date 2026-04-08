@@ -42,6 +42,7 @@ public class DrinkHotWater():
     ];
 
 	public override IEnumerable<CardKeyword> CanonicalKeywords => [
+        CardKeyword.Exhaust,
     ];
 
 

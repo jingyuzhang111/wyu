@@ -32,7 +32,7 @@ namespace wyu.wyuCode.Cards;
 public class JianHao():
     wyuCard(cost: 1, 
     type: CardType.Attack,
-    rarity: CardRarity.Rare,
+    rarity: CardRarity.Basic,
     target: TargetType.AnyEnemy
     )
 {

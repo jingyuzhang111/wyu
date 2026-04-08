@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BaseLib.Abstracts;
+using BaseLib.Utils;
 using Godot;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -25,6 +26,13 @@ public sealed class YinYinPlaceholderMinion : CustomMonsterModel
     // 怪物视觉必须是 .tscn 场景；若给 png 会在加载时触发 InvalidCastException。
     // public override string CustomVisualPath => "res://scenes/creature_visuals/big_dummy.tscn";
     public override string CustomVisualPath => "res://wyu/Scenes/wyuVisual.tscn";
+
+    // 显式创建视觉节点
+    public override NCreatureVisuals? CreateCustomVisuals()
+    {
+        return GodotUtils.CreatureVisualsFromScene(CustomVisualPath);
+    }
+
     public override int MinInitialHp => 20;
 
     public override int MaxInitialHp => 20;
@@ -49,7 +57,8 @@ public sealed class YinYinPlaceholderMinion : CustomMonsterModel
         }
 
         // 敌方爪牙固定在领袖正上方，避免出生在场景中心。
-        selfNode.GlobalPosition = leaderNode.GlobalPosition + Vector2.Up * 170f;
+        // selfNode.GlobalPosition = leaderNode.GlobalPosition + Vector2.Up * 240f;
+        selfNode.GlobalPosition = leaderNode.GlobalPosition + Vector2.Right * 140f + Vector2.Up * 240f;
     }
 
     // 行为状态机

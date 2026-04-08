@@ -43,7 +43,7 @@ public class RuDong():
     // 数值调整的地方, 可添加各种具体效果,定义牌的可变数值
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("Hp",1),
+        new IntVar("Hp",5),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -66,7 +66,7 @@ public class RuDong():
     protected override void OnUpgrade()
     {
         base.EnergyCost.UpgradeBy(-1);
-        base.DynamicVars["Hp"].BaseValue += 4;
+        base.DynamicVars["Hp"].BaseValue += 5;
     }
 
 

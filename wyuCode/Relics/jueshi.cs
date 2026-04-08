@@ -1,9 +1,12 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.Entities.RestSite;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -19,7 +22,25 @@ namespace wyu.wyuCode.Relics;
 public sealed class JueShi : wyuRelic
 {
     // 遗物稀有度 罕见
-	public override RelicRarity Rarity => RelicRarity.Uncommon;
+	public override RelicRarity Rarity => RelicRarity.Starter;
+
+
+	// 扣掉回血选项
+	public override bool TryModifyRestSiteOptions(Player player, ICollection<RestSiteOption> options)
+	{
+		if (player != Owner)
+		{
+			return false;
+		}
+
+		var healOptions = options.Where(option => option is HealRestSiteOption).ToList();
+		foreach (var option in healOptions)
+		{
+			options.Remove(option);
+		}
+
+		return healOptions.Count > 0;
+	}
 
 	public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{

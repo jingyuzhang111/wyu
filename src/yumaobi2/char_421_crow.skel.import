@@ -1,0 +1,13 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://i31n78oxlgsr"
+valid=false
+
+[deps]
+
+source_file="res://src/yumaobi2/char_421_crow.skel"
+
+[params]
+

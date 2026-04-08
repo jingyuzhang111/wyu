@@ -10,7 +10,7 @@ namespace wyu.wyuCode.Relics;
 public sealed class Brother : wyuRelic
 {
     // 遗物稀有度
-	public override RelicRarity Rarity => RelicRarity.Common;
+	public override RelicRarity Rarity => RelicRarity.Starter;
 
 	public override decimal ModifyDamageMultiplicative(
 		Creature? target,

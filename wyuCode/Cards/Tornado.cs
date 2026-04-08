@@ -61,7 +61,7 @@ public class Tornado():
     // 升级
     protected override void OnUpgrade()
     {
-        DynamicVars["tornadoPower"].UpgradeValueBy(2m);
+        DynamicVars["tornadoPower"].UpgradeValueBy(6m);
     }
 
 

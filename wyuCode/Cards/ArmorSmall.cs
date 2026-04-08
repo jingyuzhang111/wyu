@@ -45,7 +45,7 @@ public class ArmorSmall():
     // 数值调整的地方, 可添加各种具体效果,定义牌的可变数值
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(5, ValueProp.Move),
+        new BlockVar(6, ValueProp.Move),
         new PowerVar<ArmorPower>(6),
     ];
 

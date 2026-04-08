@@ -13,8 +13,6 @@ using MegaCrit.Sts2.Core.Modding;
 namespace wyu.wyuCode.Character;
 
 
-
-
 public class wyu : PlaceholderCharacterModel
 {
 	public const string CharacterId = "wyu";
@@ -26,11 +24,9 @@ public class wyu : PlaceholderCharacterModel
 	public override int StartingHp => 70;
 	
 	public override IEnumerable<CardModel> StartingDeck => [
-		ModelDb.Card<Attack>(),
-		ModelDb.Card<Warrior>(),
+		ModelDb.Card<YaYa>(),
 		ModelDb.Card<JianHao>(),
-		ModelDb.Card<Harvest>(),
-		ModelDb.Card<YinYin3>(),
+		ModelDb.Card<Warrior>(),
 	];
 
 	public override IReadOnlyList<RelicModel> StartingRelics =>

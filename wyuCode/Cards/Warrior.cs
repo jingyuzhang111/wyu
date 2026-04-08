@@ -30,7 +30,7 @@ using wyu.wyuCode.Powers;
 public class Warrior():
     wyuCard(cost: 1, 
     type: CardType.Power,
-    rarity: CardRarity.Uncommon,    // common uncommon rare 三个稀有度
+    rarity: CardRarity.Basic,    // common uncommon rare 三个稀有度
     target: TargetType.Self
     )
 {
@@ -44,6 +44,8 @@ public class Warrior():
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         
+    ];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -62,7 +64,8 @@ public class Warrior():
     // 升级
     protected override void OnUpgrade()
     {
-
+        // 升级后获得固有的词条
+        AddKeyword(CardKeyword.Innate);
     }
 
 

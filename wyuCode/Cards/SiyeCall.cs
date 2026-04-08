@@ -33,13 +33,14 @@ public class SiyeCall():
     // 自定义边框
     // public override bool HasBuiltInOverlay => true;
 
+    private bool _is_upgraded = false;
 
     // 数值调整的地方, 可添加各种具体效果,定义牌的可变数值
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new EnergyVar(1),
+        new EnergyVar(2),
         new CardsVar(2),
-        new PowerVar<SiyeBitePower>(2m),
+        new PowerVar<SiyeBitePower>(6m),
     ];
 
 	public override IEnumerable<CardKeyword> CanonicalKeywords => [
@@ -55,8 +56,10 @@ public class SiyeCall():
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-
-        await PlayerCmd.GainEnergy(base.DynamicVars.Energy.IntValue, base.Owner);
+        if (_is_upgraded)
+        {
+            await PlayerCmd.GainEnergy(base.DynamicVars.Energy.IntValue, base.Owner);
+        }
         await PowerCmd.Apply<SiyeBitePower>(base.CombatState.HittableEnemies, base.DynamicVars["SiyeBitePower"].BaseValue, base.Owner.Creature, this);
 
     }
@@ -64,8 +67,9 @@ public class SiyeCall():
     // 升级
     protected override void OnUpgrade()
     {
-        DynamicVars.Energy.UpgradeValueBy(1m);
-        DynamicVars["SiyeBitePower"].UpgradeValueBy(2m);
+        DynamicVars["SiyeBitePower"].UpgradeValueBy(4m);
+        base.EnergyCost.UpgradeBy(1);
+        _is_upgraded = true;
     }
 
 
