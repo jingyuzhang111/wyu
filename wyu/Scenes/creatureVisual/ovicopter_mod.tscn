@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://rbqbh1ksd8f"]
+
+[ext_resource type="SpineSkeletonDataResource" uid="uid://bdlv8hlwers6x" path="res://src/doumiao/doumiao/new_spine_skeleton_data_resource.tres" id="1_a0ir3"]
+[ext_resource type="Script" uid="uid://cp7x3au12g5ee" path="res://wyuCode/Patch/WyuCreatureVisualBradge.cs" id="1_h3k2d"]
+
+[node name="Ovicopter_mod" type="Node2D"]
+script = ExtResource("1_h3k2d")
+metadata/_edit_group_ = true
+
+[node name="Visuals" type="SpineSprite" parent="."]
+unique_name_in_owner = true
+scale = Vector2(-0.6801357, 0.6801357)
+skeleton_data_res = ExtResource("1_a0ir3")
+preview_skin = "Default"
+preview_animation = "lay"
+preview_frame = false
+preview_time = 0.0
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -192.0
+offset_top = -476.0
+offset_right = 211.0
+mouse_filter = 2
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-6, -269)
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -465)

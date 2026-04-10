@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://co4vbxs7eulu"
+path="res://.godot/imported/char_452_bstalk.atlas-cbfcc5d5ed8013436270f5421940de18.spatlas"
+
+[deps]
+
+source_file="res://src/doumiao/doumiao/char_452_bstalk.atlas"
+dest_files=["res://.godot/imported/char_452_bstalk.atlas-cbfcc5d5ed8013436270f5421940de18.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

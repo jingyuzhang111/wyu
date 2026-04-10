@@ -26,5 +26,9 @@
 "WYU-ARMOR_POWER.description": "下回合开始获得与层数相等的护甲",
 "WYU-ARMOR_POWER.smartDescription": "下回合开始获得与层数相等的护甲",
 "WYU-ARMOR_POWER.flavor": "[red]这个力量的细节将在未来揭晓……[/red]",
-"WYU-ARMOR_POWER.title": "提前起防"
+"WYU-ARMOR_POWER.title": "提前起防",
+"WYU-XIAO_KE_SEAL_POWER.description": "失去所有正面效果；该效果结束后恢复。",
+"WYU-XIAO_KE_SEAL_POWER.smartDescription": "失去所有正面效果；该效果结束后恢复。",
+"WYU-XIAO_KE_SEAL_POWER.flavor": "[red]封锁正在生效。[/red]",
+"WYU-XIAO_KE_SEAL_POWER.title": "封锁"
 }

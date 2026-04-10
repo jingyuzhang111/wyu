@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dea4gi7t88oil"]
+
+[ext_resource type="Texture2D" uid="uid://bqud8757ycqyg" path="res://wyu/images/charui/char_349_chiave_2b.png" id="1_oa7ld"]
+[ext_resource type="Texture2D" uid="uid://cppgo20tmlbgl" path="res://wyu/images/charui/char_select_wyu.png" id="2_me661"]
+
+[node name="wyu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Char349Chiave2b" type="Sprite2D" parent="."]
+position = Vector2(778.5, 414)
+scale = Vector2(2.0634766, 1.84375)
+texture = ExtResource("1_oa7ld")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(832, 138)
+scale = Vector2(0.4107207, 0.4107207)
+texture = ExtResource("2_me661")

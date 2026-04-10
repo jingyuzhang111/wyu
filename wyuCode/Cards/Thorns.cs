@@ -13,14 +13,8 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
-using MegaCrit.Sts2.Core.Nodes.Combat;
-using MegaCrit.Sts2.Core.ValueProps;
 using MegaCrit.Sts2.Core.Models.Powers;
-using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Nodes.Vfx;
-using MegaCrit.Sts2.Core.Nodes.Rooms;
+
 
 
 using MegaCrit.Sts2.Core.Helpers;
@@ -42,7 +36,7 @@ public class Thorns():
     // 数值调整的地方, 可添加各种具体效果,定义牌的可变数值
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<ThornsPower>(3m),
+        new PowerVar<ThornsPower>(2m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -60,7 +54,7 @@ public class Thorns():
     // 升级
     protected override void OnUpgrade()
     {
-        DynamicVars["ThornsPower"].UpgradeValueBy(1m);
+        DynamicVars["ThornsPower"].UpgradeValueBy(2m);
     }
 
 

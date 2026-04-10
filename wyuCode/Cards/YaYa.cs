@@ -55,7 +55,7 @@ public class YaYa() : wyuCard(
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(2m);
+        DynamicVars.Damage.UpgradeValueBy(5m);
     }
 
     public static float GetDistanceRatioInViewport(Creature source, Creature target)

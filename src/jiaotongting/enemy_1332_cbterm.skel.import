@@ -1,0 +1,13 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://r8qhmf1msw2y"
+valid=false
+
+[deps]
+
+source_file="res://src/jiaotongting/enemy_1332_cbterm.skel"
+
+[params]
+

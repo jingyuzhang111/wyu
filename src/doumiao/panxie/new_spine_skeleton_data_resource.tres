@@ -1,0 +1,8 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://c6y4an3n41llf"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://de42im0k5o57o" path="res://src/doumiao/panxie/token_10014_bstalk_crab_unveiling#4.atlas" id="1_01hin"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://dfeqhy4ts4c3j" path="res://src/doumiao/panxie/token_10014_bstalk_crab_unveiling#4_2.skel" id="2_qffub"]
+
+[resource]
+atlas_res = ExtResource("1_01hin")
+skeleton_file_res = ExtResource("2_qffub")

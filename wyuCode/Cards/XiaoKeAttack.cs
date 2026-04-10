@@ -43,8 +43,9 @@ public class XiaoKeAttack():
     // 数值调整的地方, 可添加各种具体效果,定义牌的可变数值
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(8, ValueProp.Move),
+        new DamageVar(4, ValueProp.Move),
         new DynamicVar("ExtraDamage", 0),
+        new DynamicVar("BlocktoDamage", 0.5m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -58,7 +59,7 @@ public class XiaoKeAttack():
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
         if (cardPlay.Target.Block > 0)
         {
-            var extraDamage = cardPlay.Target.Block * 0.5m;
+            var extraDamage = cardPlay.Target.Block * DynamicVars["BlocktoDamage"].BaseValue;
             DynamicVars["ExtraDamage"].BaseValue = extraDamage;
             Log.Info($"小刻要对{cardPlay.Target.Name}造成额外伤害：{extraDamage}");
             await CreatureCmd.Damage(choiceContext, cardPlay.Target, extraDamage, ValueProp.Unblockable | ValueProp.Unpowered, null, null);
@@ -74,7 +75,8 @@ public class XiaoKeAttack():
     // 升级
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(1m);
+        DynamicVars["BlocktoDamage"].UpgradeValueBy(0.1m);
+        DynamicVars["Damage"].UpgradeValueBy(4);
     }
 
 

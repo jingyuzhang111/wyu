@@ -50,8 +50,12 @@
 "WYU-ARMOR.description": "自己与敌人获得{Block:diff()}点[gold]格挡[/gold]。\n所有敌人获得{ArmorPower:diff()}层[gold]提前起防[/gold]",
 "WYU-ARMOR_SMALL.title": "互相叠甲",
 "WYU-ARMOR_SMALL.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n所有敌人获得{ArmorPower:diff()}层[gold]提前起防[/gold]",
+
 "WYU-XIAO_KE_ATTACK.title": "很傻的狗",
-"WYU-XIAO_KE_ATTACK.description": "造成{Damage:diff()}点伤害。\n额外造成目标当前格挡50%({ExtraDamage:diff()})的伤害。",
+"WYU-XIAO_KE_ATTACK.description": "造成{Damage:diff()}点伤害。\n额外造成目标当前格挡{BlocktoDamage:diff() * 100}%({ExtraDamage:diff()})的伤害。",
+"WYU-XIAO_KE3.title": "很重的枪",
+"WYU-XIAO_KE3.description": "造成{Damage:diff()}点伤害。\n额外造成目标当前格挡{BlocktoDamage:diff() * 100}%({ExtraDamage:diff()})的伤害。\n给予目标{BuffLossTime:diff()}层[gold]封锁[/gold]",
+
 "WYU-XIAN_YU.title": "先祖卡占位符",
 "WYU-XIAN_YU.description": "这是一个占位符卡牌，先祖卡的效果还没有设计好，所以先放在这里了。",
 "WYU-YIN_YIN_PLACEHOLDER_MINION.name": "心烛",
@@ -62,5 +66,9 @@
 "WYU-HEARTER.title": "好心人",
 "WYU-HEARTER.description": "获得{Energy:energyIcons()}。\n自己与敌人获得{Block:diff()}点[gold]格挡[/gold]。\n所有敌人获得{ArmorPower:diff()}层[gold]提前起防[/gold]",
 "WYU-YA_YA.title": "牙牙",
-"WYU-YA_YA.description": "造成{Damage:diff()}点伤害。\n具体伤害根据自己与敌人的距离计算\n理论伤害最大为20点。"
+"WYU-YA_YA.description": "造成{Damage:diff()}点伤害。\n具体伤害根据自己与敌人的距离计算\n理论伤害最大为{IfUpgraded:show:25|20}点。",
+"WYU-ZHAN_XUE_LIU.title": "战血流",
+"WYU-ZHAN_XUE_LIU.description": "失去当前生命的10%({zhanxueLiuHpLoss:diff()})。\n抽{Cards:diff()}张牌。\n造成{Damage:diff()}点伤害。",
+"WYU-XUE_LANG_BITE.title": "全军出击，我咬死你！",
+"WYU-XUE_LANG_BITE.description": "给予{SiyeBitePower:diff()}层[gold]狼咬[/gold]\n{IfUpgraded:show:[gold]升级[/gold]并|}打出消耗区,弃牌区,抽牌区的所有[gold]狼咬[/gold]。"
 }

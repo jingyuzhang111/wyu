@@ -12,5 +12,16 @@
 	"WYU-WYU.cardsModifierTitle": "cardsModifierTitle?",
 	"WYU-WYU.cardsModifierDescription": "cardsModifierDescription?",
 	"WYU-WYU.banter.alive.endTurnPing": "该我了!",
-	"WYU-WYU.banter.dead.endTurnPing": "what can i say"
+	"WYU-WYU.banter.dead.endTurnPing": "what can i say",
+
+	"WYU-ATTACK.test": "测试",
+	"WYU-ATTACK.type.attack": "呵！",
+	"WYU-ATTACK.type.attack.alt1": "把你砍成两半！",
+	"WYU-ATTACK.type.skill": "傻傻的鹰角",
+	"WYU-ATTACK.type.skill.alt1": "接下来可不能走神了呢。",
+	"WYU-ATTACK.type.power": "好哦",
+	"WYU-ATTACK.type.power.alt1": "我听博士的",
+
+	"WAGAWAGA": "瓦嘎!"
+
 }

@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://u763aj1hqkpu"
+path="res://.godot/imported/enemy_1332_cbterm.atlas-93563f9de0602ba951515fcf6a81a9bc.spatlas"
+
+[deps]
+
+source_file="res://src/jiaotongting/enemy_1332_cbterm.atlas"
+dest_files=["res://.godot/imported/enemy_1332_cbterm.atlas-93563f9de0602ba951515fcf6a81a9bc.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

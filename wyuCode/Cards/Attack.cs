@@ -19,6 +19,10 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.ValueProps;
 using MegaCrit.Sts2.Core.Models.Powers;
 
+using MegaCrit.Sts2.Core.Localization;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
+using Godot;
 
 namespace wyu.wyuCode.Cards;
 
@@ -46,6 +50,8 @@ public class Attack():
     [
     ];
 
+    private LocString testLoc = new LocString("characters", "WYU-ATTACK.test");
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         // 卡牌效果的实现地方,在CommonActions里有一些写好的函数,如攻防抽牌烧牌
@@ -55,11 +61,12 @@ public class Attack():
         await CommonActions.CardAttack(this, cardPlay.Target).Execute(choiceContext);
     }
 
+
+    
+
     // 升级
     protected override void OnUpgrade()
     {
-        // 这里是对毒伤加层
-        // DynamicVars.Poison.UpgradeValueBy(2);
 
         DynamicVars.Damage.UpgradeValueBy(3);
     }

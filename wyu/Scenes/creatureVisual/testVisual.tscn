@@ -1,18 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://cthwh1s73odbt"]
+[gd_scene load_steps=3 format=3 uid="uid://cthwh1s73odbt"]
 
 [ext_resource type="SpineSkeletonDataResource" uid="uid://chkxgn7r4rkgp" path="res://src/yumaobi2/new_spine_skeleton_data_resource.tres" id="2_e6q7t"]
+[ext_resource type="AudioStream" uid="uid://cm8g1crn5kc0x" path="res://src/yumaobi2/audio/作战中1.tres" id="2_ti3b2"]
 
 [node name="wyu" type="Node2D"]
 metadata/_edit_group_ = true
 
 [node name="Visuals" type="SpineSprite" parent="."]
 unique_name_in_owner = true
-scale = Vector2(0.11960573, 0.11960573)
+scale = Vector2(0.14281613, 0.14281613)
 skeleton_data_res = ExtResource("2_e6q7t")
 preview_skin = "Default"
 preview_animation = "-- Empty --"
 preview_frame = false
 preview_time = 0.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Visuals"]
+show_behind_parent = true
+scale = Vector2(7.0020103, 7.0020103)
+stream = ExtResource("2_ti3b2")
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true

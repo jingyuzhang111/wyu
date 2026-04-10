@@ -19,7 +19,7 @@ using wyu.wyuCode.Powers;
 public class SiyeGei():
     wyuCard(cost: 0, 
     type: CardType.Attack,
-    rarity: CardRarity.Common,    // common uncommon rare 三个稀有度
+    rarity: CardRarity.Token,    // common uncommon rare 三个稀有度
     target: TargetType.AnyEnemy
     )
 {

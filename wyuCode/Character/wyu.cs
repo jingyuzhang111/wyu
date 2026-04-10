@@ -24,15 +24,22 @@ public class wyu : PlaceholderCharacterModel
 	public override int StartingHp => 70;
 	
 	public override IEnumerable<CardModel> StartingDeck => [
-		ModelDb.Card<YaYa>(),
-		ModelDb.Card<JianHao>(),
+		ModelDb.Card<Attack>(),
+		ModelDb.Card<Attack>(),
+		ModelDb.Card<Attack>(),
+		ModelDb.Card<Attack>(),
+		ModelDb.Card<Block>(),
+		ModelDb.Card<Block>(),
+		ModelDb.Card<Block>(),
+		ModelDb.Card<Block>(),
 		ModelDb.Card<Warrior>(),
+		ModelDb.Card<YouXuYouYan>(),
 	];
 
 	public override IReadOnlyList<RelicModel> StartingRelics =>
 	[
 		ModelDb.Relic<JueShi>(),
-		ModelDb.Relic<Brother>()
+		ModelDb.Relic<Brother>(),
 	];
 	
 	public override CardPoolModel CardPool => ModelDb.CardPool<wyuCardPool>();

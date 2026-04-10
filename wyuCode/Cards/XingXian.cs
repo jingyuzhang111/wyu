@@ -44,7 +44,7 @@ public class XingXian():
         new CalculationBaseVar(0m),
         new CalculationExtraVar(1m),
         new CalculatedVar("xingxianHpLoss").WithMultiplier(CalcHpLossMultiplier),
-        new BlockVar(10m, ValueProp.Move),
+        new BlockVar(12m, ValueProp.Move),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

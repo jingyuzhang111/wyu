@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://de42im0k5o57o"
+path="res://.godot/imported/token_10014_bstalk_crab_unveiling#4.atlas-18e2b4292c7c13e834a36a5b2f86d1db.spatlas"
+
+[deps]
+
+source_file="res://src/doumiao/panxie/token_10014_bstalk_crab_unveiling#4.atlas"
+dest_files=["res://.godot/imported/token_10014_bstalk_crab_unveiling#4.atlas-18e2b4292c7c13e834a36a5b2f86d1db.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

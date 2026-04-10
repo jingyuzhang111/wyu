@@ -1,0 +1,8 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://bdlv8hlwers6x"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://co4vbxs7eulu" path="res://src/doumiao/doumiao/char_452_bstalk.atlas" id="1_x83x0"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://b7o5wyfop7p4u" path="res://src/doumiao/doumiao/char_452_bstalk2.skel" id="2_544lf"]
+
+[resource]
+atlas_res = ExtResource("1_x83x0")
+skeleton_file_res = ExtResource("2_544lf")

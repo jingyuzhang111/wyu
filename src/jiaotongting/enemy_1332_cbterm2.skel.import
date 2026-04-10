@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://dwkgtvlsi6v83"
+path="res://.godot/imported/enemy_1332_cbterm2.skel-58a1cf116ec140a0c9d787978c80e085.spskel"
+
+[deps]
+
+source_file="res://src/jiaotongting/enemy_1332_cbterm2.skel"
+dest_files=["res://.godot/imported/enemy_1332_cbterm2.skel-58a1cf116ec140a0c9d787978c80e085.spskel"]
+
+[params]
+

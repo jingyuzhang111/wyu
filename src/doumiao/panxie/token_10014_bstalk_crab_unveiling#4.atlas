@@ -1,0 +1,125 @@
+
+token_10014_bstalk_crab_unveiling#4.png
+size: 212,78
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+F_P_1
+  rotate: false
+  xy: 63, 29
+  size: 31, 47
+  orig: 31, 47
+  offset: 0, 0
+  index: -1
+F_P_10
+  rotate: true
+  xy: 138, 27
+  size: 23, 36
+  orig: 26, 39
+  offset: 0, 1
+  index: -1
+F_P_11
+  rotate: false
+  xy: 39, 2
+  size: 25, 25
+  orig: 25, 25
+  offset: 0, 0
+  index: -1
+F_P_114
+  rotate: true
+  xy: 115, 2
+  size: 16, 13
+  orig: 16, 13
+  offset: 0, 0
+  index: -1
+F_P_115
+  rotate: true
+  xy: 66, 2
+  size: 25, 21
+  orig: 25, 21
+  offset: 0, 0
+  index: -1
+F_P_116
+  rotate: false
+  xy: 188, 18
+  size: 21, 18
+  orig: 21, 18
+  offset: 0, 0
+  index: -1
+F_P_117
+  rotate: true
+  xy: 89, 2
+  size: 16, 24
+  orig: 17, 24
+  offset: 0, 0
+  index: -1
+F_P_12
+  rotate: true
+  xy: 130, 2
+  size: 16, 9
+  orig: 16, 9
+  offset: 0, 0
+  index: -1
+F_P_13
+  rotate: true
+  xy: 141, 7
+  size: 18, 24
+  orig: 18, 24
+  offset: 0, 0
+  index: -1
+F_P_2
+  rotate: false
+  xy: 96, 45
+  size: 40, 31
+  orig: 40, 31
+  offset: 0, 0
+  index: -1
+F_P_3
+  rotate: true
+  xy: 138, 52
+  size: 24, 46
+  orig: 25, 46
+  offset: 1, 0
+  index: -1
+F_P_4
+  rotate: false
+  xy: 186, 38
+  size: 24, 38
+  orig: 24, 38
+  offset: 0, 0
+  index: -1
+F_P_5
+  rotate: true
+  xy: 96, 20
+  size: 23, 39
+  orig: 23, 39
+  offset: 0, 0
+  index: -1
+F_P_6
+  rotate: false
+  xy: 2, 29
+  size: 59, 47
+  orig: 59, 47
+  offset: 0, 0
+  index: -1
+F_P_7
+  rotate: false
+  xy: 188, 6
+  size: 15, 10
+  orig: 15, 10
+  offset: 0, 0
+  index: -1
+F_P_8
+  rotate: false
+  xy: 167, 6
+  size: 19, 19
+  orig: 19, 19
+  offset: 0, 0
+  index: -1
+F_P_9
+  rotate: true
+  xy: 2, 2
+  size: 25, 35
+  orig: 28, 38
+  offset: 0, 1
+  index: -1

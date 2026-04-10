@@ -1,0 +1,8 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://hot6nm4f1hj2"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://u763aj1hqkpu" path="res://src/jiaotongting/enemy_1332_cbterm.atlas" id="1_ys8ep"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://dwkgtvlsi6v83" path="res://src/jiaotongting/enemy_1332_cbterm2.skel" id="2_g46tc"]
+
+[resource]
+atlas_res = ExtResource("1_ys8ep")
+skeleton_file_res = ExtResource("2_g46tc")

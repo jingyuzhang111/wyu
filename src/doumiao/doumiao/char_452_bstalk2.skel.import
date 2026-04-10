@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://b7o5wyfop7p4u"
+path="res://.godot/imported/char_452_bstalk2.skel-38ec4ecf2ecac579e42f86c8e5ef85ee.spskel"
+
+[deps]
+
+source_file="res://src/doumiao/doumiao/char_452_bstalk2.skel"
+dest_files=["res://.godot/imported/char_452_bstalk2.skel-38ec4ecf2ecac579e42f86c8e5ef85ee.spskel"]
+
+[params]
+
