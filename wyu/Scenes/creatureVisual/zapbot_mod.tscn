@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://v2q5lkpu4n3o"]
+
+[ext_resource type="SpineSkeletonDataResource" uid="uid://cdqf1mep5vu43" path="res://src/radian/3/new_spine_skeleton_data_resource.tres" id="1_cqirp"]
+
+[node name="GrandBotMod" type="Node2D"]
+
+[node name="Visuals" type="SpineSprite" parent="."]
+unique_name_in_owner = true
+rotation = 3.1415927
+scale = Vector2(0.6801357, -0.6801357)
+skeleton_data_res = ExtResource("1_cqirp")
+preview_skin = "Default"
+preview_animation = "Skill_Idle"
+preview_frame = false
+preview_time = 0.0
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -138.0
+offset_top = -186.0
+offset_right = 198.0
+mouse_filter = 2
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-2, -66)
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(2, -209)

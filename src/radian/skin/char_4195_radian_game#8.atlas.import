@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://40phfa80opkw"
+path="res://.godot/imported/char_4195_radian_game#8.atlas-49e9d49852746ba17ea31898ee23c11a.spatlas"
+
+[deps]
+
+source_file="res://src/radian/skin/char_4195_radian_game#8.atlas"
+dest_files=["res://.godot/imported/char_4195_radian_game#8.atlas-49e9d49852746ba17ea31898ee23c11a.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

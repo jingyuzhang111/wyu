@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cthwh1s73odbt"]
 
 [ext_resource type="SpineSkeletonDataResource" uid="uid://chkxgn7r4rkgp" path="res://src/yumaobi2/new_spine_skeleton_data_resource.tres" id="2_e6q7t"]
-[ext_resource type="AudioStream" uid="uid://cm8g1crn5kc0x" path="res://src/yumaobi2/audio/作战中1.tres" id="2_ti3b2"]
+[ext_resource type="AudioStream" uid="uid://m7tntniy8opl" path="res://src/yumaobi2/audio/作战中1.wav" id="2_ti3b2"]
 
 [node name="wyu" type="Node2D"]
 metadata/_edit_group_ = true

@@ -24,16 +24,14 @@ public class wyu : PlaceholderCharacterModel
 	public override int StartingHp => 70;
 	
 	public override IEnumerable<CardModel> StartingDeck => [
+		ModelDb.Card<ShengZang3>(),
+		ModelDb.Card<Man>(),
+		ModelDb.Card<YaoYao>(),
 		ModelDb.Card<Attack>(),
-		ModelDb.Card<Attack>(),
-		ModelDb.Card<Attack>(),
-		ModelDb.Card<Attack>(),
-		ModelDb.Card<Block>(),
-		ModelDb.Card<Block>(),
-		ModelDb.Card<Block>(),
-		ModelDb.Card<Block>(),
-		ModelDb.Card<Warrior>(),
-		ModelDb.Card<YouXuYouYan>(),
+		ModelDb.Card<XiaoKe3>(),
+		ModelDb.Card<XiaoKeBite>(),
+		ModelDb.Card<XiaoKeAttack>(),
+		ModelDb.Card<XiaoKeEat>(),
 	];
 
 	public override IReadOnlyList<RelicModel> StartingRelics =>
@@ -55,4 +53,7 @@ public class wyu : PlaceholderCharacterModel
 	public override string CustomCharacterSelectIconPath => "char_select_char_name.png".CharacterUiPath();
 	public override string CustomCharacterSelectLockedIconPath => "char_select_char_name_locked.png".CharacterUiPath();
 	public override string CustomMapMarkerPath => "map_marker_char_name.png".CharacterUiPath();
+
+	// 角色选择页面替换
+	public override string CustomCharacterSelectBg => "res://scenes/screens/char_select/char_select_bg_wyu.tscn";
 }

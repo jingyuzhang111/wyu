@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://dfg4j6y06t7sr"
+path="res://.godot/imported/token_10053_radian_tower3_game#8.atlas-03f1f1d6fb1da31a60dd12329be569f2.spatlas"
+
+[deps]
+
+source_file="res://src/radian/skin_3/token_10053_radian_tower3_game#8.atlas"
+dest_files=["res://.godot/imported/token_10053_radian_tower3_game#8.atlas-03f1f1d6fb1da31a60dd12329be569f2.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

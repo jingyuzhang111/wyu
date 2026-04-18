@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://r8tktu71twi0"
+path="res://.godot/imported/token_10053_radian_tower3_2.skel-41ac26c845a73872a22fb789dd82bd76.spskel"
+
+[deps]
+
+source_file="res://src/radian/3/token_10053_radian_tower3_2.skel"
+dest_files=["res://.godot/imported/token_10053_radian_tower3_2.skel-41ac26c845a73872a22fb789dd82bd76.spskel"]
+
+[params]
+

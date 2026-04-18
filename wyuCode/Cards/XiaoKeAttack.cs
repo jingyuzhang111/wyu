@@ -46,6 +46,7 @@ public class XiaoKeAttack():
         new DamageVar(4, ValueProp.Move),
         new DynamicVar("ExtraDamage", 0),
         new DynamicVar("BlocktoDamage", 0.5m),
+        new DynamicVar("BlocktoDamagePct", 50m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -57,13 +58,15 @@ public class XiaoKeAttack():
     {
         // 卡牌效果的实现地方,在CommonActions里有一些写好的函数,如攻防抽牌烧牌
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
+        var extraDamage = 0m;
         if (cardPlay.Target.Block > 0)
         {
-            var extraDamage = cardPlay.Target.Block * DynamicVars["BlocktoDamage"].BaseValue;
+            extraDamage = cardPlay.Target.Block * DynamicVars["BlocktoDamage"].BaseValue;
             DynamicVars["ExtraDamage"].BaseValue = extraDamage;
             Log.Info($"小刻要对{cardPlay.Target.Name}造成额外伤害：{extraDamage}");
-            await CreatureCmd.Damage(choiceContext, cardPlay.Target, extraDamage, ValueProp.Unblockable | ValueProp.Unpowered, null, null);
         }
+        await CreatureCmd.Damage(choiceContext, cardPlay.Target, extraDamage+base.DynamicVars.Damage.BaseValue, ValueProp.Unblockable | ValueProp.Unpowered, null, null);
+
         await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this)
             .WithWaitBeforeHit(0.05f,0.1f)
 			.Targeting(cardPlay.Target)
@@ -76,6 +79,7 @@ public class XiaoKeAttack():
     protected override void OnUpgrade()
     {
         DynamicVars["BlocktoDamage"].UpgradeValueBy(0.1m);
+        DynamicVars["BlocktoDamagePct"].UpgradeValueBy(10m);
         DynamicVars["Damage"].UpgradeValueBy(4);
     }
 

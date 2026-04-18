@@ -34,7 +34,7 @@ namespace wyu.wyuCode.Cards;
 public class YinYin3():
     wyuCard(cost: 1, 
     type: CardType.Attack,
-    rarity: CardRarity.Rare,
+    rarity: CardRarity.Uncommon,
     target: TargetType.AnyEnemy
     )
 {
@@ -50,7 +50,7 @@ public class YinYin3():
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-        HoverTipFactory.FromPower<StealDefencePower>()
+        HoverTipFactory.FromPower<StealDefencePower>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -76,7 +76,7 @@ public class YinYin3():
     // 升级
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(2m);
+        DynamicVars.Damage.UpgradeValueBy(3m);
     }
 
 

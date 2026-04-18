@@ -1,0 +1,153 @@
+
+token_10053_radian_tower3_game#8.png
+size: 170,515
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+C_C_21
+  rotate: true
+  xy: 2, 165
+  size: 173, 89
+  orig: 173, 89
+  offset: 0, 0
+  index: -1
+C_C_22
+  rotate: false
+  xy: 2, 17
+  size: 81, 32
+  orig: 81, 32
+  offset: 0, 0
+  index: -1
+C_C_23
+  rotate: true
+  xy: 93, 200
+  size: 55, 60
+  orig: 57, 60
+  offset: 1, 0
+  index: -1
+C_C_24
+  rotate: false
+  xy: 113, 42
+  size: 13, 58
+  orig: 13, 58
+  offset: 0, 0
+  index: -1
+C_C_31
+  rotate: true
+  xy: 2, 340
+  size: 173, 93
+  orig: 173, 93
+  offset: 0, 0
+  index: -1
+C_C_32
+  rotate: true
+  xy: 93, 257
+  size: 58, 65
+  orig: 58, 65
+  offset: 0, 0
+  index: -1
+C_C_33
+  rotate: true
+  xy: 2, 2
+  size: 13, 58
+  orig: 13, 58
+  offset: 0, 0
+  index: -1
+C_C_34
+  rotate: true
+  xy: 129, 51
+  size: 77, 34
+  orig: 79, 34
+  offset: 1, 0
+  index: -1
+C_C_Body
+  rotate: true
+  xy: 97, 387
+  size: 126, 66
+  orig: 126, 66
+  offset: 0, 0
+  index: -1
+C_C_L1
+  rotate: false
+  xy: 2, 119
+  size: 37, 44
+  orig: 37, 44
+  offset: 0, 0
+  index: -1
+C_C_L2
+  rotate: true
+  xy: 85, 4
+  size: 96, 26
+  orig: 96, 26
+  offset: 0, 0
+  index: -1
+C_C_Leg1
+  rotate: true
+  xy: 2, 69
+  size: 48, 25
+  orig: 48, 25
+  offset: 0, 0
+  index: -1
+C_C_Leg2
+  rotate: false
+  xy: 29, 63
+  size: 48, 25
+  orig: 48, 25
+  offset: 0, 0
+  index: -1
+C_C_R1
+  rotate: false
+  xy: 128, 3
+  size: 36, 46
+  orig: 36, 46
+  offset: 0, 0
+  index: -1
+C_C_R2
+  rotate: true
+  xy: 129, 153
+  size: 45, 21
+  orig: 45, 21
+  offset: 0, 0
+  index: -1
+C_C_Tail1
+  rotate: true
+  xy: 97, 317
+  size: 68, 71
+  orig: 68, 71
+  offset: 0, 0
+  index: -1
+C_C_Tail2
+  rotate: true
+  xy: 113, 12
+  size: 28, 13
+  orig: 28, 13
+  offset: 0, 0
+  index: -1
+C_C_Tail3
+  rotate: true
+  xy: 93, 102
+  size: 96, 34
+  orig: 96, 34
+  offset: 0, 0
+  index: -1
+C_C_Top
+  rotate: true
+  xy: 155, 130
+  size: 125, 12
+  orig: 125, 12
+  offset: 0, 0
+  index: -1
+C_UI_Point
+  rotate: false
+  xy: 41, 128
+  size: 43, 35
+  orig: 43, 35
+  offset: 0, 0
+  index: -1
+C_UI_Rock
+  rotate: true
+  xy: 41, 90
+  size: 36, 39
+  orig: 36, 39
+  offset: 0, 0
+  index: -1

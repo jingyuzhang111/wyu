@@ -1,0 +1,8 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://bbux0i8kyhui7"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://dfg4j6y06t7sr" path="res://src/radian/skin_3/token_10053_radian_tower3_game#8.atlas" id="1_2o3x8"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://crhuqawrh0avg" path="res://src/radian/skin_3/token_10053_radian_tower3_game#8_2.skel" id="2_xwutk"]
+
+[resource]
+atlas_res = ExtResource("1_2o3x8")
+skeleton_file_res = ExtResource("2_xwutk")

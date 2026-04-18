@@ -1,0 +1,440 @@
+
+token_10053_radian_tower3.png
+size: 672,110
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+C_Aircraft_A_I
+  rotate: true
+  xy: 328, 37
+  size: 9, 19
+  orig: 9, 19
+  offset: 0, 0
+  index: -1
+C_Aircraft_A_II
+  rotate: false
+  xy: 29, 2
+  size: 20, 22
+  orig: 20, 22
+  offset: 0, 0
+  index: -1
+C_Aircraft_A_III
+  rotate: true
+  xy: 609, 82
+  size: 26, 13
+  orig: 26, 13
+  offset: 0, 0
+  index: -1
+C_Aircraft_A_IV
+  rotate: true
+  xy: 624, 82
+  size: 26, 13
+  orig: 26, 13
+  offset: 0, 0
+  index: -1
+C_Aircraft_A_IX
+  rotate: true
+  xy: 319, 5
+  size: 30, 25
+  orig: 30, 25
+  offset: 0, 0
+  index: -1
+C_Aircraft_A_V
+  rotate: true
+  xy: 399, 53
+  size: 55, 49
+  orig: 56, 49
+  offset: 0, 0
+  index: -1
+C_Aircraft_A_VI
+  rotate: false
+  xy: 403, 2
+  size: 55, 49
+  orig: 56, 49
+  offset: 1, 0
+  index: -1
+C_Aircraft_A_VII
+  rotate: false
+  xy: 256, 3
+  size: 21, 31
+  orig: 21, 31
+  offset: 0, 0
+  index: -1
+C_Aircraft_A_VIII
+  rotate: false
+  xy: 279, 3
+  size: 21, 31
+  orig: 21, 31
+  offset: 0, 0
+  index: -1
+C_Aircraft_A_X
+  rotate: true
+  xy: 346, 6
+  size: 29, 25
+  orig: 30, 25
+  offset: 0, 0
+  index: -1
+C_Aircraft_A_XI
+  rotate: false
+  xy: 2, 26
+  size: 78, 82
+  orig: 78, 82
+  offset: 0, 0
+  index: -1
+C_Aircraft_A_XII
+  rotate: false
+  xy: 629, 55
+  size: 14, 25
+  orig: 14, 25
+  offset: 0, 0
+  index: -1
+C_Aircraft_A_XIII
+  rotate: false
+  xy: 515, 20
+  size: 18, 36
+  orig: 18, 36
+  offset: 0, 0
+  index: -1
+C_Aircraft_A_XIV
+  rotate: false
+  xy: 547, 72
+  size: 18, 36
+  orig: 18, 36
+  offset: 0, 0
+  index: -1
+C_Aircraft_A_XV
+  rotate: true
+  xy: 578, 2
+  size: 17, 18
+  orig: 17, 20
+  offset: 0, 0
+  index: -1
+C_Aircraft_A_XVI
+  rotate: true
+  xy: 536, 2
+  size: 17, 19
+  orig: 17, 20
+  offset: 0, 0
+  index: -1
+C_Aircraft_A_XVII
+  rotate: true
+  xy: 493, 58
+  size: 12, 29
+  orig: 12, 29
+  offset: 0, 0
+  index: -1
+C_Aircraft_A_XVIII
+  rotate: true
+  xy: 524, 58
+  size: 12, 29
+  orig: 12, 29
+  offset: 0, 0
+  index: -1
+C_Aircraft_B_I
+  rotate: false
+  xy: 592, 49
+  size: 13, 28
+  orig: 13, 30
+  offset: 0, 1
+  index: -1
+C_Aircraft_B_II
+  rotate: false
+  xy: 594, 80
+  size: 13, 28
+  orig: 13, 30
+  offset: 0, 1
+  index: -1
+C_Aircraft_B_III
+  rotate: true
+  xy: 515, 2
+  size: 16, 19
+  orig: 16, 19
+  offset: 0, 0
+  index: -1
+C_Aircraft_B_IV
+  rotate: true
+  xy: 598, 3
+  size: 16, 19
+  orig: 16, 19
+  offset: 0, 0
+  index: -1
+C_Aircraft_B_IX
+  rotate: true
+  xy: 465, 58
+  size: 50, 26
+  orig: 53, 27
+  offset: 0, 0
+  index: -1
+C_Aircraft_B_V
+  rotate: false
+  xy: 535, 21
+  size: 13, 35
+  orig: 13, 35
+  offset: 0, 0
+  index: -1
+C_Aircraft_B_VI
+  rotate: false
+  xy: 550, 21
+  size: 13, 35
+  orig: 13, 35
+  offset: 0, 0
+  index: -1
+C_Aircraft_B_VII
+  rotate: false
+  xy: 639, 83
+  size: 14, 25
+  orig: 14, 25
+  offset: 0, 0
+  index: -1
+C_Aircraft_B_VIII
+  rotate: true
+  xy: 487, 6
+  size: 50, 26
+  orig: 53, 27
+  offset: 3, 0
+  index: -1
+C_Aircraft_B_X
+  rotate: false
+  xy: 493, 72
+  size: 25, 36
+  orig: 25, 36
+  offset: 0, 0
+  index: -1
+C_Aircraft_B_XI
+  rotate: false
+  xy: 520, 72
+  size: 25, 36
+  orig: 25, 36
+  offset: 0, 0
+  index: -1
+C_Aircraft_B_XII
+  rotate: false
+  xy: 82, 27
+  size: 76, 81
+  orig: 76, 82
+  offset: 0, 1
+  index: -1
+C_Aircraft_B_XIII
+  rotate: true
+  xy: 565, 41
+  size: 29, 25
+  orig: 30, 25
+  offset: 1, 0
+  index: -1
+C_Aircraft_B_XIV
+  rotate: true
+  xy: 567, 79
+  size: 29, 25
+  orig: 30, 25
+  offset: 0, 0
+  index: -1
+C_Aircraft_B_XV
+  rotate: true
+  xy: 303, 48
+  size: 60, 47
+  orig: 60, 47
+  offset: 0, 0
+  index: -1
+C_Aircraft_B_XVI
+  rotate: true
+  xy: 303, 37
+  size: 9, 23
+  orig: 9, 23
+  offset: 0, 0
+  index: -1
+C_Aircraft_C_I
+  rotate: false
+  xy: 590, 21
+  size: 21, 18
+  orig: 21, 18
+  offset: 0, 0
+  index: -1
+C_Aircraft_C_II
+  rotate: false
+  xy: 206, 3
+  size: 48, 31
+  orig: 48, 31
+  offset: 0, 0
+  index: -1
+C_Aircraft_C_XVI
+  rotate: false
+  xy: 206, 3
+  size: 48, 31
+  orig: 48, 31
+  offset: 0, 0
+  index: -1
+C_Aircraft_C_III
+  rotate: true
+  xy: 460, 4
+  size: 47, 25
+  orig: 47, 25
+  offset: 0, 0
+  index: -1
+C_Aircraft_C_XIV
+  rotate: true
+  xy: 460, 4
+  size: 47, 25
+  orig: 47, 25
+  offset: 0, 0
+  index: -1
+C_Aircraft_C_IV
+  rotate: true
+  xy: 302, 3
+  size: 31, 15
+  orig: 32, 15
+  offset: 1, 0
+  index: -1
+C_Aircraft_C_IX
+  rotate: true
+  xy: 352, 49
+  size: 59, 45
+  orig: 59, 45
+  offset: 0, 0
+  index: -1
+C_Aircraft_C_V
+  rotate: true
+  xy: 160, 27
+  size: 81, 26
+  orig: 81, 26
+  offset: 0, 0
+  index: -1
+C_Aircraft_C_VI
+  rotate: true
+  xy: 373, 8
+  size: 39, 28
+  orig: 39, 28
+  offset: 0, 0
+  index: -1
+C_Aircraft_C_VII
+  rotate: false
+  xy: 91, 2
+  size: 34, 23
+  orig: 34, 23
+  offset: 0, 0
+  index: -1
+C_Aircraft_C_VIII
+  rotate: false
+  xy: 188, 36
+  size: 113, 72
+  orig: 113, 72
+  offset: 0, 0
+  index: -1
+C_Aircraft_C_X
+  rotate: false
+  xy: 127, 2
+  size: 34, 23
+  orig: 34, 23
+  offset: 0, 0
+  index: -1
+C_Aircraft_C_XI
+  rotate: true
+  xy: 450, 53
+  size: 55, 13
+  orig: 55, 13
+  offset: 0, 0
+  index: -1
+C_Aircraft_C_XII
+  rotate: false
+  xy: 565, 21
+  size: 23, 18
+  orig: 23, 18
+  offset: 0, 0
+  index: -1
+C_Aircraft_C_XIII
+  rotate: false
+  xy: 557, 2
+  size: 19, 17
+  orig: 19, 17
+  offset: 0, 0
+  index: -1
+C_Aircraft_C_XV
+  rotate: true
+  xy: 652, 37
+  size: 18, 16
+  orig: 18, 16
+  offset: 0, 0
+  index: -1
+C_Aircraft_Hand_I
+  rotate: false
+  xy: 619, 2
+  size: 24, 21
+  orig: 24, 21
+  offset: 0, 0
+  index: -1
+C_Aircraft_Hand_II
+  rotate: false
+  xy: 163, 2
+  size: 20, 23
+  orig: 21, 23
+  offset: 0, 0
+  index: -1
+C_Aircraft_Hand_III
+  rotate: false
+  xy: 2, 2
+  size: 25, 22
+  orig: 25, 22
+  offset: 0, 0
+  index: -1
+C_Aircraft_Hand_IV
+  rotate: false
+  xy: 607, 52
+  size: 20, 26
+  orig: 20, 27
+  offset: 0, 1
+  index: -1
+C_Aircraft_Hand_IX
+  rotate: false
+  xy: 630, 29
+  size: 20, 24
+  orig: 20, 25
+  offset: 0, 1
+  index: -1
+C_Aircraft_Hand_V
+  rotate: true
+  xy: 185, 2
+  size: 23, 19
+  orig: 23, 19
+  offset: 0, 0
+  index: -1
+C_Aircraft_Hand_VI
+  rotate: false
+  xy: 613, 25
+  size: 15, 25
+  orig: 15, 25
+  offset: 0, 0
+  index: -1
+C_Aircraft_Hand_VII
+  rotate: false
+  xy: 51, 2
+  size: 20, 22
+  orig: 20, 22
+  offset: 0, 0
+  index: -1
+C_Aircraft_Hand_VIII
+  rotate: false
+  xy: 655, 85
+  size: 15, 23
+  orig: 15, 23
+  offset: 0, 0
+  index: -1
+C_Aircraft_Hand_X
+  rotate: false
+  xy: 645, 3
+  size: 19, 24
+  orig: 20, 25
+  offset: 1, 1
+  index: -1
+C_Aircraft_Hand_XI
+  rotate: false
+  xy: 73, 2
+  size: 16, 22
+  orig: 16, 22
+  offset: 0, 0
+  index: -1
+C_Aircraft_Hand_XII
+  rotate: false
+  xy: 645, 57
+  size: 13, 24
+  orig: 13, 24
+  offset: 0, 0
+  index: -1

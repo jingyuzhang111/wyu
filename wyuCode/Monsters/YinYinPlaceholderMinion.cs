@@ -33,9 +33,9 @@ public sealed class YinYinPlaceholderMinion : CustomMonsterModel
         return GodotUtils.CreatureVisualsFromScene(CustomVisualPath);
     }
 
-    public override int MinInitialHp => 20;
+    public override int MinInitialHp => 30;
 
-    public override int MaxInitialHp => 20;
+    public override int MaxInitialHp => 30;
 
     // 由召唤方在生成时写入：该爪牙受伤后会把等量伤害传给此领袖。
     public Creature? Leader { get; set; }

@@ -55,7 +55,7 @@ public class YaYa() : wyuCard(
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(5m);
+        ((PositionalDamageVar)DynamicVars.Damage).UpgradeMaxBonusBy(5m);
     }
 
     public static float GetDistanceRatioInViewport(Creature source, Creature target)
@@ -80,13 +80,18 @@ public class YaYa() : wyuCard(
 
     private sealed class PositionalDamageVar : DamageVar
     {
-        private readonly decimal _maxBonus;
+        private decimal _maxBonus;
 
         public PositionalDamageVar(decimal damage, ValueProp props, decimal maxBonus)
             : base(damage, props)
         {
             // 12 最大额外伤害
             _maxBonus = maxBonus;
+        }
+
+        public void UpgradeMaxBonusBy(decimal amount)
+        {
+            _maxBonus += amount;
         }
 
         public decimal CalculateForTarget(Creature source, Creature? target)

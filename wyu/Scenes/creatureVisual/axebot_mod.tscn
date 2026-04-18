@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://dhxpvqlcrh0xp"]
+[gd_scene load_steps=68 format=3 uid="uid://d1pats8efs1y4"]
 
 [ext_resource type="SpineSkeletonDataResource" uid="uid://hot6nm4f1hj2" path="res://src/jiaotongting/new_spine_skeleton_data_resource.tres" id="1_6vv12"]
 [ext_resource type="Texture2D" uid="uid://c6h4bdxntgrfn" path="res://src/pictures/smoke_25_2.png" id="2_gl3v7"]

@@ -69,7 +69,7 @@ public class Armor():
     // 升级
     protected override void OnUpgrade()
     {
-        DynamicVars.Block.UpgradeValueBy(3m);
+        DynamicVars.Block.UpgradeValueBy(5m);
     }
 
 

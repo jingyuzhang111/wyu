@@ -28,7 +28,7 @@ namespace wyu.wyuCode.Cards;
 public class XiaoKe3():
     wyuCard(cost: 1, 
     type: CardType.Attack,
-    rarity: CardRarity.Common,
+    rarity: CardRarity.Uncommon,
     target: TargetType.AnyEnemy
     )
 {
@@ -39,9 +39,10 @@ public class XiaoKe3():
     // 数值调整的地方, 可添加各种具体效果,定义牌的可变数值
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(4, ValueProp.Move),
+        new DamageVar(3, ValueProp.Move),
         new DynamicVar("ExtraDamage", 0),
         new DynamicVar("BlocktoDamage", 0.5m),
+        new DynamicVar("BlocktoDamagePct", 50m),    // 用于百分比显示
         new DynamicVar("BuffLossTime", 1m),
     ];
 
@@ -54,18 +55,20 @@ public class XiaoKe3():
     {
         // 卡牌效果的实现地方,在CommonActions里有一些写好的函数,如攻防抽牌烧牌
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
+        var extraDamage = 0m;
         if (cardPlay.Target.Block > 0)
         {
-            var extraDamage = cardPlay.Target.Block * DynamicVars["BlocktoDamage"].BaseValue;
+            extraDamage = cardPlay.Target.Block * DynamicVars["BlocktoDamage"].BaseValue;
             DynamicVars["ExtraDamage"].BaseValue = extraDamage;
             Log.Info($"小刻要对{cardPlay.Target.Name}造成额外伤害：{extraDamage}");
-            await CreatureCmd.Damage(choiceContext, cardPlay.Target, extraDamage, ValueProp.Unblockable | ValueProp.Unpowered, null, null);
         }
-        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this)
-            .WithWaitBeforeHit(0.05f,0.1f)
-			.Targeting(cardPlay.Target)
-			.WithHitFx("vfx/vfx_attack_slash")
-			.Execute(choiceContext);
+        await CreatureCmd.Damage(choiceContext, cardPlay.Target, extraDamage+base.DynamicVars.Damage.BaseValue, ValueProp.Unblockable | ValueProp.Unpowered, null, null);
+
+        // await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this)
+        //     .WithWaitBeforeHit(0.05f,0.1f)
+		// 	.Targeting(cardPlay.Target)
+		// 	.WithHitFx("vfx/vfx_attack_slash")
+		// 	.Execute(choiceContext);
 
         // 使目标身上的正向 Buff 在本回合内失效，并在其回合结束后恢复。
         await PowerCmd.Apply<XiaoKeSealPower>(cardPlay.Target, DynamicVars["BuffLossTime"].BaseValue, base.Owner.Creature, this);
@@ -76,6 +79,7 @@ public class XiaoKe3():
     protected override void OnUpgrade()
     {
         DynamicVars["BlocktoDamage"].UpgradeValueBy(0.1m);
+        DynamicVars["BlocktoDamagePct"].UpgradeValueBy(10m);
         DynamicVars["BuffLossTime"].UpgradeValueBy(1m);
     }
 
