@@ -24,7 +24,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 namespace wyu.wyuCode.Cards;
 
 public class ZhanXueLiu():
-    wyuCard(cost: 1, 
+    wyuCard(cost: 0, 
     type: CardType.Attack,
     rarity: CardRarity.Common,
     target: TargetType.AnyEnemy
@@ -58,7 +58,7 @@ public class ZhanXueLiu():
         // 这里是, 使用this对cardPlay.Target攻击,先上毒,再攻击
         var ownerCreature = Owner.Creature;
         decimal currentHp = ReadCurrentHp(ownerCreature);
-        decimal lossHp = currentHp * 0.1m;
+        decimal lossHp = currentHp * 0.2m;
         var zhanxueLiuHpLoss = DynamicVars["zhanxueLiuHpLoss"];
         Log.Info($"战血流效果触发,计算失去{lossHp}点生命");
         await CreatureCmd.Damage(choiceContext, base.Owner.Creature, lossHp, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
@@ -87,7 +87,7 @@ public class ZhanXueLiu():
             return 0m;
 
         decimal currentHp = ReadCurrentHp(ownerCreature);
-        return Math.Max(0m, currentHp * 0.1m);
+        return Math.Max(0m, currentHp * 0.2m);
     }
 
     private static decimal ReadCurrentHp(Creature creature)

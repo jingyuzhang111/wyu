@@ -19,7 +19,7 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.ValueProps;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.CardSelection;
-
+using wyu.wyuCode.Enchantments;
 
 using MegaCrit.Sts2.Core.Helpers;
 using wyu.wyuCode.Powers;
@@ -37,8 +37,7 @@ public class XiaoKeEat():
 {
     // 自定义边框
     // public override bool HasBuiltInOverlay => true;
-
-
+    public override string mytype => "xiaoke";
     // 数值调整的地方, 可添加各种具体效果,定义牌的可变数值
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -50,9 +49,12 @@ public class XiaoKeEat():
 
     ];
 
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [
+
+    ];
+
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-		HoverTipFactory.FromKeyword(CardKeyword.Exhaust),
 		HoverTipFactory.FromPower<StrengthPower>()
     ];
 
@@ -60,21 +62,23 @@ public class XiaoKeEat():
     {
         // 卡牌效果的实现地方,在CommonActions里有一些写好的函数,如攻防抽牌烧牌
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
-        var extraDamage = 0m;
-        if (cardPlay.Target.Block > 0)
-        {
-            extraDamage = cardPlay.Target.Block * DynamicVars["BlocktoDamage"].BaseValue;
-            DynamicVars["ExtraDamage"].BaseValue = extraDamage;
-            Log.Info($"小刻要对{cardPlay.Target.Name}造成额外伤害：{extraDamage}");
-        }
-        await CreatureCmd.Damage(choiceContext, cardPlay.Target, extraDamage+base.DynamicVars.Damage.BaseValue, ValueProp.Unblockable | ValueProp.Unpowered, null, null);
 
+
+
+        // 基础伤害：吃力量，不吃格挡。
+        await CreatureCmd.Damage(
+            choiceContext,
+            cardPlay.Target,
+            base.DynamicVars.Damage.BaseValue,
+                ValueProp.Unblockable | ValueProp.Move,
+                this);
+        
         CardModel cardModel = (await CardSelectCmd.FromHand(prefs: new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 1), context: choiceContext, player: base.Owner, filter: null, source: this)).FirstOrDefault();
 		if (cardModel != null)
 		{
-            if (cardModel is XiaoKeFood)
+            if (cardModel is XiaoKeFood ss && ss.mytype == "mibing")
             {
-                await PowerCmd.Apply<StrengthPower>(base.Owner.Creature, cardModel.DynamicVars["StrengthPower"].BaseValue, base.Owner.Creature, null);
+                ss.Isxiaokeeat = true;
             }
 
 			await CardCmd.Exhaust(choiceContext, cardModel);
@@ -85,12 +89,27 @@ public class XiaoKeEat():
 
     }
 
+    public override void AfterCreated()
+    {
+        base.AfterCreated();
+        if (Enchantment is null)
+        {
+            CardCmd.Enchant<XiaoKeEnchantment>(this, DynamicVars["BlocktoDamagePct"].BaseValue);
+        }
+    }
+
     // 升级
     protected override void OnUpgrade()
     {
         DynamicVars["BlocktoDamage"].UpgradeValueBy(0.1m);
         DynamicVars["BlocktoDamagePct"].UpgradeValueBy(10m);
-        DynamicVars["FlexPotionPower"].UpgradeValueBy(2m);   
+        DynamicVars["FlexPotionPower"].UpgradeValueBy(2m); 
+        if (Enchantment is XiaoKeEnchantment e)
+        {
+            e.Amount += 10;
+            e.ModifyCard(); // 重新计算附魔和卡牌动态值
+            
+        }  
     }
 
 

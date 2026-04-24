@@ -46,5 +46,16 @@
 "WYU-YAO_YAO_POWER.flavor": "[red]tell me tell me 卡卡米呦卡卡米[/red]",
 "WYU-YAO_YAO_POWER.title": "遥的庇护",
 
+"WYU-XIAO_KE_EAT_POWER.description": "当[]gold]小刻[/gold]与[gold]蜜饼[/gold]同时在手牌时，小刻吃掉[gold]蜜饼[/gold]",
+"WYU-XIAO_KE_EAT_POWER.smartDescription": "当[gold]小刻[/gold]与[gold]蜜饼[/gold]同时在手牌时，小刻吃掉[gold]蜜饼[/gold]",
+"WYU-XIAO_KE_EAT_POWER.flavor": "[brown]小刻吃掉了蜜饼！[/brown]",
+"WYU-XIAO_KE_EAT_POWER.title": "吃蜜饼!",
+
+
+"WYU-XIAO_KE.description": "[gold]小刻[/gold]牌包括[gold]小刻咬[/gold],[gold]小刻饿[/gold],[gold]很傻的狗[/gold],[gold]很重的枪[/gold]。",
+"WYU-XIAO_KE.smartDescription": "[gold]小刻[/gold]牌包括[gold]小刻咬[/gold],[gold]小刻饿[/gold],[gold]很傻的狗[/gold],[gold]很重的枪[/gold]。",
+"WYU-XIAO_KE.flavor": "小刻会一直盯着你\n手里的蜜饼",
+"WYU-XIAO_KE.title": "小刻",
+
 "zhanwei":"占位"
 }

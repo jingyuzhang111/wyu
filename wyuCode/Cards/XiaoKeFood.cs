@@ -29,7 +29,7 @@ using wyu.wyuCode.Powers;
 namespace wyu.wyuCode.Cards;
 
 public class XiaoKeFood():
-    wyuCard(cost: 0, 
+    wyuCard(cost: 1, 
     type: CardType.Skill,
     rarity: CardRarity.Common,
     target: TargetType.Self
@@ -37,12 +37,17 @@ public class XiaoKeFood():
 {
     // 自定义边框
     // public override bool HasBuiltInOverlay => true;
+    public override string mytype => "mibing";
+
+    // 由外部流程打标记，表示这张牌是被“小刻吃”效果消耗
+    // get标记为可读属性,set标记为可写属性
+    public bool Isxiaokeeat { get; set; }
 
 
     // 数值调整的地方, 可添加各种具体效果,定义牌的可变数值
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("Hp",1),
+        new IntVar("Hp",2),
         new PowerVar<StrengthPower>(1m),
 
     ];
@@ -50,7 +55,8 @@ public class XiaoKeFood():
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
 		HoverTipFactory.FromKeyword(CardKeyword.Exhaust),
-		HoverTipFactory.FromPower<StrengthPower>()
+		HoverTipFactory.FromPower<StrengthPower>(),
+		HoverTipFactory.FromPower<XiaoKe>()
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -60,10 +66,22 @@ public class XiaoKeFood():
 
     }
 
+    public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card, bool causedByEthereal)
+    {
+        // 过滤掉消耗其他卡牌的时候
+        if (!ReferenceEquals(card, this) || !Isxiaokeeat)
+        {
+            return;
+        }
+
+        Isxiaokeeat = false;
+        await PowerCmd.Apply<StrengthPower>(base.Owner.Creature, base.DynamicVars["StrengthPower"].BaseValue, base.Owner.Creature, null);
+    }
+
     // 升级
     protected override void OnUpgrade()
     {
-        DynamicVars["Hp"].UpgradeValueBy(1);
+        DynamicVars["StrengthPower"].UpgradeValueBy(1);
     }
 
 

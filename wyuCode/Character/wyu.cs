@@ -21,17 +21,30 @@ public class wyu : PlaceholderCharacterModel
 
 	public override Color NameColor => Color;
 	public override CharacterGender Gender => CharacterGender.Neutral;
-	public override int StartingHp => 70;
+	public override int StartingHp => 75;
 	
 	public override IEnumerable<CardModel> StartingDeck => [
-		ModelDb.Card<ShengZang3>(),
-		ModelDb.Card<Man>(),
-		ModelDb.Card<YaoYao>(),
-		ModelDb.Card<Attack>(),
-		ModelDb.Card<XiaoKe3>(),
-		ModelDb.Card<XiaoKeBite>(),
-		ModelDb.Card<XiaoKeAttack>(),
+
+		// 基础卡牌暂定为这四种
+		// ModelDb.Card<Warrior>(),
+		// ModelDb.Card<JianHao>(),
+		// ModelDb.Card<Attack>(),
+		// ModelDb.Card<Attack>(),
+		// ModelDb.Card<Attack>(),
+		// ModelDb.Card<Attack>(),
+		// ModelDb.Card<Block>(),
+		// ModelDb.Card<Block>(),
+		// ModelDb.Card<Block>(),
+		// ModelDb.Card<Block>(),
+
+
+		ModelDb.Card<XiaoKeFoodFuRong>(),
 		ModelDb.Card<XiaoKeEat>(),
+		ModelDb.Card<XiaoKeAttack>(),
+		ModelDb.Card<XiaoKeAttack>(),
+
+
+
 	];
 
 	public override IReadOnlyList<RelicModel> StartingRelics =>

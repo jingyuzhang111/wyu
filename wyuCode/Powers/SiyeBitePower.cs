@@ -42,10 +42,16 @@ public class SiyeBitePower : wyuPower
 		{
 			return 0m;
 		}
-		if (cardSource is SiyeBite || cardSource is SiyeGei)
+		// if (cardSource is SiyeBite || cardSource is SiyeGei)
+		// {
+		// 	return base.Amount;
+		// }
+		// 将cardSource实例化为wyuCard以访问mytype字段
+		if (cardSource is wyuCard customCard && customCard.mytype == "siyebite")
 		{
 			return base.Amount;
 		}
+
 		return 0m;
     }
 

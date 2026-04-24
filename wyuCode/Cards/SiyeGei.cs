@@ -25,7 +25,7 @@ public class SiyeGei():
 {
     // 自定义边框
     // public override bool HasBuiltInOverlay => true;
-
+    public override string mytype => "siyebite";
     protected override HashSet<CardTag> CanonicalTags => [CardTag.Shiv];
 
 
@@ -43,6 +43,7 @@ public class SiyeGei():
     ];
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [
+        
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

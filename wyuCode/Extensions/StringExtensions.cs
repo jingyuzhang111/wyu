@@ -37,6 +37,12 @@ public static class StringExtensions
         return Path.Join(MainFile.ModId, "images", "relics", "big", path);
     }
 
+    // 自己加的部分,用于管理附魔
+    public static string EnchantmentImagePath(this string path)
+    {
+        return Path.Join(MainFile.ModId, "images", "enchantments", path);
+    }
+
     public static string CharacterUiPath(this string path)
     {
         return Path.Join(MainFile.ModId, "images", "charui", path);
