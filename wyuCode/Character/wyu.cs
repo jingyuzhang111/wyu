@@ -39,9 +39,10 @@ public class wyu : PlaceholderCharacterModel
 
 
 		ModelDb.Card<XiaoKeFoodFuRong>(),
-		ModelDb.Card<XiaoKeEat>(),
-		ModelDb.Card<XiaoKeAttack>(),
-		ModelDb.Card<XiaoKeAttack>(),
+		ModelDb.Card<ShengZangPower>(),
+		ModelDb.Card<ShengZangPower>(),
+		ModelDb.Card<SC>(),
+		ModelDb.Card<MuchCard>(),
 
 
 

@@ -30,7 +30,7 @@ using wyu.wyuCode.Powers;
 namespace wyu.wyuCode.Cards;
 
 public class XiaoKeLove():
-    wyuCard(cost: 1, 
+    wyuCard(cost: 2, 
     type: CardType.Skill,
     rarity: CardRarity.Common,
     target: TargetType.Self

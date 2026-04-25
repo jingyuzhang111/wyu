@@ -51,11 +51,20 @@
 "WYU-XIAO_KE_EAT_POWER.flavor": "[brown]小刻吃掉了蜜饼！[/brown]",
 "WYU-XIAO_KE_EAT_POWER.title": "吃蜜饼!",
 
+"WYU-S_C_POWER.description": "将获得的增益效果转化为伤害。每失去1点增益,造成8点伤害。\n不会消耗已有增益\n提示：大部分能力效果也属于增益效果",
+"WYU-S_C_POWER.smartDescription": "将获得的增益效果转化为伤害。每失去1点增益,造成{Damage:diff()}点伤害。\n不会消耗已有增益",
+"WYU-S_C_POWER.flavor": "[red]将增益效果转化为伤害[/red]",
+"WYU-S_C_POWER.title": "效果转化",
 
 "WYU-XIAO_KE.description": "[gold]小刻[/gold]牌包括[gold]小刻咬[/gold],[gold]小刻饿[/gold],[gold]很傻的狗[/gold],[gold]很重的枪[/gold]。",
 "WYU-XIAO_KE.smartDescription": "[gold]小刻[/gold]牌包括[gold]小刻咬[/gold],[gold]小刻饿[/gold],[gold]很傻的狗[/gold],[gold]很重的枪[/gold]。",
 "WYU-XIAO_KE.flavor": "小刻会一直盯着你\n手里的蜜饼",
 "WYU-XIAO_KE.title": "小刻",
+
+"WYU-MUCH_CARD_POWER.description": "战斗结束后额外获得卡牌奖励",
+"WYU-MUCH_CARD_POWER.smartDescription": "战斗结束后额外预览{Amount}张卡牌奖励",
+"WYU-MUCH_CARD_POWER.flavor": "这个力量的细节将在未来揭晓……",
+"WYU-MUCH_CARD_POWER.title": "额外卡牌",
 
 "zhanwei":"占位"
 }

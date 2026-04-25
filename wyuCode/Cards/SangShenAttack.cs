@@ -48,7 +48,7 @@ public class SangShenAttack():
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-
+        HoverTipFactory.FromPower<MinionPower>(),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

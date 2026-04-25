@@ -31,7 +31,7 @@ namespace wyu.wyuCode.Cards;
 public class XiaoKeFood():
     wyuCard(cost: 1, 
     type: CardType.Skill,
-    rarity: CardRarity.Common,
+    rarity: CardRarity.Token,
     target: TargetType.Self
     )
 {
