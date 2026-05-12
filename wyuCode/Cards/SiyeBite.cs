@@ -25,7 +25,7 @@ public class SiyeBite():
 {
     // 自定义边框
     // public override bool HasBuiltInOverlay => true;
-    public override string mytype => "siyebite";
+    public override string[] mytypes => ["siyebite"];
 
     protected override HashSet<CardTag> CanonicalTags => [CardTag.Shiv];
 

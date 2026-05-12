@@ -55,13 +55,13 @@ public class XiaoKeEatKitchen():
         IEnumerable<CardModel> xiaokes = PileType.Draw.GetPile(base.Owner).Cards// 抽牌堆
             .Concat(PileType.Hand.GetPile(base.Owner).Cards)        // 手牌
             .Concat(PileType.Discard.GetPile(base.Owner).Cards)     // 弃牌堆
-            .Where((CardModel c) => c is wyuCard i && i.mytype == "xiaoke")
+            .Where((CardModel c) => c is wyuCard i && i.mytypes.Contains("xiaoke"))
             .ToList();
 
         IEnumerable<CardModel> mibings = PileType.Draw.GetPile(base.Owner).Cards// 抽牌堆
             .Concat(PileType.Hand.GetPile(base.Owner).Cards)        // 手牌
             .Concat(PileType.Discard.GetPile(base.Owner).Cards)     // 弃牌堆
-            .Where((CardModel c) => c is wyuCard i && i.mytype == "mibing")
+            .Where((CardModel c) => c is wyuCard i && i.mytypes.Contains("mibing"))
             .ToList();
 
         foreach (CardModel mibing in mibings)

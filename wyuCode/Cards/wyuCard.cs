@@ -24,5 +24,6 @@ public abstract class wyuCard(int cost, CardType type, CardRarity rarity, Target
     public override string PortraitPath => $"{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
     public override string BetaPortraitPath => $"beta/{Id.Entry.RemovePrefix().ToLowerInvariant()}.png".CardImagePath();
 
-    public virtual string mytype => "wyu";
+    // 修改为可修改属性
+    public virtual string[] mytypes { get; set; } = ["wyu"];
 }

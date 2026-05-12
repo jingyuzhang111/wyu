@@ -29,7 +29,6 @@ public class YaYa() : wyuCard(
     rarity: CardRarity.Common,
     target: TargetType.AnyEnemy)
 {
-    public override bool GainsBlock => true;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

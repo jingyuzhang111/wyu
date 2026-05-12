@@ -38,12 +38,12 @@ public class wyu : PlaceholderCharacterModel
 		// ModelDb.Card<Block>(),
 
 
-		ModelDb.Card<XiaoKeFoodFuRong>(),
-		ModelDb.Card<ShengZangPower>(),
-		ModelDb.Card<ShengZangPower>(),
-		ModelDb.Card<SC>(),
-		ModelDb.Card<MuchCard>(),
-
+		ModelDb.Card<Laugh>(),
+		ModelDb.Card<JiLi>(),
+		ModelDb.Card<GetEnergy>(),
+		ModelDb.Card<ZuoLeT1>(),
+		ModelDb.Card<GreatWall>(),
+		ModelDb.Card<JianHaoForm>(),
 
 
 	];

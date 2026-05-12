@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace wyu.wyuCode.Powers;
 
@@ -32,7 +33,11 @@ public class XiaoKeSealPower : wyuPower
         }
 
         // While seal is active, immediately suppress any newly gained buff on the same owner.
-        if (power != this && power.Owner == Owner && power.Type == PowerType.Buff)
+        if (power != this 
+        && power.Owner == Owner 
+        && power.Type == PowerType.Buff 
+        && power is not SandpitPower 
+        && power.Amount > 0)
         {
             await SuppressCurrentBuffs();
         }
@@ -40,7 +45,7 @@ public class XiaoKeSealPower : wyuPower
 
     private async Task SuppressCurrentBuffs()
     {
-        List<PowerModel> buffs = Owner.Powers.Where(p => p != this && p.Type == PowerType.Buff).ToList();
+        List<PowerModel> buffs = Owner.Powers.Where(p => p != this && p.Type == PowerType.Buff && p is not SandpitPower).ToList();
         foreach (PowerModel power in buffs)
         {
             if (_suppressedBuffs.TryGetValue(power.Id, out int existing))

@@ -37,7 +37,7 @@ public class XiaoKeEat():
 {
     // 自定义边框
     // public override bool HasBuiltInOverlay => true;
-    public override string mytype => "xiaoke";
+    public override string[] mytypes => ["xiaoke"];
     // 数值调整的地方, 可添加各种具体效果,定义牌的可变数值
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -76,7 +76,7 @@ public class XiaoKeEat():
         CardModel cardModel = (await CardSelectCmd.FromHand(prefs: new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 1), context: choiceContext, player: base.Owner, filter: null, source: this)).FirstOrDefault();
 		if (cardModel != null)
 		{
-            if (cardModel is XiaoKeFood ss && ss.mytype == "mibing")
+            if (cardModel is XiaoKeFood ss && ss.mytypes.Contains("mibing"))
             {
                 ss.Isxiaokeeat = true;
             }

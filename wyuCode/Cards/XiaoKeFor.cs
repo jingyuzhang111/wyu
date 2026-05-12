@@ -40,7 +40,7 @@ public class XiaoKeFor():
 {
     // 自定义边框
     // public override bool HasBuiltInOverlay => true;
-    public override string mytype => "xiaoke";
+    public override string[] mytypes => ["xiaoke"];
     // 数值调整的地方, 可添加各种具体效果,定义牌的可变数值
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -59,7 +59,7 @@ public class XiaoKeFor():
         IEnumerable<CardModel> enumerable = PileType.Draw.GetPile(card.Owner).Cards// 抽牌堆
             .Concat(PileType.Hand.GetPile(card.Owner).Cards)        // 手牌
             .Concat(PileType.Discard.GetPile(card.Owner).Cards)     // 弃牌堆
-            .Where((CardModel c) => c is wyuCard ss && ss.mytype == "mibing")
+            .Where((CardModel c) => c is wyuCard ss && ss.mytypes.Contains("mibing"))
             .ToList();
 
         var attack = enumerable.Count() * card.DynamicVars["Damage"].BaseValue;

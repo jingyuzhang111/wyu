@@ -66,5 +66,17 @@
 "WYU-MUCH_CARD_POWER.flavor": "这个力量的细节将在未来揭晓……",
 "WYU-MUCH_CARD_POWER.title": "额外卡牌",
 
+"WYU-JIAN_HAO_FORM_POWER.description": "你每回合打出的第一张攻击牌会被打出两次。",
+"WYU-JIAN_HAO_FORM_POWER.smartDescription": "你每回合打出的前[blue]{Amount}[/blue]张牌会多打出一次。",
+"WYU-JIAN_HAO_FORM_POWER.flavor": "这个力量的细节将在未来揭晓……",
+"WYU-JIAN_HAO_FORM_POWER.title": "剑豪形态",
+
+"WYU-EW_POWER.description": "维什戴尔将接管战斗",
+"WYU-EW_POWER.smartDescription": "维什戴尔将接管战斗{Amount}回合",
+"WYU-EW_POWER.flavor": "这个力量的细节将在未来揭晓……",
+"WYU-EW_POWER.title": "平滑大脑",
+"WYU-EW_POWER.warning": "哈吉马路哟~",
+"WYU-EW_POWER.approval": "死魂灵又在废话了，那老东西骂人可真难听。",
+
 "zhanwei":"占位"
 }

@@ -40,8 +40,8 @@ public class XiaoKeEatPower : wyuPower
         }
 
         var handCards = PileType.Hand.GetPile(player).Cards.ToList();
-        bool hasFood = handCards.Any(c => c is wyuCard wc && wc.mytype == "mibing");
-        bool hasXiaoke = handCards.Any(c => c is wyuCard wc && wc.mytype == "xiaoke");
+        bool hasFood = handCards.Any(c => c is wyuCard wc && wc.mytypes.Contains("mibing"));
+        bool hasXiaoke = handCards.Any(c => c is wyuCard wc && wc.mytypes.Contains("xiaoke"));
 
         if (!hasFood || !hasXiaoke)
         {
@@ -52,7 +52,7 @@ public class XiaoKeEatPower : wyuPower
         try
         {
             // 遍历所有蜜饼
-            foreach (var card in handCards.Where(c => c is wyuCard wc && wc.mytype == "mibing"))
+            foreach (var card in handCards.Where(c => c is wyuCard wc && wc.mytypes.Contains("mibing")))
             {
                 if (card is XiaoKeFood food)
                 {

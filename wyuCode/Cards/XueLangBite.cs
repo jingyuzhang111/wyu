@@ -53,7 +53,7 @@ public class XueLangBite() : wyuCard(
             .Concat(PileType.Discard.GetPile(base.Owner).Cards)     // 弃牌堆
             .Concat(PileType.Exhaust.GetPile(base.Owner).Cards)     // 消耗堆
             // .Concat(PileType.Play.GetPile(base.Owner).Cards)        // 打出区
-            .Where((CardModel c) => c is wyuCard gei && gei.mytype == "siye")
+            .Where((CardModel c) => c is wyuCard gei && gei.mytypes.Contains("siyebite"))
             .ToList();
             
 		bool flag = true;

@@ -42,7 +42,7 @@ public class XiaoKeCook():
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
 
-        new PowerVar<FlexPotionPower>(2m),
+        new PowerVar<TemporaryStrengthPower>(2m),
 
     ];
 
@@ -72,16 +72,17 @@ public class XiaoKeCook():
             for (int i = 0; i < exhaustedCount; i++)
             {   
                 CardModel food = base.CombatState!.CreateCard<XiaoKeFood>(base.Owner);
-                await CardPileCmd.AddGeneratedCardToCombat(food, PileType.Hand, addedByPlayer: true);
+                var result = await CardPileCmd.AddGeneratedCardToCombat(food, PileType.Hand, addedByPlayer: true);
+                CardCmd.PreviewCardPileAdd(result);
                 await Cmd.Wait(0.1f);
             }
             
         }
 
-        await PowerCmd.Apply<FlexPotionPower>(base.Owner.Creature, base.DynamicVars["FlexPotionPower"].BaseValue, base.Owner.Creature, null);
+        await PowerCmd.Apply<TemporaryStrengthPower>(base.Owner.Creature, base.DynamicVars["TemporaryStrengthPower"].BaseValue, base.Owner.Creature, null);
 
         List<CardModel> DrawCards = PileType.Draw.GetPile(base.Owner).Cards.ToList();
-        List<CardModel> xiaokeCards = DrawCards.Where(c => c is wyuCard wc && wc.mytype == "xiaoke").ToList();
+        List<CardModel> xiaokeCards = DrawCards.Where(c => c is wyuCard wc && wc.mytypes.Contains("xiaoke")).ToList();
         
         if (xiaokeCards.Count <= 0)
         {
@@ -99,7 +100,7 @@ public class XiaoKeCook():
             await CardCmd.Exhaust(choiceContext, handCard);
         }
 
-        await PowerCmd.Apply<FlexPotionPower>(base.Owner.Creature, foodCount * base.DynamicVars["FlexPotionPower"].BaseValue, base.Owner.Creature, null);
+        await PowerCmd.Apply<TemporaryStrengthPower>(base.Owner.Creature, foodCount * base.DynamicVars["TemporaryStrengthPower"].BaseValue, base.Owner.Creature, null);
 
 
 
@@ -115,7 +116,7 @@ public class XiaoKeCook():
     // 升级
     protected override void OnUpgrade()
     {
-        DynamicVars["FlexPotionPower"].UpgradeValueBy(1m);   
+        DynamicVars["TemporaryStrengthPower"].UpgradeValueBy(1m);   
     }
 
 

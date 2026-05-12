@@ -47,7 +47,7 @@ public class SiyeBitePower : wyuPower
 		// 	return base.Amount;
 		// }
 		// 将cardSource实例化为wyuCard以访问mytype字段
-		if (cardSource is wyuCard customCard && customCard.mytype == "siyebite")
+		if (cardSource is wyuCard customCard && customCard.mytypes.Contains("siyebite"))
 		{
 			return base.Amount;
 		}

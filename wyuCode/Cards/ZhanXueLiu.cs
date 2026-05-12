@@ -44,7 +44,7 @@ public class ZhanXueLiu():
         new CalculationBaseVar(0m),
         new CalculationExtraVar(1m),
         new CalculatedVar("zhanxueLiuHpLoss").WithMultiplier(CalcHpLossMultiplier),
-        new DamageVar(8m, ValueProp.Move),
+        new DamageVar(10m, ValueProp.Move),
         new CardsVar(1),
     ];
 
@@ -80,6 +80,9 @@ public class ZhanXueLiu():
     {
         DynamicVars.Damage.UpgradeValueBy(4m);
     }
+
+
+    
     private static decimal CalcHpLossMultiplier(CardModel card, Creature? target)
     {
         var ownerCreature = card.Owner?.Creature;

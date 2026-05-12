@@ -45,6 +45,7 @@ public class Hearter():
     {
         // 卡牌效果的实现地方,在CommonActions里有一些写好的函数,如攻防抽牌烧牌
         await PlayerCmd.GainEnergy(base.DynamicVars.Energy.IntValue, base.Owner);
+        await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
         foreach (var enemy in base.CombatState!.HittableEnemies)
         {
             await CreatureCmd.GainBlock(enemy, base.DynamicVars.Block, cardPlay);

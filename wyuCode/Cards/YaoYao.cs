@@ -26,7 +26,7 @@ namespace wyu.wyuCode.Cards;
 public class YaoYao() : wyuCard(
     cost: 2,
     type: CardType.Skill,
-    rarity: CardRarity.Common,
+    rarity: CardRarity.Uncommon,
     target: TargetType.Self)
 {
     public override bool GainsBlock => true;

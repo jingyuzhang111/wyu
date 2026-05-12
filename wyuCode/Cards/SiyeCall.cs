@@ -39,7 +39,6 @@ public class SiyeCall():
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new EnergyVar(2),
-        new CardsVar(2),
         new PowerVar<SiyeBitePower>(6m),
     ];
 

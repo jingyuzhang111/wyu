@@ -51,11 +51,12 @@ public class XiaoKeFoodHouse():
 		HoverTipFactory.FromKeyword(CardKeyword.Exhaust),
 		HoverTipFactory.FromPower<StrengthPower>(),
 		HoverTipFactory.FromPower<XiaoKe>(),
-		HoverTipFactory.FromCard(ModelDb.Card<XiaoKeFood>())
+		HoverTipFactory.FromCard(ModelDb.Card<XiaoKeFoodGood>())
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        
         await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
         int numOfOrbs = ResolveEnergyXValue();
 		if (base.IsUpgraded)
@@ -65,8 +66,9 @@ public class XiaoKeFoodHouse():
 		    // CardModel food = base.CombatState!.CreateCard<XiaoKeFood>(base.Owner);
         for (int i = 0; i < numOfOrbs; i++)
         {   
-            CardModel food = base.CombatState!.CreateCard<XiaoKeFood>(base.Owner);
-            await CardPileCmd.AddGeneratedCardToCombat(food, PileType.Discard, addedByPlayer: true);
+            CardModel food = base.CombatState!.CreateCard<XiaoKeFoodGood>(base.Owner);
+            var result = await CardPileCmd.AddGeneratedCardToCombat(food, PileType.Draw, addedByPlayer: true, CardPilePosition.Random);
+            CardCmd.PreviewCardPileAdd(result);
             await Cmd.Wait(0.1f);
         }
     }

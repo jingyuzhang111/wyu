@@ -38,6 +38,7 @@ public class ArmorSmall():
 {
     // 自定义边框
     // public override bool HasBuiltInOverlay => true;
+    public override bool GainsBlock => true;
 
     // 添加打击标签(Strike)
     protected override HashSet<CardTag> CanonicalTags => [CardTag.Defend];

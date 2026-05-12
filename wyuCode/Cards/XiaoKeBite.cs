@@ -32,7 +32,7 @@ using wyu.wyuCode.Enchantments;
 namespace wyu.wyuCode.Cards;
 
 public class XiaoKeBite():
-    wyuCard(cost: 3, 
+    wyuCard(cost: 2, 
     type: CardType.Attack,
     rarity: CardRarity.Common,
     target: TargetType.AnyEnemy
@@ -40,7 +40,7 @@ public class XiaoKeBite():
 {
     // 自定义边框
     // public override bool HasBuiltInOverlay => true;
-    public override string mytype => "xiaoke";
+    public override string[] mytypes => ["xiaoke"];
     // 数值调整的地方, 可添加各种具体效果,定义牌的可变数值
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

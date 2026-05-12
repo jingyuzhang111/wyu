@@ -24,23 +24,24 @@ public sealed class JueShi : wyuRelic
     // 遗物稀有度 罕见
 	public override RelicRarity Rarity => RelicRarity.Starter;
 
-
+	// 暂时不能扣掉，会导致升级完卡牌后游戏卡死
 	// 扣掉回血选项
-	public override bool TryModifyRestSiteOptions(Player player, ICollection<RestSiteOption> options)
-	{
-		if (player != Owner)
-		{
-			return false;
-		}
+	// public override bool TryModifyRestSiteOptions(Player player, ICollection<RestSiteOption> options)
+	// {
+	// 	if (player != Owner)
+	// 	{
+	// 		return false;
+	// 	}
 
-		var healOptions = options.Where(option => option is HealRestSiteOption).ToList();
-		foreach (var option in healOptions)
-		{
-			options.Remove(option);
-		}
+	// 	var healOptions = options.Where(option => option is HealRestSiteOption).ToList();
+	// 	foreach (var option in healOptions)
+	// 	{
+	// 		options.Remove(option);
+	// 	}
 
-		return healOptions.Count > 0;
-	}
+	// 	return healOptions.Count > 0;
+	// }
+
 
 	public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{

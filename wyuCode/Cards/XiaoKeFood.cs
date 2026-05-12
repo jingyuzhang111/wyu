@@ -37,7 +37,7 @@ public class XiaoKeFood():
 {
     // 自定义边框
     // public override bool HasBuiltInOverlay => true;
-    public override string mytype => "mibing";
+    public override string[] mytypes => ["mibing"];
 
     // 由外部流程打标记，表示这张牌是被“小刻吃”效果消耗
     // get标记为可读属性,set标记为可写属性
