@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://c325blade"]
+
+[ext_resource type="Texture2D" uid="uid://325png" path="res://src/zc/325.png"]
+
+[node name="Zc325SovereignBladeVfx" type="Node2D"]
+
+[node name="Blade" type="Sprite2D" parent="."]
+position = Vector2(0, 0)
+texture = ExtResource("uid://325png")
+centered = true
+offset = Vector2(0, -80)
+
+[node name="Path2D" type="Path2D" parent="."]
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]

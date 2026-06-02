@@ -40,10 +40,9 @@ public class wyu : PlaceholderCharacterModel
 
 		ModelDb.Card<Laugh>(),
 		ModelDb.Card<JiLi>(),
-		ModelDb.Card<GetEnergy>(),
-		ModelDb.Card<ZuoLeT1>(),
+
 		ModelDb.Card<GreatWall>(),
-		ModelDb.Card<JianHaoForm>(),
+		ModelDb.Card<Zc325>(),
 
 
 	];

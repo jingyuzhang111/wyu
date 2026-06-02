@@ -1,0 +1,7 @@
+# 请把你想用的单张 325 图片放到此文件夹并命名为：
+325.png
+
+原始示例路径（解包目录示例）：
+E:\明日方舟\杀戮尖塔2Mod教程\塔2解包\Slay the Spire 2\images\vfx\sovereign_blade\
+
+将图片复制后，在 Godot 编辑器中确认导入为 Texture2D。

@@ -94,7 +94,7 @@ public sealed class JueShi : wyuRelic
 		bool fromFengYanPower = cardSource == null && dealer.GetPower<FengYanPower>() != null;
 		if (fromFengYanPower && cardSource == null){
 			Flash();
-			await CreatureCmd.Heal(Owner.Creature, 1m);
+			await CreatureCmd.Heal(Owner.Creature, 1m, playAnim: false);
 			return;
 		}
 		// 无来源伤害,但不是封烟伤害,过滤
@@ -107,7 +107,7 @@ public sealed class JueShi : wyuRelic
 		// 玩家造成了伤害,就回血
 		if (cardSource != null && cardSource.Owner == Owner){
 			Flash();
-			await CreatureCmd.Heal(Owner.Creature, 1m);
+			await CreatureCmd.Heal(Owner.Creature, 1m, playAnim: false);
 		}
 		
 	}
