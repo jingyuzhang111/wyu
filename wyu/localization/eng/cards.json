@@ -172,7 +172,7 @@
 "WYU-1.description": "失去当前生命的20%({HpLoss:diff()})。\n抽3张牌。",
 
 "WYU-NI_YAN_T1.title": "沃土予身",
-"WYU-NI_YAN_T1.description": "立即获得1层[gold]缓冲[/gold]\n每{}回合获得{}层[gold]缓冲[/gold]。",
+"WYU-NI_YAN_T1.description": "{IfUpgraded:show:立即获得1层[gold]缓冲[/gold] |}\n每4回合获得1层[gold]缓冲[/gold]。",
 
 "WYU-HE_LA_GE.title": "赫拉格",
 "WYU-HE_LA_GE.description": "清除自身所有负面效果\n造成{}点伤害",

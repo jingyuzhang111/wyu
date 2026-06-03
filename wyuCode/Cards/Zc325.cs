@@ -128,8 +128,11 @@ public class Zc325() :
         {
             return true;
         }
-
-        if (path.Contains("/HandIndex") || path.Contains("/DescriptionLabel"))
+        // if (path.Contains("/HandIndex"))
+        // {
+        //     return true;
+        // }
+        if (path.Contains("/DescriptionLabel"))
         {
             return true;
         }
@@ -186,9 +189,9 @@ public class Zc325() :
                     {
                         var path = child.GetPath().ToString();
                         var text = GetControlText(control) ?? string.Empty;
-                        if (!ShouldSkipLabel(path, text) && Is325Text(text))
+                        if (!ShouldSkipLabel(path, text) && Is325Text(text) && control.IsVisibleInTree())
                         {
-                            // 过滤掉屏幕外的 label（卡牌预览、隐藏面板等）
+                            // 过滤掉屏幕外及隐藏的 label（关闭的手牌序号、隐藏面板等）
                             var globalRect = new Rect2(control.GlobalPosition, control.Size);
                             if (viewportRect.Intersects(globalRect))
                             {
@@ -242,7 +245,7 @@ public class Zc325() :
         int painted = 0;
         try
         {
-            var bg = new StyleBoxFlat { BgColor = new Color(0f, 1f, 0f, 0.3f) };
+            var bg = new StyleBoxFlat { BgColor = new Color(1f, 1f, 1f, 0.3f) };
             foreach (var ctrl in Collect325LabelNodes())
             {
                 if (ctrl is Label label)
@@ -309,7 +312,7 @@ public class Zc325() :
         var random = new System.Random();
 
         // 第一阶段：所有副本飞向中心附近半径60px的小圆上
-        const float gatherRadius = 150f;
+        const float gatherRadius = 60f;
         var vanishClones = new List<Control>(sourceControls.Count);
         var tween = tree.CreateTween().SetParallel(true);
         for (int i = 0; i < sourceControls.Count; i++)
@@ -368,7 +371,7 @@ public class Zc325() :
                 clone.GlobalPosition = orbitCenter + new Vector2(Mathf.Cos(spiralAngle), Mathf.Sin(spiralAngle)) * spiralRadius;
                 clone.Modulate = new Color(1f, 1f, 1f, 1f - t);
                 clone.Scale = Vector2.One * Mathf.Lerp(0.85f, 0.2f, t);
-            }), 0f, 1f, 10f).SetEase(Tween.EaseType.In).SetTrans(Tween.TransitionType.Quad);
+            }), 0f, 1f, 1f).SetEase(Tween.EaseType.In).SetTrans(Tween.TransitionType.Quad);
         }
         await tree.ToSignal(shrinkTween, Tween.SignalName.Finished);
 

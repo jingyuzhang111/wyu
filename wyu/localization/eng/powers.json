@@ -78,5 +78,10 @@
 "WYU-EW_POWER.warning": "哈吉马路哟~",
 "WYU-EW_POWER.approval": "死魂灵又在废话了，那老东西骂人可真难听。",
 
+"WYU-NI_YAN_T1_POWER.description": "每过一定回合获得一层缓冲",
+"WYU-NI_YAN_T1_POWER.smartDescription": "过{Amount}回合后获得一层缓冲",
+"WYU-NI_YAN_T1_POWER.flavor": "这个力量的细节将在未来揭晓……",
+"WYU-NI_YAN_T1_POWER.title": "沃土予身",
+
 "zhanwei":"占位"
 }
