@@ -56,8 +56,7 @@ public class JiLi():
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        // 卡牌效果的实现地方,在CommonActions里有一些写好的函数,如攻防抽牌烧牌
-        // 这里是, 使用this对cardPlay.Target攻击,先上毒,再攻击
+
         var ownerCreature = Owner.Creature;
         decimal currentHp = ReadCurrentHp(ownerCreature);
         decimal lossHp = currentHp * DynamicVars["percent"].BaseValue;
@@ -83,35 +82,5 @@ public class JiLi():
         return Math.Max(0m, currentHp * card.DynamicVars["percent"].BaseValue);
     }
 
-    private static decimal ReadCurrentHp(Creature creature)
-    {
-        var reader = CurrentHpReaders.GetOrAdd(creature.GetType(), BuildCurrentHpReader);
-        return reader(creature);
-    }
-
-    private static Func<Creature, decimal> BuildCurrentHpReader(Type type)
-    {
-        var property = type.GetProperty("CurrentHp") ?? type.GetProperty("CurrentHealth");
-        if (property != null)
-        {
-            return creature =>
-            {
-                object? value = property.GetValue(creature);
-                return value != null ? Convert.ToDecimal(value) : 0m;
-            };
-        }
-
-        var field = type.GetField("CurrentHp") ?? type.GetField("CurrentHealth");
-        if (field != null)
-        {
-            return creature =>
-            {
-                object? value = field.GetValue(creature);
-                return value != null ? Convert.ToDecimal(value) : 0m;
-            };
-        }
-
-        return _ => 0m;
-    }
 
 }

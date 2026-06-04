@@ -89,40 +89,4 @@ public class ZuoLeT1():
         return Math.Max(0m, card.Owner.Creature.MaxHp * card.DynamicVars["percent"].BaseValue);
     }
 
-
-
-
-
-
-    private static decimal ReadCurrentHp(Creature creature)
-    {
-        var reader = CurrentHpReaders.GetOrAdd(creature.GetType(), BuildCurrentHpReader);
-        return reader(creature);
-    }
-
-    private static Func<Creature, decimal> BuildCurrentHpReader(Type type)
-    {
-        var property = type.GetProperty("CurrentHp") ?? type.GetProperty("CurrentHealth");
-        if (property != null)
-        {
-            return creature =>
-            {
-                object? value = property.GetValue(creature);
-                return value != null ? Convert.ToDecimal(value) : 0m;
-            };
-        }
-
-        var field = type.GetField("CurrentHp") ?? type.GetField("CurrentHealth");
-        if (field != null)
-        {
-            return creature =>
-            {
-                object? value = field.GetValue(creature);
-                return value != null ? Convert.ToDecimal(value) : 0m;
-            };
-        }
-
-        return _ => 0m;
-    }
-
 }

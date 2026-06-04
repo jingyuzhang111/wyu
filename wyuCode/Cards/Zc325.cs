@@ -46,7 +46,10 @@ public class Zc325() :
         new CalculatedVar("Count5").WithMultiplier(Count5Multiplier),
     ];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => 
+    [
+        HoverTipFactory.FromCard<Zc325SovereignBlade>(),
+    ];
 
     // 以下三个函数分别作为 Count3/Count2/Count5 的乘数，供 CalculatedVar 调用
     private static decimal Count3Multiplier(CardModel card, Creature? target) => Collect325Counts(card)['3'];
@@ -345,13 +348,14 @@ public class Zc325() :
 
             var angle = (float)(Math.PI * 2.0 * i / Math.Max(1, sourceControls.Count));
             var gatherPos = orbitCenter + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * gatherRadius;
-            var flyDuration = 2.5f + (float)random.NextDouble() * 0.5f; // 临时放慢便于调试
+            var flyDuration = 0.5f + (float)random.NextDouble() * 0.3f; // 第一阶段：飞到圆圈
             tween.TweenMethod(Callable.From((float t) =>
             {
                 if (!GodotObject.IsInstanceValid(clone)) return;
                 clone.GlobalPosition = sourceCenter.Lerp(gatherPos, t);
                 clone.Scale = Vector2.One * Mathf.Lerp(1f, 0.85f, t);
-            }), 0f, 1f, flyDuration).SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Cubic);
+                                                                // 这里设置tween动画 Expo为最夸张的一档
+            }), 0f, 1f, flyDuration).SetEase(Tween.EaseType.In).SetTrans(Tween.TransitionType.Expo); // 先慢后快，夸张曲线
         }
         await tree.ToSignal(tween, Tween.SignalName.Finished);
 
@@ -371,7 +375,7 @@ public class Zc325() :
                 clone.GlobalPosition = orbitCenter + new Vector2(Mathf.Cos(spiralAngle), Mathf.Sin(spiralAngle)) * spiralRadius;
                 clone.Modulate = new Color(1f, 1f, 1f, 1f - t);
                 clone.Scale = Vector2.One * Mathf.Lerp(0.85f, 0.2f, t);
-            }), 0f, 1f, 1f).SetEase(Tween.EaseType.In).SetTrans(Tween.TransitionType.Quad);
+            }), 0f, 1f, 1f).SetEase(Tween.EaseType.In).SetTrans(Tween.TransitionType.Quad); // 第二阶段：螺旋淡出
         }
         await tree.ToSignal(shrinkTween, Tween.SignalName.Finished);
 
@@ -406,6 +410,7 @@ public class Zc325() :
         layer.QueueFree();
         return (total3, total2, total5);
     }
+
 
     // 卡牌效果主入口：白高亮 → 环绕动画 → 统计3/2/5 → 取最小值生成君王之剑
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

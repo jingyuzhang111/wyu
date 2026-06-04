@@ -54,7 +54,7 @@ public class Thorns():
     // 升级
     protected override void OnUpgrade()
     {
-        DynamicVars["ThornsPower"].UpgradeValueBy(2m);
+        DynamicVars["ThornsPower"].UpgradeValueBy(1m);
     }
 
 

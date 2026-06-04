@@ -1,7 +1,6 @@
 using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using BaseLib.Utils;
-using System.Collections.Concurrent;
 using wyu.wyuCode.Character;
 using wyu.wyuCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -15,61 +14,77 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
-using MegaCrit.Sts2.Core.Nodes.Combat;
-using MegaCrit.Sts2.Core.ValueProps;
-using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using System.Collections.Concurrent;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.ValueProps;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
+using Godot;
+
+using wyu.wyuCode.Powers;
+using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.Models.Events;
 
 namespace wyu.wyuCode.Cards;
 
-public class XingXian():
+public class HeLaGe():
     wyuCard(cost: 1, 
-    type: CardType.Skill,
+    type: CardType.Attack,
     rarity: CardRarity.Uncommon,
-    target: TargetType.AnyPlayer
+    target: TargetType.AllEnemies
     )
 {
     private static readonly ConcurrentDictionary<Type, Func<Creature, decimal>> CurrentHpReaders = new();
 
-    // 自定义边框
-    // public override bool HasBuiltInOverlay => true;
 
-    // 添加打击标签(Strike)
-    protected override HashSet<CardTag> CanonicalTags => [CardTag.Strike];
-
-    // 数值调整的地方, 可添加各种具体效果,定义牌的可变数值
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new CalculationBaseVar(0m),
         new CalculationExtraVar(1m),
-        new CalculatedVar("xingxianHpLoss").WithMultiplier(CalcHpLossMultiplier),
-        new BlockVar(12m, ValueProp.Move),
+        new CalculatedVar("HpLoss").WithMultiplier(CalcHpLossMultiplier),
+        new DynamicVar("HplossPercent", 20m),
+        new DynamicVar("hplosspercent", 0.2m),
+
+        new DamageVar(6m, ValueProp.Move),
+
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
+        
     ];
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        // 卡牌效果的实现地方,在CommonActions里有一些写好的函数,如攻防抽牌烧牌
-        // 这里是, 使用this对cardPlay.Target攻击,先上毒,再攻击
         var ownerCreature = Owner.Creature;
         decimal currentHp = ReadCurrentHp(ownerCreature);
-        decimal lossHp = currentHp * 0.25m;
-        var xingxianHpLoss = DynamicVars["xingxianHpLoss"];
-        Log.Info($"行险效果触发,计算失去{lossHp}点生命");
+        decimal lossHp = currentHp * DynamicVars["hplosspercent"].BaseValue;
         await CreatureCmd.Damage(choiceContext, base.Owner.Creature, lossHp, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
 
-        await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
+        // 清除所有负面效果 + 值为负的正面效果
+        var debuffs = ownerCreature.Powers
+            .Where(p => p.Type == PowerType.Debuff || (p.Type == PowerType.Buff && p.Amount < 0))
+            .ToList();
+        foreach (var debuff in debuffs)
+            await PowerCmd.Remove(debuff);
+
+        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue)
+            // .WithHitCount(2)
+            .FromCard(this)
+            .TargetingAllOpponents(base.CombatState)    // 目标设为全体敌人
+            .Execute(choiceContext);                    // 执行动作
+
     }
 
-    // 升级
+
     protected override void OnUpgrade()
     {
-        DynamicVars.Block.UpgradeValueBy(4m);
+        DynamicVars.Damage.UpgradeValueBy(3m);
     }
+
+
     private static decimal CalcHpLossMultiplier(CardModel card, Creature? target)
     {
         var ownerCreature = card.Owner?.Creature;
@@ -77,7 +92,7 @@ public class XingXian():
             return 0m;
 
         decimal currentHp = ReadCurrentHp(ownerCreature);
-        return Math.Max(0m, currentHp * 0.25m);
+        return Math.Max(0m, currentHp * card.DynamicVars["hplosspercent"].BaseValue);
     }
 
 }

@@ -12,7 +12,7 @@
 
 
 "WYU-WARRIOR.title": "武者",
-"WYU-WARRIOR.description": "获得1层[gold]武者力量[/gold]。本场战斗中，你的攻击伤害会随当前生命降低而线性提高，最低至200%。",
+"WYU-WARRIOR.description": "获得1层[gold]武者力量[/gold]。本场战斗中，你的攻击伤害会随当前生命降低而线性提高，最高至200%。",
 "WYU-XING_XIAN.title": "行险",
 "WYU-XING_XIAN.description": "失去当前生命的25%({xingxianHpLoss:diff()})。\n获得{Block:diff()}点[gold]格挡[/gold]。",
 "WYU-YOU_XU_YOU_YAN.title": "佑序有炎",
@@ -22,17 +22,21 @@
 "WYU-INTIMIDATION.title": "恁但敢造次!",
 "WYU-INTIMIDATION.description": "施加{VulnerablePower:diff()}层[gold]易伤[/gold]和{WeakPower:diff()}层[gold]虚弱[/gold]。",
 "WYU-ZHAN_XUE_LIU.title": "战血流",
-"WYU-ZHAN_XUE_LIU.description": "失去当前生命的20%({zhanxueLiuHpLoss:diff()})。\n抽{Cards:diff()}张牌。\n造成{Damage:diff()}点伤害。",
+"WYU-ZHAN_XUE_LIU.description": "失去当前生命的{HplossPercent:diff()}%({HpLoss:diff()})。\n抽{Cards:diff()}张牌。\n造成{Damage:diff()}点伤害。",
 "WYU-RU_DONG.title": "！？区区？！",
 "WYU-RU_DONG.description": "血量变为{Hp:diff()}点。\n 该回合不会再受到任何伤害",
 "WYU-DEATH.title": "狂暴锄地组长",
-"WYU-DEATH.description": "造成{Damage:diff()}点伤害8次。\n如果目标死亡，获得{StrengthPower:diff()}层[gold]力量[/gold]和{DexterityPower:diff()}层[gold]敏捷[/gold]。",
+"WYU-DEATH.description": "造成{Damage:diff()}点伤害{CountVar:diff()}次。\n如果目标死亡，获得{StrengthPower:diff()}层[gold]力量[/gold]和{DexterityPower:diff()}层[gold]敏捷[/gold]。",
 "WYU-FAST_HARVEST.title": "高速切割",
 "WYU-FAST_HARVEST.description": "失去当前生命的{HplossPercent:diff()}%({HpLoss:diff()})。\n对所有敌人造成{Damage:diff()}点伤害2次。",
 "WYU-ZUO_LE_T1.title": "守正自明",
 "WYU-ZUO_LE_T1.description": "造成{Damage:diff()}点伤害\n若血量低于{percentInt:diff()}%({HpPercentInt:diff()})，获得{Energy:energyIcons()}",
 "WYU-JIAN_HAO_FORM.title": "剑豪形态",
 "WYU-JIAN_HAO_FORM.description": "你每回合打出的第一张攻击牌会被打出两次。",
+"WYU-NI_YAN_T1.title": "沃土予身",
+"WYU-NI_YAN_T1.description": "{IfUpgraded:show:立即获得1层[gold]缓冲[/gold] |}\n每4回合获得1层[gold]缓冲[/gold]。",
+"WYU-HE_LA_GE.title": "一剑斩开国度的老爷子真帅吧",
+"WYU-HE_LA_GE.description": "失去当前生命的{HplossPercent:diff()}%({HpLoss:diff()})。\n清除自身所有负面效果\n对全体敌人造成{Damage:diff()}点伤害",
 
 
 "WYU-THORNS.title": "棘刺",
@@ -42,6 +46,7 @@
 "WYU-TORNADO.description": "给予{tornadoPower:diff()}层[gold]浮空[/gold]。",
 "WYU-WA_GA_ATTACK.title": "哇嘎！",
 "WYU-WA_GA_ATTACK.description": "造成{Damage:diff()}点伤害2次。\n若目标拥有[gold]浮空[/gold],则每次斩击增加{ExtraDamage:diff()}点伤害\n使目标[gold]浮空[/gold]层数增加50%。",
+
 
 
 "WYU-FENG_YAN.title": "封烟行刑场",
@@ -70,7 +75,7 @@
 "WYU-YIN_YIN3.title": "隐隐",
 "WYU-YIN_YIN3.description": "为目标生成一个[gold]心烛[/gold],将受到的伤害共享给主人。\n对全体敌人造成{Damage:diff()}点伤害。",
 "WYU-YA_YA.title": "牙牙",
-"WYU-YA_YA.description": "造成{Damage:diff()}点伤害。\n具体伤害根据自己与敌人的距离计算\n理论伤害最大为{IfUpgraded:show:25|20}点。",
+"WYU-YA_YA.description": "造成{Damage:diff()}点伤害。\n距离敌人越远,伤害越高\n理论伤害(整个屏幕的距离)最大为{IfUpgraded:show:25|20}点。",
 
 "WYU-DRINK_HOT_WATER.title": "多喝热水",
 "WYU-DRINK_HOT_WATER.description": "获得{Energy:energyIcons()}。\n回复{Hp:diff()}点生命。",
@@ -149,20 +154,18 @@
 "WYU-SHENG_ZANG_POWER.description": "获得{ArtifactPower:diff()}层[gold]人工制品[/gold]。",
 "WYU-LAUGH.title": "哈哈大笑",
 "WYU-LAUGH.description": "给予{VulnerablePower:diff()}层[gold]易伤[/gold]\n当目标意图为攻击且总伤害低于{targetDamage:diff()}点时，鉴定为大杯，使其失去{StrengthPower:diff()}点力量",
+"WYU-ZC325.title": "325",
+"WYU-ZC325.description": "每有一组325,将一张[gold]周哥神力[/gold]加入手牌\n[red]3[/red]的个数：{Count3:diff()}\n[red]2[/red]的个数：{Count2:diff()}\n[red]5[/red]的个数：{Count5:diff()}",
+"WYU-ZC325_SOVEREIGN_BLADE.title": "周哥神力",
+"WYU-ZC325_SOVEREIGN_BLADE.description": "造成{Damage:diff()}点伤害",
+
 
 
 "not_finished":"下面是还没实现具体功能，或还没测试的卡牌",
 
 "WYU-XIAO_KE_DEFEND_KITCHEN.title": "厨房保卫战",
 "WYU-XIAO_KE_DEFEND_KITCHEN.description": "将一张[gold]小刻饿[/gold]加入弃牌堆\n将2张[gold]蜜饼[/gold]加入抽牌堆\n获得6点[gold]力量[/gold]\n每个回合失去2点力量直到喂小刻吃蜜饼",
-"WYU-HE_NAN_TALK1.title": "中嘞中嘞",
-"WYU-HE_NAN_TALK1.description": "",
-"WYU-HE_NAN_TALK2.title": "俺不中嘞",
-"WYU-HE_NAN_TALK2.description": "",
-"WYU-ZC325.title": "325",
-"WYU-ZC325.description": "每有一组325,对所有敌人造成{Damage:diff()}点伤害1次\n[red]3[/red]的个数：{Count3:diff()}\n[red]2[/red]的个数：{Count2:diff()}\n[red]5[/red]的个数：{Count5:diff()}",
-"WYU-ZC325_SOVEREIGN_BLADE.title": "周哥神力",
-"WYU-ZC325_SOVEREIGN_BLADE.description": "造成3+2+5点伤害",
+
 "WYU-TF799.title": "799",
 "WYU-TF799.description": "",
 "WYU-ALL.title": "ALL",
@@ -171,14 +174,11 @@
 "WYU-1.title": "快速整备",
 "WYU-1.description": "失去当前生命的20%({HpLoss:diff()})。\n抽3张牌。",
 
-"WYU-NI_YAN_T1.title": "沃土予身",
-"WYU-NI_YAN_T1.description": "{IfUpgraded:show:立即获得1层[gold]缓冲[/gold] |}\n每4回合获得1层[gold]缓冲[/gold]。",
-
-"WYU-HE_LA_GE.title": "赫拉格",
-"WYU-HE_LA_GE.description": "清除自身所有负面效果\n造成{}点伤害",
-
 "WYU-ZHAN_XUE_LIU2.title": "强攻",
-"WYU-ZHAN_XUE_LIU2.description": "失去当前生命的40%({zhanxueLiuHpLoss:diff()})。\n造成{Damage:diff()}点伤害。",
+"WYU-ZHAN_XUE_LIU2.description": "失去当前生命的{HplossPercent:diff()}%({HpLoss:diff()})。\n造成{Damage:diff()}点伤害。",
+
+"WYU-MA_EN_NA.title": "攻回解放者",
+"WYU-MA_EN_NA.description": "对全体敌人造成{Damage:diff()}点伤害\n打出{Cards:diff()}张攻击牌后才能打出一次",
 
 "zhanweifu": "占位符"
 }

@@ -23,14 +23,13 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 
 namespace wyu.wyuCode.Cards;
 
-public class XingXian():
-    wyuCard(cost: 1, 
-    type: CardType.Skill,
-    rarity: CardRarity.Uncommon,
-    target: TargetType.AnyPlayer
+public class ZhanXueLiu2():
+    wyuCard(cost: 2, 
+    type: CardType.Attack,
+    rarity: CardRarity.Common,
+    target: TargetType.AnyEnemy
     )
 {
-    private static readonly ConcurrentDictionary<Type, Func<Creature, decimal>> CurrentHpReaders = new();
 
     // 自定义边框
     // public override bool HasBuiltInOverlay => true;
@@ -43,13 +42,15 @@ public class XingXian():
     [
         new CalculationBaseVar(0m),
         new CalculationExtraVar(1m),
-        new CalculatedVar("xingxianHpLoss").WithMultiplier(CalcHpLossMultiplier),
-        new BlockVar(12m, ValueProp.Move),
+        new CalculatedVar("HpLoss").WithMultiplier(CalcHpLossMultiplier),
+        new DynamicVar("HplossPercent", 50m),
+        new DynamicVar("hplosspercent", 0.5m),
+        new DamageVar(30m, ValueProp.Move),
     ];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
-    [
-    ];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [];
+
+
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -57,19 +58,25 @@ public class XingXian():
         // 这里是, 使用this对cardPlay.Target攻击,先上毒,再攻击
         var ownerCreature = Owner.Creature;
         decimal currentHp = ReadCurrentHp(ownerCreature);
-        decimal lossHp = currentHp * 0.25m;
-        var xingxianHpLoss = DynamicVars["xingxianHpLoss"];
-        Log.Info($"行险效果触发,计算失去{lossHp}点生命");
+        decimal lossHp = currentHp * DynamicVars["hplosspercent"].BaseValue;
         await CreatureCmd.Damage(choiceContext, base.Owner.Creature, lossHp, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
-
-        await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
-    }
+        
+        // 攻击
+        ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
+        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this)            
+            .WithWaitBeforeHit(0.005f,0.01f)
+            .Targeting(cardPlay.Target)
+            .WithHitFx("vfx/vfx_attack_slash")
+            .Execute(choiceContext);
+    }   
 
     // 升级
     protected override void OnUpgrade()
     {
-        DynamicVars.Block.UpgradeValueBy(4m);
+        DynamicVars.Damage.UpgradeValueBy(10m);
     }
+    
+
     private static decimal CalcHpLossMultiplier(CardModel card, Creature? target)
     {
         var ownerCreature = card.Owner?.Creature;
@@ -77,7 +84,10 @@ public class XingXian():
             return 0m;
 
         decimal currentHp = ReadCurrentHp(ownerCreature);
-        return Math.Max(0m, currentHp * 0.25m);
+        return Math.Max(0m, currentHp * card.DynamicVars["hplosspercent"].BaseValue);
     }
+
+
+
 
 }

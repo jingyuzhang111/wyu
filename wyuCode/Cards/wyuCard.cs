@@ -5,6 +5,8 @@ using wyu.wyuCode.Character;
 using wyu.wyuCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Logging;
+using MegaCrit.Sts2.Core.Entities.Creatures;
+using System.Collections.Concurrent;
 namespace wyu.wyuCode.Cards;
 
 [Pool(typeof(wyuCardPool))]
@@ -26,4 +28,39 @@ public abstract class wyuCard(int cost, CardType type, CardRarity rarity, Target
 
     // 修改为可修改属性
     public virtual string[] mytypes { get; set; } = ["wyu"];
+
+    private static readonly ConcurrentDictionary<Type, Func<Creature, decimal>> CurrentHpReaders = new();
+
+
+    protected static decimal ReadCurrentHp(Creature creature)
+    {
+        var reader = CurrentHpReaders.GetOrAdd(creature.GetType(), BuildCurrentHpReader);
+        return reader(creature);
+    }
+
+
+    private static Func<Creature, decimal> BuildCurrentHpReader(Type type)
+    {
+        var property = type.GetProperty("CurrentHp") ?? type.GetProperty("CurrentHealth");
+        if (property != null)
+        {
+            return creature =>
+            {
+                object? value = property.GetValue(creature);
+                return value != null ? Convert.ToDecimal(value) : 0m;
+            };
+        }
+
+        var field = type.GetField("CurrentHp") ?? type.GetField("CurrentHealth");
+        if (field != null)
+        {
+            return creature =>
+            {
+                object? value = field.GetValue(creature);
+                return value != null ? Convert.ToDecimal(value) : 0m;
+            };
+        }
+
+        return _ => 0m;
+    }
 }

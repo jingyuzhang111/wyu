@@ -30,7 +30,6 @@ public class ZhanXueLiu():
     target: TargetType.AnyEnemy
     )
 {
-    private static readonly ConcurrentDictionary<Type, Func<Creature, decimal>> CurrentHpReaders = new();
 
     // 自定义边框
     // public override bool HasBuiltInOverlay => true;
@@ -43,7 +42,9 @@ public class ZhanXueLiu():
     [
         new CalculationBaseVar(0m),
         new CalculationExtraVar(1m),
-        new CalculatedVar("zhanxueLiuHpLoss").WithMultiplier(CalcHpLossMultiplier),
+        new CalculatedVar("HpLoss").WithMultiplier(CalcHpLossMultiplier),
+        new DynamicVar("HplossPercent", 25m),
+        new DynamicVar("hplosspercent", 0.2m),
         new DamageVar(10m, ValueProp.Move),
         new CardsVar(1),
     ];
@@ -58,11 +59,8 @@ public class ZhanXueLiu():
         // 这里是, 使用this对cardPlay.Target攻击,先上毒,再攻击
         var ownerCreature = Owner.Creature;
         decimal currentHp = ReadCurrentHp(ownerCreature);
-        decimal lossHp = currentHp * 0.2m;
-        var zhanxueLiuHpLoss = DynamicVars["zhanxueLiuHpLoss"];
-        Log.Info($"战血流效果触发,计算失去{lossHp}点生命");
+        decimal lossHp = currentHp * DynamicVars["hplosspercent"].BaseValue;
         await CreatureCmd.Damage(choiceContext, base.Owner.Creature, lossHp, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
-
 
         await CardPileCmd.Draw(choiceContext, base.DynamicVars.Cards.BaseValue, base.Owner);
 
@@ -80,8 +78,6 @@ public class ZhanXueLiu():
     {
         DynamicVars.Damage.UpgradeValueBy(4m);
     }
-
-
     
     private static decimal CalcHpLossMultiplier(CardModel card, Creature? target)
     {
@@ -90,38 +86,10 @@ public class ZhanXueLiu():
             return 0m;
 
         decimal currentHp = ReadCurrentHp(ownerCreature);
-        return Math.Max(0m, currentHp * 0.2m);
+        return Math.Max(0m, currentHp * card.DynamicVars["hplosspercent"].BaseValue);
     }
 
-    private static decimal ReadCurrentHp(Creature creature)
-    {
-        var reader = CurrentHpReaders.GetOrAdd(creature.GetType(), BuildCurrentHpReader);
-        return reader(creature);
-    }
 
-    private static Func<Creature, decimal> BuildCurrentHpReader(Type type)
-    {
-        var property = type.GetProperty("CurrentHp") ?? type.GetProperty("CurrentHealth");
-        if (property != null)
-        {
-            return creature =>
-            {
-                object? value = property.GetValue(creature);
-                return value != null ? Convert.ToDecimal(value) : 0m;
-            };
-        }
 
-        var field = type.GetField("CurrentHp") ?? type.GetField("CurrentHealth");
-        if (field != null)
-        {
-            return creature =>
-            {
-                object? value = field.GetValue(creature);
-                return value != null ? Convert.ToDecimal(value) : 0m;
-            };
-        }
-
-        return _ => 0m;
-    }
 
 }

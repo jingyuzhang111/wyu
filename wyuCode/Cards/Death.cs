@@ -43,9 +43,10 @@ public class Death():
     // 数值调整的地方, 可添加各种具体效果,定义牌的可变数值
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(4, ValueProp.Move),
+        new DamageVar(3, ValueProp.Move),
         new PowerVar<StrengthPower>(1m),
         new PowerVar<DexterityPower>(2m),
+        new DynamicVar("CountVar", 8),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -57,7 +58,7 @@ public class Death():
     {
         // 卡牌效果的实现地方,在CommonActions里有一些写好的函数,如攻防抽牌烧牌
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
-		await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).WithHitCount(8).FromCard(this)
+		await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).WithHitCount((int)DynamicVars["CountVar"].BaseValue).FromCard(this)
             .WithWaitBeforeHit(0.05f,0.1f)
 			.Targeting(cardPlay.Target)
 			.WithHitFx("vfx/vfx_attack_slash")
@@ -74,7 +75,7 @@ public class Death():
     // 升级
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(1m);
+        DynamicVars["CountVar"].UpgradeValueBy(2m);
     }
 
 

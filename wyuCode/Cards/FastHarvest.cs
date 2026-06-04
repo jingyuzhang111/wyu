@@ -55,12 +55,17 @@ public class FastHarvest():
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        
+        var ownerCreature = Owner.Creature;
+        decimal currentHp = ReadCurrentHp(ownerCreature);
+        decimal lossHp = currentHp * DynamicVars["hplosspercent"].BaseValue;
+        await CreatureCmd.Damage(choiceContext, base.Owner.Creature, lossHp, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
+
         await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue)
             .WithHitCount(2)
             .FromCard(this)
-            .TargetingAllOpponents(base.CombatState)    // 目标设为全体敌人
-            .Execute(choiceContext);                    // 执行动作
-
+            .TargetingAllOpponents(base.CombatState)
+            .Execute(choiceContext);
     }
 
 
@@ -80,35 +85,5 @@ public class FastHarvest():
         return Math.Max(0m, currentHp * card.DynamicVars["hplosspercent"].BaseValue);
     }
 
-    private static decimal ReadCurrentHp(Creature creature)
-    {
-        var reader = CurrentHpReaders.GetOrAdd(creature.GetType(), BuildCurrentHpReader);
-        return reader(creature);
-    }
-
-    private static Func<Creature, decimal> BuildCurrentHpReader(Type type)
-    {
-        var property = type.GetProperty("CurrentHp") ?? type.GetProperty("CurrentHealth");
-        if (property != null)
-        {
-            return creature =>
-            {
-                object? value = property.GetValue(creature);
-                return value != null ? Convert.ToDecimal(value) : 0m;
-            };
-        }
-
-        var field = type.GetField("CurrentHp") ?? type.GetField("CurrentHealth");
-        if (field != null)
-        {
-            return creature =>
-            {
-                object? value = field.GetValue(creature);
-                return value != null ? Convert.ToDecimal(value) : 0m;
-            };
-        }
-
-        return _ => 0m;
-    }
 
 }
