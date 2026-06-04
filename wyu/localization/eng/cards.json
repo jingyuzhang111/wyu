@@ -37,6 +37,8 @@
 "WYU-NI_YAN_T1.description": "{IfUpgraded:show:立即获得1层[gold]缓冲[/gold] |}\n每4回合获得1层[gold]缓冲[/gold]。",
 "WYU-HE_LA_GE.title": "一剑斩开国度的老爷子真帅吧",
 "WYU-HE_LA_GE.description": "失去当前生命的{HplossPercent:diff()}%({HpLoss:diff()})。\n清除自身所有负面效果\n对全体敌人造成{Damage:diff()}点伤害",
+"WYU-ZHAN_XUE_LIU2.title": "强攻",
+"WYU-ZHAN_XUE_LIU2.description": "失去当前生命的{HplossPercent:diff()}%({HpLoss:diff()})。\n造成{Damage:diff()}点伤害。",
 
 
 "WYU-THORNS.title": "棘刺",
@@ -145,7 +147,7 @@
 "WYU-EW3.description": "造成{Damage:diff()}点伤害,对全体造成{ExtraDamage:diff()}点伤害",
 
 "WYU-MUCH_CARD.title": "多线程",
-"WYU-MUCH_CARD.description": "后台有[gold]明日方舟[/gold]或者[gold]植物大战僵尸[/gold]运行时，战斗结束后卡牌奖励多预览2张卡牌\n(pvz改版不保证能识别到)",
+"WYU-MUCH_CARD.description": "后台有[gold]明日方舟[/gold]运行时，战斗结束后卡牌奖励多预览2张卡牌",
 "WYU-GREAT_WALL.title": "筑墙",
 "WYU-GREAT_WALL.description": "古战场每有10万评论，获得1点[gold]格挡[/gold]。当前格挡为{CalculatedBlock:diff()}点",
 "WYU-S_C.title": "不要发SC",
@@ -174,11 +176,9 @@
 "WYU-1.title": "快速整备",
 "WYU-1.description": "失去当前生命的20%({HpLoss:diff()})。\n抽3张牌。",
 
-"WYU-ZHAN_XUE_LIU2.title": "强攻",
-"WYU-ZHAN_XUE_LIU2.description": "失去当前生命的{HplossPercent:diff()}%({HpLoss:diff()})。\n造成{Damage:diff()}点伤害。",
 
 "WYU-MA_EN_NA.title": "攻回解放者",
-"WYU-MA_EN_NA.description": "对全体敌人造成{Damage:diff()}点伤害\n打出{Cards:diff()}张攻击牌后才能打出一次",
+"WYU-MA_EN_NA.description": "对全体敌人造成{Damage:diff()}点伤害\n打出{Cards:diff()}张攻击牌后才能打出\n打出后重新计数\n已打出{attackCount:diff()}张攻击牌",
 
 "zhanweifu": "占位符"
 }

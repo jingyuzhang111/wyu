@@ -39,7 +39,7 @@ public class wyu : PlaceholderCharacterModel
 
 
 		ModelDb.Card<Laugh>(),
-		ModelDb.Card<JiLi>(),
+		ModelDb.Card<MaEnNa>(),
 
 		ModelDb.Card<GreatWall>(),
 		ModelDb.Card<Zc325>(),

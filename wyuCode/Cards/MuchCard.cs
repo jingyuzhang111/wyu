@@ -58,7 +58,7 @@ public class MuchCard():
 
     ];
 
-    private static (bool arknightsRunning, bool pvzRunning, List<string> processNames) ReadRunningProcessNames()
+    private static (bool arknightsRunning, List<string> processNames) ReadRunningProcessNames()
     {
         Log.Info("[MuchCard] 开始读取后台运行程序...");
         var processNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -83,16 +83,9 @@ public class MuchCard():
             n.Contains("Arknights", StringComparison.OrdinalIgnoreCase)
             || n.Contains("明日方舟", StringComparison.OrdinalIgnoreCase));
 
-        var pvzRunning = orderedNames.Any(n =>
-            n.Contains("PlantsVsZombies", StringComparison.OrdinalIgnoreCase)
-            || n.Contains("PlantsVsZombies2", StringComparison.OrdinalIgnoreCase)
-            || n.Contains("PvZ", StringComparison.OrdinalIgnoreCase)
-            || n.Contains("PvZ2", StringComparison.OrdinalIgnoreCase)
-            || n.Contains("Plants vs Zombies", StringComparison.OrdinalIgnoreCase)
-            || n.Contains("Plants vs Zombies 2", StringComparison.OrdinalIgnoreCase)
-            || n.Contains("植物大战僵尸", StringComparison.OrdinalIgnoreCase));
 
-        return (arknightsRunning, pvzRunning, orderedNames);
+
+        return (arknightsRunning, orderedNames);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -103,17 +96,12 @@ public class MuchCard():
         try
         {
             // 得到运行程序列表
-            var (arknightsRunning, pvzRunning, processNames) = ReadRunningProcessNames();
+            var (arknightsRunning, processNames) = ReadRunningProcessNames();
             Log.Info($"[MuchCard] 当前后台进程总数(去重后): {processNames.Count}");
             Log.Info($"[MuchCard] 后台进程列表: {string.Join(", ", processNames)}");
-            Log.Info($"[MuchCard] 检测结果 -> 明日方舟: {arknightsRunning}, 植物大战僵尸: {pvzRunning}");
+            Log.Info($"[MuchCard] 检测结果 -> 明日方舟: {arknightsRunning}");
 
             if (arknightsRunning)
-            {
-                threadnum += 2;
-            }
-
-            if (pvzRunning)
             {
                 threadnum += 2;
             }
