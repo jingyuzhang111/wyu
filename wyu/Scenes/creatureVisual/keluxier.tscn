@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxvo5oriv2d3i"]
+
+[ext_resource type="SpineSkeletonDataResource" uid="uid://rmujpi35y5h" path="res://src/keluxier/new_spine_skeleton_data_resource.tres" id="1_whs4i"]
+
+[node name="keluxier" type="Node2D"]
+
+[node name="Visuals" type="SpineSprite" parent="."]
+unique_name_in_owner = true
+rotation = 3.1415927
+scale = Vector2(0.765, -0.765)
+skeleton_data_res = ExtResource("1_whs4i")
+preview_skin = "Default"
+preview_animation = "Skill_2_Idle"
+preview_frame = false
+preview_time = 0.0
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -102.0
+offset_top = -288.0
+offset_right = 120.0
+offset_bottom = 5.0
+mouse_filter = 2
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-2, -65)
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -233)

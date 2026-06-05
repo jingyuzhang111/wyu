@@ -35,7 +35,7 @@
 "WYU-JIAN_HAO_FORM.description": "你每回合打出的第一张攻击牌会被打出两次。",
 "WYU-NI_YAN_T1.title": "沃土予身",
 "WYU-NI_YAN_T1.description": "{IfUpgraded:show:立即获得1层[gold]缓冲[/gold] |}\n每4回合获得1层[gold]缓冲[/gold]。",
-"WYU-HE_LA_GE.title": "一剑斩开国度的老爷子真帅吧",
+"WYU-HE_LA_GE.title": "一剑斩开国度的老爷子",
 "WYU-HE_LA_GE.description": "失去当前生命的{HplossPercent:diff()}%({HpLoss:diff()})。\n清除自身所有负面效果\n对全体敌人造成{Damage:diff()}点伤害",
 "WYU-ZHAN_XUE_LIU2.title": "强攻",
 "WYU-ZHAN_XUE_LIU2.description": "失去当前生命的{HplossPercent:diff()}%({HpLoss:diff()})。\n造成{Damage:diff()}点伤害。",
@@ -159,7 +159,7 @@
 "WYU-ZC325.title": "325",
 "WYU-ZC325.description": "每有一组325,将一张[gold]周哥神力[/gold]加入手牌\n[red]3[/red]的个数：{Count3:diff()}\n[red]2[/red]的个数：{Count2:diff()}\n[red]5[/red]的个数：{Count5:diff()}",
 "WYU-ZC325_SOVEREIGN_BLADE.title": "周哥神力",
-"WYU-ZC325_SOVEREIGN_BLADE.description": "造成{Damage:diff()}点伤害",
+"WYU-ZC325_SOVEREIGN_BLADE.description": "造成3+2+5点伤害\n(实际{Damage:diff()}点伤害)",
 
 
 

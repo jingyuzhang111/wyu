@@ -62,11 +62,15 @@ public class wyu : PlaceholderCharacterModel
 		override all the other methods that define those assets. 
 		These are just some of the simplest assets, given some placeholders to differentiate your character with. 
 		You don't have to, but you're suggested to rename these images. */
+
+	// 加载角色模型
 	public override string CustomVisualPath => "res://wyu/Scenes/creatureVisual/testVisual.tscn";
 	public override string CustomIconTexturePath => "character_icon_char_name.png".CharacterUiPath();
 	public override string CustomCharacterSelectIconPath => "char_select_char_name.png".CharacterUiPath();
 	public override string CustomCharacterSelectLockedIconPath => "char_select_char_name_locked.png".CharacterUiPath();
 	public override string CustomMapMarkerPath => "map_marker_char_name.png".CharacterUiPath();
+	
+	public string ArmPointingTexturePath => "res://src/zc/325.png";
 
 	// 角色选择页面替换
 	public override string CustomCharacterSelectBg => "res://scenes/screens/char_select/char_select_bg_wyu.tscn";

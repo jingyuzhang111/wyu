@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://bith18we1jwhm"
+path="res://.godot/imported/char_4228_closur.atlas-d1c075e4b4f4c2163081ac8153b57171.spatlas"
+
+[deps]
+
+source_file="res://src/keluxier/char_4228_closur.atlas"
+dest_files=["res://.godot/imported/char_4228_closur.atlas-d1c075e4b4f4c2163081ac8153b57171.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

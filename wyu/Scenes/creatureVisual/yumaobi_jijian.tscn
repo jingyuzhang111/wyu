@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfl6f4j1ysims"]
+
+[ext_resource type="SpineSkeletonDataResource" uid="uid://bngo12h32uuta" path="res://src/yumaobi2/基建/new_spine_skeleton_data_resource.tres" id="1_v03e2"]
+
+[node name="yumaobi_jijian" type="Node2D"]
+
+[node name="Visuals" type="SpineSprite" parent="."]
+unique_name_in_owner = true
+rotation = 3.1415927
+scale = Vector2(-0.91, -0.91)
+skeleton_data_res = ExtResource("1_v03e2")
+preview_skin = "Default"
+preview_animation = "Sit"
+preview_frame = false
+preview_time = 0.0
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -139.0
+offset_top = -189.0
+offset_right = 166.0
+mouse_filter = 2
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-2, -65)
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -233)

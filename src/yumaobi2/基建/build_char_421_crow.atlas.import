@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://dgxjqcc8bi42v"
+path="res://.godot/imported/build_char_421_crow.atlas-3cd71cca1d45cf54db1c1897a0fc4143.spatlas"
+
+[deps]
+
+source_file="res://src/yumaobi2/基建/build_char_421_crow.atlas"
+dest_files=["res://.godot/imported/build_char_421_crow.atlas-3cd71cca1d45cf54db1c1897a0fc4143.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

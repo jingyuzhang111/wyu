@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://b84s0blsjd5rn"
+path="res://.godot/imported/char_4228_closur.skel-6cdbfd9f8ac085284f1a82ade43d845d.spskel"
+
+[deps]
+
+source_file="res://src/keluxier/char_4228_closur.skel"
+dest_files=["res://.godot/imported/char_4228_closur.skel-6cdbfd9f8ac085284f1a82ade43d845d.spskel"]
+
+[params]
+

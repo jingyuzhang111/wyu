@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://bra5a8odouw74"
+path="res://.godot/imported/build_char_421_crow2.skel-c036351566f9b714e8f6b615ef1c506e.spskel"
+
+[deps]
+
+source_file="res://src/yumaobi2/基建/build_char_421_crow2.skel"
+dest_files=["res://.godot/imported/build_char_421_crow2.skel-c036351566f9b714e8f6b615ef1c506e.spskel"]
+
+[params]
+

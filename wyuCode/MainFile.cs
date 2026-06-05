@@ -15,6 +15,7 @@ public partial class MainFile : Node
     {
         Harmony harmony = new(ModId);
 
+        Harmony.DEBUG = true;
         harmony.PatchAll();
     }
 }
