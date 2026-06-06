@@ -43,7 +43,7 @@ public class wyu : PlaceholderCharacterModel
 
 		ModelDb.Card<GreatWall>(),
 		ModelDb.Card<Zc325>(),
-		ModelDb.Card<NiYanT1>(),
+		ModelDb.Card<KaMiAttack>(),
 
 
 	];

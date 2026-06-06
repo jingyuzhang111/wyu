@@ -36,17 +36,23 @@ public class Zc325SovereignBlade() :
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var attack = DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this)
-            .WithAttackerAnim("Cast", base.Owner.Character.AttackAnimDelay)
+            .WithAttackerAnim("Attack", base.Owner.Character.AttackAnimDelay)
             .WithAttackerFx(null, _sfx)
             .Targeting(cardPlay.Target!)
             .BeforeDamage(delegate
             {
                 var vfx = GetVfxNode(base.Owner, this);
                 var targetNode = NCombatRoom.Instance?.GetCreatureNode(cardPlay.Target);
-                if (vfx != null && targetNode != null)
+                if (vfx == null)
+                    GD.Print($"[SovereignBlade] GetVfxNode 返回 null, card={this.Id.Entry}");
+                else if (targetNode == null)
+                    GD.Print("[SovereignBlade] targetNode 为 null");
+                else
                     vfx.Attack(targetNode.VfxSpawnPosition);
                 return Task.CompletedTask;
-            });
+            })
+            .WithHitVfxNode(t => NBigSlashVfx.Create(t))
+            .WithHitVfxNode(t => NBigSlashImpactVfx.Create(t));
         await attack.Execute(choiceContext);
     }
 

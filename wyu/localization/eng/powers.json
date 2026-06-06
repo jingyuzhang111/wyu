@@ -83,5 +83,10 @@
 "WYU-NI_YAN_T1_POWER.flavor": "这个力量的细节将在未来揭晓……",
 "WYU-NI_YAN_T1_POWER.title": "沃土予身",
 
+"WYU-KA_MI_POWER.title": "辉煌裂片",
+"WYU-KA_MI_POWER.description": "每回合开始随机对敌人造成两次带有传递衰减的攻击",
+"WYU-KA_MI_POWER.smartDescription": "每回合开始随机对敌人造成两次带有传递衰减的攻击",
+"WYU-KA_MI_POWER.flavor": "这个力量的细节将在未来揭晓……",
+
 "zhanwei":"占位"
 }

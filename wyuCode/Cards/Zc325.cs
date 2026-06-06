@@ -295,17 +295,18 @@ public class Zc325() :
     }
 
     // 显示标签飞行动画，统计 3/2/5 最小值，生成相应数量的君王之剑卡牌添加到手牌
-    private async Task<(int c3, int c2, int c5)> Animate325LabelCopiesAsync(
-        PlayerChoiceContext choiceContext, CombatState combatState)
+    // counts 参数是动画前快照，避免动画期间 UI 变化导致计数不一致
+    private async Task Animate325LabelCopiesAsync(
+        PlayerChoiceContext choiceContext, CombatState combatState, int count3, int count2, int count5)
     {
         var tree = Engine.GetMainLoop() as SceneTree;
         var root = tree?.Root;
         if (tree == null || root == null)
-            return (0, 0, 0);
+            return;
 
         var sourceControls = Collect325LabelNodes();
         if (sourceControls.Count == 0)
-            return (0, 0, 0);
+            return;
 
         var layer = new CanvasLayer { Name = "Zc325OrbitLayer", Layer = 2000 };
         root.AddChild(layer);
@@ -385,19 +386,9 @@ public class Zc325() :
         foreach (var c in vanishClones)
             if (GodotObject.IsInstanceValid(c)) c.QueueFree();
 
-        // 统计 3/2/5 总数
-        int total3 = 0, total2 = 0, total5 = 0;
-        foreach (var (_, _, text) in ReadAllLabelTexts())
-            foreach (var ch in text)
-            {
-                if (ch == '3') total3++;
-                else if (ch == '2') total2++;
-                else if (ch == '5') total5++;
-            }
+        // 用动画前快照的计数，不再重扫场景（避免动画期间 UI 变化导致不一致）
+        int countMin = Math.Min(count3, Math.Min(count2, count5));
 
-        int countMin = Math.Min(total3, Math.Min(total2, total5));
-
-        // 第二阶段：逐个生成君王之剑卡牌，每张间隔2秒
         for (int i = 0; i < countMin; i++)
         {
             await Zc325SovereignBlade.CreateInHand(base.Owner, 1, combatState);
@@ -408,7 +399,6 @@ public class Zc325() :
         }
 
         layer.QueueFree();
-        return (total3, total2, total5);
     }
 
 
@@ -421,10 +411,14 @@ public class Zc325() :
             Log.Info($"[Zc325] path={path} text='{text}'");
 
         var combatState = base.CombatState ?? throw new InvalidOperationException("CombatState is null.");
-        var (count3, count2, count5) = await Animate325LabelCopiesAsync(choiceContext, combatState);
 
-        var countMin = (int)Math.Min(count3, Math.Min(count2, count5));
+        // 动画前快照计数，确保伤害计算和卡牌生成用同一组数字
+        var snapshot = Collect325Counts(this);
+        int count3 = snapshot['3'], count2 = snapshot['2'], count5 = snapshot['5'];
+        int countMin = Math.Min(count3, Math.Min(count2, count5));
         Log.Info($"Zc325 攻击次数:{countMin} (3:{count3}, 2:{count2}, 5:{count5})");
+
+        await Animate325LabelCopiesAsync(choiceContext, combatState, count3, count2, count5);
 
     }
 

@@ -12,7 +12,7 @@
 
 
 "WYU-WARRIOR.title": "武者",
-"WYU-WARRIOR.description": "获得1层[gold]武者力量[/gold]。本场战斗中，你的攻击伤害会随当前生命降低而线性提高，最高至200%。",
+"WYU-WARRIOR.description": "本场战斗中，你的攻击伤害会随当前生命降低而线性提高，最高至200%。",
 "WYU-XING_XIAN.title": "行险",
 "WYU-XING_XIAN.description": "失去当前生命的25%({xingxianHpLoss:diff()})。\n获得{Block:diff()}点[gold]格挡[/gold]。",
 "WYU-YOU_XU_YOU_YAN.title": "佑序有炎",
@@ -145,6 +145,8 @@
 "WYU-EW.description": "在手牌,弃牌区,抽牌区分别添加2张[red]爆裂黎明[/red],立即结束本回合,维什戴尔接管接下来{turn:diff()}个回合",
 "WYU-EW3.title": "爆裂黎明",
 "WYU-EW3.description": "造成{Damage:diff()}点伤害,对全体造成{ExtraDamage:diff()}点伤害",
+"WYU-MA_EN_NA.title": "攻回解放者",
+"WYU-MA_EN_NA.description": "对全体敌人造成{Damage:diff()}点伤害\n打出{Cards:diff()}张攻击牌后才能打出\n打出后重新计数\n已打出{attackCount:diff()}张攻击牌",
 
 "WYU-MUCH_CARD.title": "多线程",
 "WYU-MUCH_CARD.description": "后台有[gold]明日方舟[/gold]运行时，战斗结束后卡牌奖励多预览2张卡牌",
@@ -157,7 +159,7 @@
 "WYU-LAUGH.title": "哈哈大笑",
 "WYU-LAUGH.description": "给予{VulnerablePower:diff()}层[gold]易伤[/gold]\n当目标意图为攻击且总伤害低于{targetDamage:diff()}点时，鉴定为大杯，使其失去{StrengthPower:diff()}点力量",
 "WYU-ZC325.title": "325",
-"WYU-ZC325.description": "每有一组325,将一张[gold]周哥神力[/gold]加入手牌\n[red]3[/red]的个数：{Count3:diff()}\n[red]2[/red]的个数：{Count2:diff()}\n[red]5[/red]的个数：{Count5:diff()}",
+"WYU-ZC325.description": "检测除手牌外的所有数字\n每有一组325,将一张[gold]周哥神力[/gold]加入手牌\n[red]3[/red]的个数：{Count3:diff()}\n[red]2[/red]的个数：{Count2:diff()}\n[red]5[/red]的个数：{Count5:diff()}",
 "WYU-ZC325_SOVEREIGN_BLADE.title": "周哥神力",
 "WYU-ZC325_SOVEREIGN_BLADE.description": "造成3+2+5点伤害\n(实际{Damage:diff()}点伤害)",
 
@@ -176,9 +178,10 @@
 "WYU-1.title": "快速整备",
 "WYU-1.description": "失去当前生命的20%({HpLoss:diff()})。\n抽3张牌。",
 
-
-"WYU-MA_EN_NA.title": "攻回解放者",
-"WYU-MA_EN_NA.description": "对全体敌人造成{Damage:diff()}点伤害\n打出{Cards:diff()}张攻击牌后才能打出\n打出后重新计数\n已打出{attackCount:diff()}张攻击牌",
+"WYU-KA_MI_ATTACK.title": "链术平A",
+"WYU-KA_MI_ATTACK.description": "造成{Damage:diff()}点伤害。\n伤害会随机跳跃{JumpCount:diff()}次,每次跳跃伤害降低{rate:diff()}%.",
+"WYU-KA_MI3.title": "辉煌裂片",
+"WYU-KA_MI3.description": "每回合开始将两张[gold]链术平A[/gold]加入手牌,持续4回合",
 
 "zhanweifu": "占位符"
 }
