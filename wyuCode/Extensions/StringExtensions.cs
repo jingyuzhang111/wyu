@@ -47,4 +47,9 @@ public static class StringExtensions
     {
         return Path.Join(MainFile.ModId, "images", "charui", path);
     }
+
+    public static string EventImagePath(this string path)
+    {
+        return Path.Join(MainFile.ModId, "images", "events", path);
+    }
 }

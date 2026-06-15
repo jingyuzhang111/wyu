@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls \"E:\\\\明日方舟\\\\杀戮尖塔2Mod教程\\\\塔2解包\\\\Slay the Spire 2\\\\\" | head -40)",
+      "Read(//e/明日方舟/杀戮尖塔2Mod教程/塔2解包/**)",
+      "Bash(mkdir -p \"d:/demo/C#/wyu/wyuCode/SeedFinder\")"
+    ],
+    "additionalDirectories": [
+      "d:\\demo\\C#\\wyu\\wyuCode"
+    ]
+  }
+}

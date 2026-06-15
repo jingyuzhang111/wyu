@@ -1,8 +1,13 @@
 {
-"WYU-JUE_SHI.description": "你无法在休息处回复生命, 每次打出攻击牌时,回复一点生命\n在拥有[gold]武者力量[/gold]时,改为每次造成伤害时回复一点生命",
-"WYU-JUE_SHI.flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
-"WYU-JUE_SHI.title": "绝食",
-"WYU-BROTHER.description": "受到蟑螂与大蛆的伤害降低30%",
-"WYU-BROTHER.flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
-"WYU-BROTHER.title": "手足相惜"
+	"WYU-JUE_SHI.description": "你无法在休息处回复生命, 每次打出攻击牌时,回复一点生命\n在拥有[gold]武者力量[/gold]时,改为每次造成伤害时回复一点生命",
+	"WYU-JUE_SHI.flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
+	"WYU-JUE_SHI.title": "绝食",
+	"WYU-BROTHER.description": "受到蟑螂与大蛆的伤害降低30%",
+	"WYU-BROTHER.flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
+	"WYU-BROTHER.title": "手足相惜",
+
+
+	"BURNING_BLOOD.title": "曼巴之血",
+	"BURNING_BLOOD.description": "每当损失生命值时，恢复6点生命。你无法获得格挡。",
+	"BURNING_BLOOD.flavor": "被修改了的遗物。"
 }
