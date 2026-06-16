@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://h7mkqd8gjlal"
-path="res://.godot/imported/xiao_ke.png-6680069c58c3494aef5111f0911b970e.ctex"
+uid="uid://b82ynjooo4yex"
+path="res://.godot/imported/xiao_ke_leave.png-27016f596e8146c8692eb4671ddd2523.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/events/xiao_ke.png"
-dest_files=["res://.godot/imported/xiao_ke.png-6680069c58c3494aef5111f0911b970e.ctex"]
+source_file="res://wyu/images/events/xiao_ke/xiao_ke_leave.png"
+dest_files=["res://.godot/imported/xiao_ke_leave.png-27016f596e8146c8692eb4671ddd2523.ctex"]
 
 [params]
 

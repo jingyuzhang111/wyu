@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqt57g1o43f10"
-path="res://.godot/imported/xiao_ke.png-a80007658650d0ee2b6935b580af81f7.ctex"
+uid="uid://btr0dscusw550"
+path="res://.godot/imported/xiao_ke_love.png-aeb8ba29c9fce47bbb2c323a2fbaa908.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://wyu/images/events/xiao_ke.png"
-dest_files=["res://.godot/imported/xiao_ke.png-a80007658650d0ee2b6935b580af81f7.ctex"]
+source_file="res://wyu/images/events/xiao_ke/xiao_ke_love.png"
+dest_files=["res://.godot/imported/xiao_ke_love.png-aeb8ba29c9fce47bbb2c323a2fbaa908.ctex"]
 
 [params]
 

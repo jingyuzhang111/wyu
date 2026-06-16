@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://h7mkqd8gjlal"
-path="res://.godot/imported/xiao_ke.png-6680069c58c3494aef5111f0911b970e.ctex"
+uid="uid://c7vmy41qnx1u2"
+path="res://.godot/imported/xiao_ke.png-fdf197554f976e1c071738c31cf26347.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/events/xiao_ke.png"
-dest_files=["res://.godot/imported/xiao_ke.png-6680069c58c3494aef5111f0911b970e.ctex"]
+source_file="res://wyu/images/events/xiao_ke/xiao_ke.png"
+dest_files=["res://.godot/imported/xiao_ke.png-fdf197554f976e1c071738c31cf26347.ctex"]
 
 [params]
 

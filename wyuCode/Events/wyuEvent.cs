@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using HarmonyLib;
-using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Acts;
 using Godot;
-using wyu.wyuCode.Extensions;
+using MegaCrit.Sts2.Core.Runs;
 
 namespace wyu.wyuCode.Events;
 
@@ -35,18 +34,15 @@ public abstract class wyuEvent : EventModel
         return L10NLookup(key);
     }
 
-    // ---------- 图片路径：重定向到 wyu/images/events/ ----------
-    [HarmonyPatch(typeof(EventModel), nameof(CreateInitialPortrait))]
-    [HarmonyPrefix]
-    private static bool RedirectPortrait(EventModel __instance, ref Texture2D __result)
+
+    public override IEnumerable<string> GetAssetPaths(IRunState runState)
     {
-        if (__instance is wyuEvent)
-        {
-            var path = $"res://{__instance.Id.Entry.ToLowerInvariant()}.png".EventImagePath();
-            __result = PreloadManager.Cache.GetTexture2D(path);
-            return false;
-        }
-        return true;
+
+        foreach (var path in base.GetAssetPaths(runState))
+        yield return path;
+        // yield 是递进的return, 允许返回一半后停下来处理别的事, 回来后接着返回.
+        yield return $"wyu/images/events/{base.Id.Entry.ToLowerInvariant()}/{base.Id.Entry.ToLowerInvariant()}.png";
+
     }
 
     // ---------- 注册到全部 Act ----------

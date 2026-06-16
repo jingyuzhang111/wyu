@@ -13,6 +13,9 @@ using MegaCrit.Sts2.Core.Models.Events;
 using MegaCrit.Sts2.Core.ValueProps;
 using wyu.wyuCode.Cards;
 using wyu.wyuCode.Enchantments;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Assets;
+using MegaCrit.Sts2.Core.Context;
 
 namespace wyu.wyuCode.Events;
 
@@ -23,18 +26,20 @@ public class XiaoKe : wyuEvent
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(1m, ValueProp.Unblockable | ValueProp.Unpowered)
+        new DamageVar(1m, ValueProp.Unblockable | ValueProp.Unpowered),
+		new StringVar("Card1", ModelDb.Card<XiaoKeEat>().Title),
+
     ];
 
     protected override IReadOnlyList<EventOption> GenerateInitialOptions()
     {
+
         return new List<EventOption>
         {
             // 选项1: 给她蜜饼 → 给一张攻击牌附魔
-            new(this, LOVE, Opt("INITIAL", "give_honey_cake"),
-                HoverTipFactory.FromEnchantment<XiaoKeEnchantment>()),
+            new EventOption(this, LOVE, Opt("INITIAL", "LOVE"), HoverTipFactory.FromEnchantment<XiaoKeEnchantment>()),
             // 选项2: 离开 → 扣血，然后再次选择
-            new(this, LEAVE, Opt("INITIAL", "leave")),
+            new EventOption(this, LEAVE, Opt("INITIAL", "leave")),
         };
     }
 
@@ -51,23 +56,29 @@ public class XiaoKe : wyuEvent
         if (card != null)
             CardCmd.Enchant<XiaoKeEnchantment>(card, 1);
 
+
+        NEventRoom.Instance.SetPortrait(PreloadManager.Cache.GetTexture2D("wyu/images/events/xiao_ke/xiao_ke_love.png"));
         SetEventFinished(Desc("LOVE", "card"));
     }
 
     private async Task LEAVE()
     {
+
+
         // 效果施加
         leavecount++;
         await CreatureCmd.Damage(
             new ThrowingPlayerChoiceContext(), base.Owner.Creature,
             base.DynamicVars.Damage, null, null);
 
+
+        NEventRoom.Instance.SetPortrait(PreloadManager.Cache.GetTexture2D("wyu/images/events/xiao_ke/xiao_ke_leave.png"));
         // 二次选择：狠心离开 或 心软给蜜饼
         if (leavecount >= 10)
         {
             SetEventState(Desc("LEAVE"), new List<EventOption>
             {
-                new(this, ReallyLeave, Opt("REALLY_LEAVE", "leave")),
+                new EventOption(this, ReallyLeave, Opt("REALLY_LEAVE", "leave"), HoverTipFactory.FromCard<XiaoKeEat>())
             });
             return;
         }
@@ -75,8 +86,8 @@ public class XiaoKe : wyuEvent
         {
             SetEventState(Desc("LEAVE"), new List<EventOption>
             {
-                new(this, LOVE, Opt("LEAVE", "give_honey_cake")),
-                new(this, LEAVE, Opt("INITIAL", "leave")),
+                new EventOption(this, LOVE, Opt("LEAVE", "LOVE"), HoverTipFactory.FromEnchantment<XiaoKeEnchantment>()),
+                new EventOption(this, LEAVE, Opt("INITIAL", "leave")),
             });
         }
 
