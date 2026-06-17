@@ -109,7 +109,7 @@
 "WYU-XIAO_KE_EAT.title": "小刻饿",
 "WYU-XIAO_KE_EAT.description": "无视敌方护甲造成{Damage:diff()}点伤害。\n选择1张牌消耗掉\n本回合内获得{TemporaryStrengthPower:diff()}点力量.",
 "WYU-XIAO_KE_COOK.title": "制作蜜饼",
-"WYU-XIAO_KE_COOK.description": "消耗所有手牌,获得等量[gold]蜜饼[/gold]\n若抽牌堆有[gold]小刻[/gold]，则[gold]蜜饼[/gold]被消耗，所有[gold]小刻[/gold]加入手牌,且费用为0\n每消耗一[gold]蜜饼[/gold],本回合获得{FlexPotionPower:diff()}力量",
+"WYU-XIAO_KE_COOK.description": "消耗所有手牌,获得等量[gold]蜜饼[/gold]\n若抽牌堆有[gold]小刻[/gold]，则[gold]蜜饼[/gold]被消耗，所有[gold]小刻[/gold]加入手牌,且费用为0\n每消耗一[gold]蜜饼[/gold],本回合获得{TemporaryStrengthPower:diff()}力量",
 "WYU-XIAO_KE_STEAL.title": "偷蜜饼！",
 "WYU-XIAO_KE_STEAL.description": "将一张[gold]蜜饼[/gold]与[gold]小刻饿[/gold]放入弃牌堆\n当第一次[gold]小刻[/gold]与[gold]蜜饼[/gold]同时在手牌时，蜜饼被小刻吃掉！",
 "WYU-XIAO_KE_FOOD_HOUSE.title": "小刻的蜜饼战略储备",

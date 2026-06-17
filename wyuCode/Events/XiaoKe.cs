@@ -1,105 +1,105 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MegaCrit.Sts2.Core.CardSelection;
-using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Events;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Events;
-using MegaCrit.Sts2.Core.ValueProps;
-using wyu.wyuCode.Cards;
-using wyu.wyuCode.Enchantments;
-using MegaCrit.Sts2.Core.Nodes.Rooms;
-using MegaCrit.Sts2.Core.Assets;
-using MegaCrit.Sts2.Core.Context;
+// using System.Collections.Generic;
+// using System.Linq;
+// using System.Threading.Tasks;
+// using MegaCrit.Sts2.Core.CardSelection;
+// using MegaCrit.Sts2.Core.Commands;
+// using MegaCrit.Sts2.Core.Entities.Cards;
+// using MegaCrit.Sts2.Core.Events;
+// using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+// using MegaCrit.Sts2.Core.HoverTips;
+// using MegaCrit.Sts2.Core.Localization.DynamicVars;
+// using MegaCrit.Sts2.Core.Models;
+// using MegaCrit.Sts2.Core.Models.Events;
+// using MegaCrit.Sts2.Core.ValueProps;
+// using wyu.wyuCode.Cards;
+// using wyu.wyuCode.Enchantments;
+// using MegaCrit.Sts2.Core.Nodes.Rooms;
+// using MegaCrit.Sts2.Core.Assets;
+// using MegaCrit.Sts2.Core.Context;
 
-namespace wyu.wyuCode.Events;
+// namespace wyu.wyuCode.Events;
 
-public class XiaoKe : wyuEvent
-{
+// public class XiaoKe : wyuEvent
+// {
 
-    private int leavecount = 0;
+//     private int leavecount = 0;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars =>
-    [
-        new DamageVar(1m, ValueProp.Unblockable | ValueProp.Unpowered),
-		new StringVar("Card1", ModelDb.Card<XiaoKeEat>().Title),
+//     protected override IEnumerable<DynamicVar> CanonicalVars =>
+//     [
+//         new DamageVar(1m, ValueProp.Unblockable | ValueProp.Unpowered),
+// 		new StringVar("Card1", ModelDb.Card<XiaoKeEat>().Title),
 
-    ];
+//     ];
 
-    protected override IReadOnlyList<EventOption> GenerateInitialOptions()
-    {
+//     protected override IReadOnlyList<EventOption> GenerateInitialOptions()
+//     {
 
-        return new List<EventOption>
-        {
-            // 选项1: 给她蜜饼 → 给一张攻击牌附魔
-            new EventOption(this, LOVE, Opt("INITIAL", "LOVE"), HoverTipFactory.FromEnchantment<XiaoKeEnchantment>()),
-            // 选项2: 离开 → 扣血，然后再次选择
-            new EventOption(this, LEAVE, Opt("INITIAL", "leave")),
-        };
-    }
+//         return new List<EventOption>
+//         {
+//             // 选项1: 给她蜜饼 → 给一张攻击牌附魔
+//             new EventOption(this, LOVE, Opt("INITIAL", "LOVE"), HoverTipFactory.FromEnchantment<XiaoKeEnchantment>()),
+//             // 选项2: 离开 → 扣血，然后再次选择
+//             new EventOption(this, LEAVE, Opt("INITIAL", "leave")),
+//         };
+//     }
 
-    // ---------- 回调 ----------
-    private async Task LOVE()
-    {
-        var enchantment = ModelDb.Enchantment<XiaoKeEnchantment>();
-        var prefs = new CardSelectorPrefs(CardSelectorPrefs.EnchantSelectionPrompt, 1);
-        var card = (await CardSelectCmd.FromDeckForEnchantment(
-            base.Owner, enchantment, 50,
-            (CardModel? c) => c?.Type == CardType.Attack && enchantment.CanEnchant(c),
-            prefs)).FirstOrDefault();
+//     // ---------- 回调 ----------
+//     private async Task LOVE()
+//     {
+//         var enchantment = ModelDb.Enchantment<XiaoKeEnchantment>();
+//         var prefs = new CardSelectorPrefs(CardSelectorPrefs.EnchantSelectionPrompt, 1);
+//         var card = (await CardSelectCmd.FromDeckForEnchantment(
+//             base.Owner, enchantment, 50,
+//             (CardModel? c) => c?.Type == CardType.Attack && enchantment.CanEnchant(c),
+//             prefs)).FirstOrDefault();
 
-        if (card != null)
-            CardCmd.Enchant<XiaoKeEnchantment>(card, 1);
-
-
-        NEventRoom.Instance.SetPortrait(PreloadManager.Cache.GetTexture2D("wyu/images/events/xiao_ke/xiao_ke_love.png"));
-        SetEventFinished(Desc("LOVE", "card"));
-    }
-
-    private async Task LEAVE()
-    {
+//         if (card != null)
+//             CardCmd.Enchant<XiaoKeEnchantment>(card, 1);
 
 
-        // 效果施加
-        leavecount++;
-        await CreatureCmd.Damage(
-            new ThrowingPlayerChoiceContext(), base.Owner.Creature,
-            base.DynamicVars.Damage, null, null);
+//         NEventRoom.Instance.SetPortrait(PreloadManager.Cache.GetTexture2D("wyu/images/events/xiao_ke/xiao_ke_love.png"));
+//         SetEventFinished(Desc("LOVE", "card"));
+//     }
+
+//     private async Task LEAVE()
+//     {
 
 
-        NEventRoom.Instance.SetPortrait(PreloadManager.Cache.GetTexture2D("wyu/images/events/xiao_ke/xiao_ke_leave.png"));
-        // 二次选择：狠心离开 或 心软给蜜饼
-        if (leavecount >= 10)
-        {
-            SetEventState(Desc("LEAVE"), new List<EventOption>
-            {
-                new EventOption(this, ReallyLeave, Opt("REALLY_LEAVE", "leave"), HoverTipFactory.FromCard<XiaoKeEat>())
-            });
-            return;
-        }
-        else
-        {
-            SetEventState(Desc("LEAVE"), new List<EventOption>
-            {
-                new EventOption(this, LOVE, Opt("LEAVE", "LOVE"), HoverTipFactory.FromEnchantment<XiaoKeEnchantment>()),
-                new EventOption(this, LEAVE, Opt("INITIAL", "leave")),
-            });
-        }
+//         // 效果施加
+//         leavecount++;
+//         await CreatureCmd.Damage(
+//             new ThrowingPlayerChoiceContext(), base.Owner.Creature,
+//             base.DynamicVars.Damage, null, null);
 
-    }
 
-    private async Task ReallyLeave()
-    {
-        // CreateCard 只注册到 RunState，CardPileCmd.Add 才真正加入牌组
-        var card = base.Owner.RunState.CreateCard<XiaoKeEat>(base.Owner);
-        var result = await CardPileCmd.Add(card, PileType.Deck);
-        CardCmd.PreviewCardPileAdd(new[] { result }, 2f);
+//         NEventRoom.Instance.SetPortrait(PreloadManager.Cache.GetTexture2D("wyu/images/events/xiao_ke/xiao_ke_leave.png"));
+//         // 二次选择：狠心离开 或 心软给蜜饼
+//         if (leavecount >= 10)
+//         {
+//             SetEventState(Desc("LEAVE"), new List<EventOption>
+//             {
+//                 new EventOption(this, ReallyLeave, Opt("REALLY_LEAVE", "leave"), HoverTipFactory.FromCard<XiaoKeEat>())
+//             });
+//             return;
+//         }
+//         else
+//         {
+//             SetEventState(Desc("LEAVE"), new List<EventOption>
+//             {
+//                 new EventOption(this, LOVE, Opt("LEAVE", "LOVE"), HoverTipFactory.FromEnchantment<XiaoKeEnchantment>()),
+//                 new EventOption(this, LEAVE, Opt("INITIAL", "leave")),
+//             });
+//         }
 
-        SetEventFinished(Desc("REALLY_LEAVE", "leave"));
-    }
-}
+//     }
+
+//     private async Task ReallyLeave()
+//     {
+//         // CreateCard 只注册到 RunState，CardPileCmd.Add 才真正加入牌组
+//         var card = base.Owner.RunState.CreateCard<XiaoKeEat>(base.Owner);
+//         var result = await CardPileCmd.Add(card, PileType.Deck);
+//         CardCmd.PreviewCardPileAdd(new[] { result }, 2f);
+
+//         SetEventFinished(Desc("REALLY_LEAVE", "leave"));
+//     }
+// }

@@ -39,5 +39,20 @@ public static class TheArchitectPatch
         return true;
     }
 }
+// ref: 修改原函数的返回值
+// HarmonyPatch有3个参量可选:typeof(NMerchantDialogue), "ShowRandom", new[] { typeof(IEnumerable<LocString>) }
+// 分别为 类名, 方法名, 方法参数类型列表
+// Prefix(ref IEnumerable<LocString> lines) 可以把原方法的参数截胡
+// [HarmonyPatch(typeof(NMerchantDialogue), "ShowRandom", new[] { typeof(IEnumerable<LocString>) })]
+// public static class ShoperDialogueManager
+// {
+//     static bool Prefix(ref IEnumerable<LocString> lines)
+//     {
+//          var customLine = ShoperAudioManager.linePath;
+//         if (customLine == null)
+//             return true;
 
-
+//         lines = new List<LocString> { customLine };
+//         return true;
+//     }
+// }

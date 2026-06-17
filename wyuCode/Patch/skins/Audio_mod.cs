@@ -16,7 +16,6 @@ namespace wyu.wyuCode.Patch;
 using wyu.wyuCode.Cards;
 
 
-// 自动注入
 [HarmonyPatch(typeof(Hook), nameof(Hook.BeforeCardPlayed), new[] { typeof(CombatState), typeof(CardPlay) })]
 public static class AudioMod
 {
