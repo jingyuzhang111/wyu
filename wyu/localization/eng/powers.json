@@ -84,9 +84,19 @@
 "WYU-NI_YAN_T1_POWER.title": "沃土予身",
 
 "WYU-KA_MI_POWER.title": "辉煌裂片",
-"WYU-KA_MI_POWER.description": "每回合开始随机对敌人造成两次带有传递衰减的攻击",
-"WYU-KA_MI_POWER.smartDescription": "每回合开始随机对敌人造成两次带有传递衰减的攻击",
+"WYU-KA_MI_POWER.description": "每回合开始将两张[gold]链术平A[/gold]加入手牌",
+"WYU-KA_MI_POWER.smartDescription": "每回合开始将两张[gold]链术平A[/gold]加入手牌",
 "WYU-KA_MI_POWER.flavor": "这个力量的细节将在未来揭晓……",
+
+"WYU-SHOU_GE_POWER.title": "收割者",
+"WYU-SHOU_GE_POWER.description": "你的所有攻击变为群攻",
+"WYU-SHOU_GE_POWER.smartDescription": "你的所有攻击变为群攻",
+"WYU-SHOU_GE_POWER.flavor": "你是一名收割者玩家",
+
+"WYU-OPERTION_POWER.title": "运筹帷幄",
+"WYU-OPERTION_POWER.description": "在自己回合扣血时, 抽牌",
+"WYU-OPERTION_POWER.smartDescription": "在自己回合扣血时, 抽{Amount}张牌",
+"WYU-OPERTION_POWER.flavor": "这个力量的细节将在未来揭晓……",
 
 "zhanwei":"占位"
 }

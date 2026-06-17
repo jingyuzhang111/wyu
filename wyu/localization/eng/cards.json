@@ -3,7 +3,7 @@
 "WYU-ATTACK.description": "造成{Damage:diff()}点伤害。" ,
 "WYU-BLOCK.title": "防御",
 "WYU-BLOCK.description": "获得{Block:diff()}点[gold]格挡[/gold]。",
-"WYU-BLOCK2.title":"警备",
+"WYU-BLOCK2.title":"大防御",
 "WYU-BLOCK2.description":"获得{Block:diff()}点[gold]格挡[/gold]。",
 "WYU-GET_ENERGY.title": "技力光环",
 "WYU-GET_ENERGY.description": "下一回合开始，每回合获得{Energy:energyIcons()}。",
@@ -107,7 +107,7 @@
 "WYU-XIAO_KE_BITE.title": "小刻咬",
 "WYU-XIAO_KE_BITE.description": "无视敌方护甲造成{Damage:diff()}点伤害。\n给予{SiyeBitePower:diff()}层[gold]狼咬[/gold]\n生成一张[gold]虚无[/gold]加入弃牌堆。\n在下个回合获得{Energy:energyIcons()}。",
 "WYU-XIAO_KE_EAT.title": "小刻饿",
-"WYU-XIAO_KE_EAT.description": "无视敌方护甲造成{Damage:diff()}点伤害。\n选择1张牌消耗掉\n本回合内获得{TemporaryStrengthPower:diff()}点力量.",
+"WYU-XIAO_KE_EAT.description": "无视敌方护甲造成{Damage:diff()}点伤害。\n选择1张牌消耗掉\n本回合内获得{FlexPotionPower:diff()}点力量.",
 "WYU-XIAO_KE_COOK.title": "制作蜜饼",
 "WYU-XIAO_KE_COOK.description": "消耗所有手牌,获得等量[gold]蜜饼[/gold]\n若抽牌堆有[gold]小刻[/gold]，则[gold]蜜饼[/gold]被消耗，所有[gold]小刻[/gold]加入手牌,且费用为0\n每消耗一[gold]蜜饼[/gold],本回合获得{TemporaryStrengthPower:diff()}力量",
 "WYU-XIAO_KE_STEAL.title": "偷蜜饼！",
@@ -162,7 +162,12 @@
 "WYU-ZC325.description": "检测除手牌外的所有数字\n每有一组325,将一张[gold]周哥神力[/gold]加入手牌\n[red]3[/red]的个数：{Count3:diff()}\n[red]2[/red]的个数：{Count2:diff()}\n[red]5[/red]的个数：{Count5:diff()}",
 "WYU-ZC325_SOVEREIGN_BLADE.title": "周哥神力",
 "WYU-ZC325_SOVEREIGN_BLADE.description": "造成3+2+5点伤害\n(实际{Damage:diff()}点伤害)",
-
+"WYU-KA_MI_ATTACK.title": "链术平A",
+"WYU-KA_MI_ATTACK.description": "造成{Damage:diff()}点伤害。\n伤害会随机跳跃{JumpCount:diff()}次,每次跳跃伤害降低{rate:diff()}%.",
+"WYU-KA_MI3.title": "辉煌裂片",
+"WYU-KA_MI3.description": "每回合开始将两张[gold]链术平A[/gold]加入手牌,持续4回合",
+"WYU-PEI_PEI.title":"希望时代的涂鸦",
+"WYU-PEI_PEI.description":"将战斗音乐替换为[gold]Mystic Light Quest[/gold],抽{Cards:diff()}张牌",
 
 
 "not_finished":"下面是还没实现具体功能，或还没测试的卡牌",
@@ -178,10 +183,11 @@
 "WYU-1.title": "快速整备",
 "WYU-1.description": "失去当前生命的20%({HpLoss:diff()})。\n抽3张牌。",
 
-"WYU-KA_MI_ATTACK.title": "链术平A",
-"WYU-KA_MI_ATTACK.description": "造成{Damage:diff()}点伤害。\n伤害会随机跳跃{JumpCount:diff()}次,每次跳跃伤害降低{rate:diff()}%.",
-"WYU-KA_MI3.title": "辉煌裂片",
-"WYU-KA_MI3.description": "每回合开始将两张[gold]链术平A[/gold]加入手牌,持续4回合",
+"WYU-SHOU_GE_ZHE.title": "收割者",
+"WYU-SHOU_GE_ZHE.description": "你的所有攻击变为群攻",
+
+"WYU-OPERTION.title": "运筹帷幄",
+"WYU-OPERTION.description": "在自己回合扣血时, 抽{OpertionPower:diff()}张牌",
 
 "zhanweifu": "占位符"
 }
