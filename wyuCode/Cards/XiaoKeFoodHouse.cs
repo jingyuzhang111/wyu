@@ -67,7 +67,7 @@ public class XiaoKeFoodHouse():
         for (int i = 0; i < numOfOrbs; i++)
         {   
             CardModel food = base.CombatState!.CreateCard<XiaoKeFoodGood>(base.Owner);
-            var result = await CardPileCmd.AddGeneratedCardToCombat(food, PileType.Draw, addedByPlayer: true, CardPilePosition.Random);
+            var result = await CardPileCmd.AddGeneratedCardToCombat(food, PileType.Draw, base.Owner, CardPilePosition.Random);
             CardCmd.PreviewCardPileAdd(result);
             await Cmd.Wait(0.1f);
         }

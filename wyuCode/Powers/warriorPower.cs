@@ -12,6 +12,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Models.Cards;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
 namespace wyu.wyuCode.Powers;
@@ -25,7 +26,7 @@ public class warriorPower : wyuPower
 	public override PowerStackType StackType => PowerStackType.Single;
 
     public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, 
-    ValueProp props, Creature? dealer, MegaCrit.Sts2.Core.Models.CardModel? cardSource)
+    ValueProp props, Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
     {
         if (cardSource?.Type != CardType.Attack)
         {

@@ -55,7 +55,7 @@ public class KaMiAttack():
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
 
-        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this)
+        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, cardPlay)
             .WithWaitBeforeHit(0.05f,0.1f)
 			.Targeting(cardPlay.Target)
 			.WithHitFx("vfx/vfx_attack_lightning")
@@ -74,7 +74,7 @@ public class KaMiAttack():
             await CreatureCmd.Damage(choiceContext, enemy,
                 base.DynamicVars.Damage.BaseValue * rate,
                 ValueProp.Unpowered,
-                dealer: null, cardSource: null);
+                dealer: null, cardSource: null, cardPlay: null);
         }
     }
 
@@ -82,7 +82,7 @@ public class KaMiAttack():
     
 
     // 生成零费消耗副本（给 KaMiPower 每回合调用）
-    public static async Task CreateZeroCostInHand(Player owner, int count, CombatState combatState, bool upgraded = false)
+    public static async Task CreateZeroCostInHand(Player owner, int count, ICombatState combatState, bool upgraded = false)
     {
         if (count <= 0 || CombatManager.Instance.IsOverOrEnding) return;
         var cards = new List<CardModel>();
@@ -96,7 +96,7 @@ public class KaMiAttack():
                 card.UpgradeInternal();
             cards.Add(card);
         }
-        await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Hand, addedByPlayer: true);
+        await CardPileCmd.AddGeneratedCardsToCombat(cards, PileType.Hand, owner);
     }
 
     // 升级

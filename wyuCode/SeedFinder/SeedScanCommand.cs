@@ -98,13 +98,12 @@ public class SeedScanCommand : AbstractConsoleCmd
     {
         return new SeedCriteria
         {
-            // 第 1 幕 Ancient = OROBAS（欧罗巴斯）
-            // 获得后可将 BurningBlood 升级为 BlackBlood（黑暗之血）
-            Act1AncientId = "OROBAS",
+            // 寻找能获得 TOUCH_OF_OROBAS（欧罗巴斯之触）的种子
+            // 该遗物由 Act2 的 Ancient 事件 OROBAS（欧罗巴斯）给予，
+            // 能把铁甲战士的起始遗物 BurningBlood 升级为 BlackBlood（黑暗之血）
+            RelicIds = ["TOUCH_OF_OROBAS"],
 
-            // 角色必须是 Ironclad（铁甲战士），因为 BlackBlood 是从
-            // Ironclad 的起始遗物 BurningBlood 升级而来
-            CharacterId = "IRONCLAD",
+            // 角色必须是 Ironclad（铁甲战士），因为要的是 BurningBlood → BlackBlood
         };
     }
 

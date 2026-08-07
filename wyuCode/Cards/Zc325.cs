@@ -297,7 +297,7 @@ public class Zc325() :
     // 显示标签飞行动画，统计 3/2/5 最小值，生成相应数量的君王之剑卡牌添加到手牌
     // counts 参数是动画前快照，避免动画期间 UI 变化导致计数不一致
     private async Task Animate325LabelCopiesAsync(
-        PlayerChoiceContext choiceContext, CombatState combatState, int count3, int count2, int count5)
+        PlayerChoiceContext choiceContext, ICombatState combatState, int count3, int count2, int count5)
     {
         var tree = Engine.GetMainLoop() as SceneTree;
         var root = tree?.Root;

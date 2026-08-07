@@ -47,7 +47,7 @@ public class YaYa() : wyuCard(
         decimal damage = ((PositionalDamageVar)DynamicVars.Damage).CalculateForTarget(Owner.Creature, cardPlay.Target);
 
         await DamageCmd.Attack(damage)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .Targeting(cardPlay.Target)
             .Execute(choiceContext);
     }
@@ -131,6 +131,7 @@ public class YaYa() : wyuCard(
                     dynamicBase,
                     Props,
                     card,
+                    null,
                     ModifyDamageHookType.All,
                     previewMode,
                     out IEnumerable<AbstractModel> _);

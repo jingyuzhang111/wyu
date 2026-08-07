@@ -1,7 +1,16 @@
 {
-	"WYU-JUE_SHI.description": "你无法在休息处回复生命, 每次打出攻击牌时,回复一点生命\n在拥有[gold]武者力量[/gold]时,改为每次造成伤害时回复一点生命",
+	"WYU-JUE_SHI.description": "你无法在休息处回复生命, 每次打出攻击牌时,回复一点生命",
 	"WYU-JUE_SHI.flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
 	"WYU-JUE_SHI.title": "绝食",
+
+	"WYU-JUE_SHI2.description": "你无法在休息处回复生命, 每次造成伤害时回复一点生命",
+	"WYU-JUE_SHI2.flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
+	"WYU-JUE_SHI2.title": "武魂真身",
+
+	"WYU-XVLAGU_ANGRY.description": "每次打出能力牌后的下一张攻击牌造成双倍伤害",
+	"WYU-XVLAGU_ANGRY.flavor": "[red]这里的电线杆也会被大运撞弯[/red]",
+	"WYU-XVLAGU_ANGRY.title": "叙拉古人的愤怒",
+
 	"WYU-BROTHER.description": "受到蟑螂与大蛆的伤害降低30%",
 	"WYU-BROTHER.flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
 	"WYU-BROTHER.title": "手足相惜",

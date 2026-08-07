@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Monsters;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
+using MegaCrit.Sts2.Core.Entities.Cards;
 
 namespace wyu.wyuCode.Relics;
 
@@ -17,7 +18,8 @@ public sealed class Brother : wyuRelic
 		decimal amount,
 		ValueProp props,
 		Creature? dealer,
-		CardModel? cardSource)
+		CardModel? cardSource,
+		CardPlay? cardPlay)
 	{
 		if (target != Owner.Creature){
 			return 1m;

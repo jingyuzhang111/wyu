@@ -38,13 +38,13 @@ public class Ew3():
     {
         await CommonActions.CardAttack(this, cardPlay.Target).Execute(choiceContext);
         await DamageCmd.Attack(base.DynamicVars["ExtraDamage"].BaseValue)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .TargetingAllOpponents(base.CombatState)    // 目标设为全体敌人
             .Execute(choiceContext);                    // 执行动作
     }
 
 
-    public static async Task<IEnumerable<CardModel>> CreateInHand(Player owner, int count, CombatState combatState)
+    public static async Task<IEnumerable<CardModel>> CreateInHand(Player owner, int count, ICombatState combatState)
 	{
 		if (count == 0)
 		{
@@ -59,11 +59,11 @@ public class Ew3():
 		{
 			shivs.Add(combatState.CreateCard<Ew3>(owner));
 		}
-		await CardPileCmd.AddGeneratedCardsToCombat(shivs, PileType.Hand, addedByPlayer: true);
+		await CardPileCmd.AddGeneratedCardsToCombat(shivs, PileType.Hand, owner);
 		return shivs;
 	}
 
-    public static async Task<IEnumerable<CardModel>> CreateInDraw(Player owner, int count, CombatState combatState)
+    public static async Task<IEnumerable<CardModel>> CreateInDraw(Player owner, int count, ICombatState combatState)
 	{
 		if (count == 0)
 		{
@@ -78,11 +78,11 @@ public class Ew3():
 		{
 			shivs.Add(combatState.CreateCard<Ew3>(owner));
 		}
-		await CardPileCmd.AddGeneratedCardsToCombat(shivs, PileType.Draw, addedByPlayer: true);
+		await CardPileCmd.AddGeneratedCardsToCombat(shivs, PileType.Draw, owner);
 		return shivs;
 	}
 
-    public static async Task<IEnumerable<CardModel>> CreateInDiscard(Player owner, int count, CombatState combatState)
+    public static async Task<IEnumerable<CardModel>> CreateInDiscard(Player owner, int count, ICombatState combatState)
 	{
 		if (count == 0)
 		{
@@ -97,7 +97,7 @@ public class Ew3():
 		{
 			shivs.Add(combatState.CreateCard<Ew3>(owner));
 		}
-		await CardPileCmd.AddGeneratedCardsToCombat(shivs, PileType.Discard, addedByPlayer: true);
+		await CardPileCmd.AddGeneratedCardsToCombat(shivs, PileType.Discard, owner);
 		return shivs;
 	}
 

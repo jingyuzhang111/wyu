@@ -1,17 +1,16 @@
 using System;
 using System.Reflection;
-using HarmonyLib;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
-using MegaCrit.Sts2.Core.Models;
 
 namespace wyu.wyuCode.Patch;
 
-[HarmonyPatch(typeof(MonsterModel), nameof(MonsterModel.GenerateAnimator))]
-public static class NoisebotAnimatorReplacePatch
+/// <summary>
+/// NOISEBOT 的自定义动画控制器构建器。
+/// 由 MonsterAnimatorPatch 统一注册和调用（不再用静态 HarmonyPatch，版本更新更稳）。
+/// </summary>
+public static class NoisebotAnimatorBuilder
 {
-    private const string TargetMonsterId = "NOISEBOT";
-
     /// <summary>
     /// 通过反射获取 CreatureAnimator 当前播放的动画名称
     /// </summary>
@@ -31,10 +30,8 @@ public static class NoisebotAnimatorReplacePatch
         return "";
     }
 
-    private static bool Prefix(MonsterModel __instance, MegaSprite controller, ref CreatureAnimator __result)
+    public static CreatureAnimator Build(MegaSprite controller)
     {
-        if (!string.Equals(__instance.Id.Entry, TargetMonsterId, StringComparison.OrdinalIgnoreCase))
-            return true;
 
         // Idle 触发器：空闲状态
         // 触发时机：战斗开始、其他动画结束后自动回到空闲
@@ -71,9 +68,6 @@ public static class NoisebotAnimatorReplacePatch
         animator.AddAnyState("Hit", idle);
 
 
-        __result = animator;
-        return false;
+        return animator;
     }
-
-
 }

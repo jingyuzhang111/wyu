@@ -40,7 +40,7 @@ public class XiaoKeBite():
 {
     // 自定义边框
     // public override bool HasBuiltInOverlay => true;
-    public override string[] mytypes => ["xiaoke"];
+    public override string[] mytypes => ["xiaoke", "siyebite"];
     // 数值调整的地方, 可添加各种具体效果,定义牌的可变数值
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -70,18 +70,19 @@ public class XiaoKeBite():
             cardPlay.Target,
             base.DynamicVars.Damage.BaseValue,
                 ValueProp.Unblockable | ValueProp.Move,
-                this);
+                this,
+                cardPlay);
 
 
-        await PowerCmd.Apply<SiyeBitePower>(cardPlay.Target, base.DynamicVars["SiyeBitePower"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<SiyeBitePower>(choiceContext, cardPlay.Target, base.DynamicVars["SiyeBitePower"].BaseValue, base.Owner.Creature, this);
 
         // 塞牌 虚无
         CardModel card = base.CombatState.CreateCard<MegaCrit.Sts2.Core.Models.Cards.Void>(base.Owner);
-		CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Discard, addedByPlayer: true));
+		CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Discard, base.Owner));
 		await Cmd.Wait(0.5f);
 
 
-        await PowerCmd.Apply<EnergyNextTurnPower>(base.Owner.Creature, base.DynamicVars.Energy.BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<EnergyNextTurnPower>(choiceContext, base.Owner.Creature, base.DynamicVars.Energy.BaseValue, base.Owner.Creature, this);
 
     }
 

@@ -13,6 +13,7 @@ using MegaCrit.Sts2.Core.Models.RelicPools;
 using MegaCrit.Sts2.Core.Random;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
+using MegaCrit.Sts2.Core.Saves;
 using MegaCrit.Sts2.Core.Unlocks;
 
 namespace wyu.wyuCode.SeedFinder;
@@ -105,7 +106,7 @@ public static class SeedFinder
         for (int i = 0; i < count; i++)
         {
             if (StopRequested) break;
-            string seed = SeedHelper.GetRandomSeed(seedLength);
+            string seed = GenerateRandomSeed(seedLength);
             var result = CheckSeed(seed, criteria);
             if (result != null)
             {
@@ -194,11 +195,16 @@ public static class SeedFinder
         try
         {
             seed = SeedHelper.CanonicalizeSeed(seed);
-            var unlockState = UnlockState.all;
+            // 使用玩家当前账号的真实解锁状态（不能写死 UnlockState.all，
+            // 否则未全解锁时 act 选择/遗物池/房间生成都会和游戏对不上）
+            var unlockState = SaveManager.Instance?.Progress != null
+                ? new UnlockState(SaveManager.Instance.Progress)
+                : UnlockState.all;
             bool isMultiplayer = false;
 
-            // 1. 确定 act 列表（用独立 RNG，与游戏内 GetRandomList 一致）
-            var actRng = new Rng((uint)StringHelper.GetDeterministicHashCode(seed));
+            // 1. 确定 act 列表（用独立 RNG，与游戏内 StartRunLobby.BeginRunLocally 一致）
+            //    注意：游戏当前版本使用 64 位哈希 + "act_selection" 名称混入，不能截断成 32 位！
+            var actRng = new Rng(StringHelper.GetDeterministicHashCode(seed), "act_selection");
             var acts = ActModel.GetRandomList(actRng, unlockState, isMultiplayer)
                 .Select(a => a.ToMutable())
                 .ToList();
@@ -209,9 +215,8 @@ public static class SeedFinder
 
             // 3. 模拟 InitializeNewRun 的遗物抓取袋填充（必须先消耗 RNG）
             var matchedRelics = SimulateRelicPopulation(rng, unlockState, criteria);
-
-            if (criteria.RelicIds is { Count: > 0 } && matchedRelics.Count == 0)
-                return null;
+            // 注意：不能在这里对 RelicIds 提前 return null——
+            // 事件奖励遗物（如 TOUCH_OF_OROBAS）需要先生成房间才能判断
 
             // 4. 模拟 SharedAncient 分配
             var sharedAncients = unlockState.SharedAncients.ToList();
@@ -228,6 +233,17 @@ public static class SeedFinder
             // 5. 为每一幕生成房间
             foreach (var act in acts)
                 act.GenerateRooms(rng, unlockState, isMultiplayer);
+
+            // 5.5 检查事件奖励遗物（如 TOUCH_OF_OROBAS 来自欧罗巴斯事件）
+            if (criteria.RelicIds is { Count: > 0 })
+            {
+                foreach (var relicId in CheckEventRelics(acts, criteria))
+                    if (!matchedRelics.Contains(relicId))
+                        matchedRelics.Add(relicId);
+
+                if (matchedRelics.Count == 0)
+                    return null;
+            }
 
             // 6. 检查条件
             if (!criteria.Matches(acts))
@@ -265,8 +281,16 @@ public static class SeedFinder
         bool checkRelics = targetIds is { Count: > 0 };
 
         // --- 共享遗物池 ---
-        var sharedRelics = ModelDb.RelicPool<SharedRelicPool>()
+        // 注意：游戏 RelicGrabBag.Populate(IEnumerable, rng) 对共享遗物袋【不过滤稀有度】，
+        // 会按 ALL 稀有度分组逐个打乱（Event/Ancient 等非抓取袋稀有度组也会消耗 RNG，
+        // 例如共享池里的 FresnelLens=Event、VeryHotCocoa/LoomingFruit=Ancient）。
+        // 之前过滤成 GrabBagRarities 会导致 RNG 流偏移，Ancient/Boss/事件预测全错！
+        var sharedRelicsAll = ModelDb.RelicPool<SharedRelicPool>()
             .GetUnlockedRelics(unlockState)
+            .ToList();
+
+        // 抓取袋稀有度的共享遗物（用于遗物匹配，以及角色遗物袋的模拟）
+        var sharedRelics = sharedRelicsAll
             .Where(r => GrabBagRarities.Contains(r.Rarity))
             .ToList();
 
@@ -277,8 +301,8 @@ public static class SeedFinder
                     matched.Add(relic.Id.Entry);
         }
 
-        // 按稀有度分组并打乱（消耗 RNG）
-        foreach (var list in sharedRelics.GroupBy(r => r.Rarity).Select(g => g.ToList()))
+        // 共享袋：按 ALL 稀有度分组并打乱（消耗 RNG，与游戏完全一致）
+        foreach (var list in sharedRelicsAll.GroupBy(r => r.Rarity).Select(g => g.ToList()))
             list.UnstableShuffle(rng);
 
         // --- 角色遗物池 ---
@@ -314,9 +338,43 @@ public static class SeedFinder
         return matched;
     }
 
+    // ─── 事件奖励遗物检查 ───────────────────────────────────
+
+    /// <summary>
+    /// 检查事件奖励遗物。这类遗物不在遗物抓取袋里（稀有度不在
+    /// Common/Uncommon/Rare/Shop），而是由特定事件直接给予。
+    /// </summary>
+    private static List<string> CheckEventRelics(
+        IReadOnlyList<ActModel> acts, SeedCriteria criteria)
+    {
+        var result = new List<string>();
+        var targetIds = criteria.RelicIds;
+        if (targetIds is not { Count: > 0 }) return result;
+
+        // TOUCH_OF_OROBAS 由欧罗巴斯(OROBAS) Ancient 事件获得（Act2 的 Ancient 房间）
+        // 玩家有 Starter 遗物时必定给予（铁甲战士 BurningBlood → BlackBlood）
+        if (targetIds.Contains("TOUCH_OF_OROBAS"))
+        {
+            var rooms1 = Traverse.Create(acts[1]).Field<RoomSet>("_rooms").Value;
+            if (rooms1?.Ancient?.Id.Entry == "OROBAS")
+                result.Add("TOUCH_OF_OROBAS");
+        }
+
+        return result;
+    }
+
     // ─── 种子枚举工具 ─────────────────────────────────────────
 
     private const string SeedChars = "0123456789ABCDEFGHJKLMNPQRSTUVWXYZ";
+    private static readonly System.Random _rng = new();
+
+    private static string GenerateRandomSeed(int length)
+    {
+        var sb = new System.Text.StringBuilder(length);
+        for (int i = 0; i < length; i++)
+            sb.Append(SeedChars[_rng.Next(SeedChars.Length)]);
+        return sb.ToString();
+    }
 
     private static long SeedToIndex(string seed)
     {

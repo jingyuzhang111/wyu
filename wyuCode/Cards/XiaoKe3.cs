@@ -72,7 +72,8 @@ public class XiaoKe3():
             cardPlay.Target,
             base.DynamicVars.Damage.BaseValue,
                 ValueProp.Unblockable | ValueProp.Move,
-                this);
+                this,
+                cardPlay);
 
         // // 额外伤害：不吃力量，不吃格挡。
         // if (extraDamage > 0)
@@ -86,7 +87,7 @@ public class XiaoKe3():
         // }
 
         // 使目标身上的正向 Buff 在本回合内失效，并在其回合结束后恢复。
-        await PowerCmd.Apply<XiaoKeSealPower>(cardPlay.Target, DynamicVars["BuffLossTime"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<XiaoKeSealPower>(choiceContext, cardPlay.Target, DynamicVars["BuffLossTime"].BaseValue, base.Owner.Creature, this);
 
     }
 

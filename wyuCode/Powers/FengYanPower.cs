@@ -34,13 +34,13 @@ public class FengYanPower : wyuPower
     ];
 
 
-	public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+	public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
 	{
         await AttackRandomly(player, combatState, choiceContext);
 		await PowerCmd.TickDownDuration(this);  // 自动衰减层数，这么好用的东西，我之前都做的什么依托。
 	}
 
-    private async Task AttackRandomly(Player player, CombatState combatState, PlayerChoiceContext choiceContext)
+    private async Task AttackRandomly(Player player, ICombatState combatState, PlayerChoiceContext choiceContext)
     {
         for (int i = 0; i < 3; i++)
 		{
@@ -50,13 +50,13 @@ public class FengYanPower : wyuPower
 				continue;
 			}
 
-            await CreatureCmd.Damage(choiceContext, enemy, 3m, ValueProp.Unblockable | ValueProp.Unpowered, base.Owner, null);
+            await CreatureCmd.Damage(choiceContext, enemy, 3m, ValueProp.Unblockable | ValueProp.Unpowered, base.Owner, null, null);
         
         }
     }
 
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
 	{
-		
+
 	}
 }

@@ -27,11 +27,11 @@ public sealed class YaoYaoPower : wyuPower
 			&& _triggeredDealersThisTurn.Add(dealer))
 		{
 			Flash();
-            await PowerCmd.Apply<tornadoPower>(dealer, base.Amount, base.Owner, null);
+            await PowerCmd.Apply<tornadoPower>(choiceContext, dealer, base.Amount, base.Owner, null);
 		}
 	}
 
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (side == CombatSide.Enemy)
         {

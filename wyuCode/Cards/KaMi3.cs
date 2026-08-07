@@ -55,7 +55,7 @@ public class KaMi3():
     {
 
         await KaMiAttack.CreateZeroCostInHand(base.Owner, 2, base.CombatState, base.IsUpgraded);
-        await PowerCmd.Apply<KaMiPower>(base.Owner.Creature, base.DynamicVars["KaMiPower"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<KaMiPower>(choiceContext, base.Owner.Creature, base.DynamicVars["KaMiPower"].BaseValue, base.Owner.Creature, this);
 
 
     }

@@ -50,7 +50,7 @@ public class Opertion():
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<OpertionPower>(Owner.Creature, base.DynamicVars["OpertionPower"].BaseValue, Owner.Creature, null, false);
+        await PowerCmd.Apply<OpertionPower>(choiceContext, Owner.Creature, base.DynamicVars["OpertionPower"].BaseValue, Owner.Creature, null, false);
     }
 
     // 升级

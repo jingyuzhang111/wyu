@@ -58,7 +58,7 @@ public class RuDong():
         {
             await CreatureCmd.SetCurrentHp(base.Owner.Creature, DynamicVars["Hp"].BaseValue);
         }
-        await PowerCmd.Apply<RuDongPower>(base.Owner.Creature, 1, base.Owner.Creature, this);
+        await PowerCmd.Apply<RuDongPower>(choiceContext, base.Owner.Creature, 1, base.Owner.Creature, this);
 
     }
 

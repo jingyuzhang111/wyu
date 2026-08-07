@@ -27,14 +27,14 @@ public class EwPower : wyuPower
     // 效果堆叠类型 可堆叠与不可堆叠
 	public override PowerStackType StackType => PowerStackType.Counter;
 
-	public override async Task BeforePlayPhaseStart(PlayerChoiceContext choiceContext, Player player)
+	public override async Task AfterAutoPrePlayPhaseEntered(PlayerChoiceContext choiceContext, Player player)
 	{
 		if (player.Creature != base.Owner)
 		{
 			return;
 		}
 
-		CombatState? combatState = player.Creature.CombatState;
+		ICombatState? combatState = player.Creature.CombatState;
 		if (combatState == null)
 		{
 			return;
@@ -43,7 +43,6 @@ public class EwPower : wyuPower
 		bool flag;
 		using (CardSelectCmd.PushSelector(new VakuuCardSelector()))
 		{
-			BlockingPlayerChoiceContext autoContext = new BlockingPlayerChoiceContext();
 			int cardsPlayed;
 			for (cardsPlayed = 0; cardsPlayed < 13; cardsPlayed++)
 			{
@@ -59,7 +58,7 @@ public class EwPower : wyuPower
 				}
 				Creature? target = GetTarget(card, combatState, player);
 				await card.SpendResources();
-				await CardCmd.AutoPlay(autoContext, card, target, AutoPlayType.Default, skipXCapture: true);
+				await CardCmd.AutoPlay(choiceContext, card, target, AutoPlayType.Default, skipXCapture: true);
 			}
 			flag = cardsPlayed >= 13;
 		}
@@ -71,7 +70,7 @@ public class EwPower : wyuPower
 	}
 
 
-	private Creature? GetTarget(CardModel card, CombatState combatState, Player player)
+	private Creature? GetTarget(CardModel card, ICombatState combatState, Player player)
 	{
 		Rng combatTargets = player.RunState.Rng.CombatTargets;
 		return card.TargetType switch

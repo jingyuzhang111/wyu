@@ -59,11 +59,11 @@ public class FastHarvest():
         var ownerCreature = Owner.Creature;
         decimal currentHp = ReadCurrentHp(ownerCreature);
         decimal lossHp = currentHp * DynamicVars["hplosspercent"].BaseValue;
-        await CreatureCmd.Damage(choiceContext, base.Owner.Creature, lossHp, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
+        await CreatureCmd.Damage(choiceContext, base.Owner.Creature, lossHp, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
 
         await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue)
             .WithHitCount(2)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .TargetingAllOpponents(base.CombatState)
             .Execute(choiceContext);
     }

@@ -61,7 +61,7 @@ public class Ew():
 
         await Ew3.CreateInDiscard(base.Owner, DynamicVars.Cards.IntValue, base.CombatState);
         
-        await PowerCmd.Apply<EwPower>(base.Owner.Creature, DynamicVars["turn"].BaseValue, base.Owner.Creature, null);
+        await PowerCmd.Apply<EwPower>(choiceContext, base.Owner.Creature, DynamicVars["turn"].BaseValue, base.Owner.Creature, null);
         PlayerCmd.EndTurn(base.Owner, canBackOut: false);
 
     }

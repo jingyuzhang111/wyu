@@ -63,7 +63,7 @@ public class ArmorPrepare():
         {
             await CreatureCmd.GainBlock(enemy, base.DynamicVars.Block, cardPlay);
         }
-        await PowerCmd.Apply<ArmorPower>(base.CombatState!.HittableEnemies, base.DynamicVars["ArmorPower"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<ArmorPower>(choiceContext, base.CombatState!.HittableEnemies, base.DynamicVars["ArmorPower"].BaseValue, base.Owner.Creature, this);
 
         await CardPileCmd.Draw(choiceContext, base.DynamicVars.Cards.BaseValue, base.Owner);
 

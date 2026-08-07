@@ -59,7 +59,7 @@ public class SiyeCall():
         {
             await PlayerCmd.GainEnergy(base.DynamicVars.Energy.IntValue, base.Owner);
         }
-        await PowerCmd.Apply<SiyeBitePower>(base.CombatState.HittableEnemies, base.DynamicVars["SiyeBitePower"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<SiyeBitePower>(choiceContext, base.CombatState.HittableEnemies, base.DynamicVars["SiyeBitePower"].BaseValue, base.Owner.Creature, this);
 
     }
 

@@ -63,10 +63,10 @@ public class WaGaAttack():
         if (tornadoPowerTarget != null)
         {
             damage += DynamicVars["ExtraDamage"].BaseValue;
-            await PowerCmd.Apply<tornadoPower>(cardPlay.Target, tornadoPowerTarget.Amount * 0.5m, base.Owner.Creature, this);
+            await PowerCmd.Apply<tornadoPower>(choiceContext, cardPlay.Target, tornadoPowerTarget.Amount * 0.5m, base.Owner.Creature, this);
         }
 
-		await DamageCmd.Attack(damage).WithHitCount(2).FromCard(this)
+		await DamageCmd.Attack(damage).WithHitCount(2).FromCard(this, cardPlay)
             .WithWaitBeforeHit(0.05f,0.1f)
 			.Targeting(cardPlay.Target)
 			.WithHitFx("vfx/vfx_attack_slash")

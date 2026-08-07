@@ -51,8 +51,8 @@ public class FengYan():
     {
         // 卡牌效果的实现地方,在CommonActions里有一些写好的函数,如攻防抽牌烧牌
         await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
-        await PowerCmd.Apply<IntangiblePower>(base.Owner.Creature, base.DynamicVars["IntangiblePower"].BaseValue, base.Owner.Creature, this);
-        await PowerCmd.Apply<FengYanPower>(base.Owner.Creature, base.DynamicVars["FengYanPower"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<IntangiblePower>(choiceContext, base.Owner.Creature, base.DynamicVars["IntangiblePower"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<FengYanPower>(choiceContext, base.Owner.Creature, base.DynamicVars["FengYanPower"].BaseValue, base.Owner.Creature, this);
         
         for (int i = 0; i < base.DynamicVars["Repeat"].IntValue; i++)
 		{
@@ -62,7 +62,7 @@ public class FengYan():
 				continue;
 			}
 			
-			await DamageCmd.Attack(base.DynamicVars["Damage"].BaseValue).FromCard(this)
+			await DamageCmd.Attack(base.DynamicVars["Damage"].BaseValue).FromCard(this, cardPlay)
                 .WithWaitBeforeHit(0.05f, 0.1f)
                 .Targeting(enemy)
                 .WithHitFx("vfx/vfx_attack_slash")

@@ -33,7 +33,7 @@ public class SCPower : wyuPower
     /// <summary>
     /// 当拥有者获得 Buff 时触发：消耗自身层数，并顺带消耗其他 Buff 类型 Power。
     /// </summary>
-    public override async Task AfterPowerAmountChanged(PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
+    public override async Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
     {
         if (_isResolvingBuffGain || Amount <= 0 || power == this || power.Owner != Owner || power.Type != PowerType.Buff || amount <= 0m)
         {
@@ -75,14 +75,15 @@ public class SCPower : wyuPower
             Log.Info($"SC效果触发：获得Buff时消耗了{consumeAmount}层，造成{finalDamage}点伤害。");
 
             await CreatureCmd.Damage(
-                new BlockingPlayerChoiceContext(),
+                choiceContext,
                 base.CombatState!.HittableEnemies,
                 finalDamage,
                 ValueProp.Unblockable | ValueProp.Move,
                 base.Owner,
+                null,
                 null);
 
-            await PowerCmd.ModifyAmount(this, -consumeAmount, base.Owner, null, silent: true);
+            await PowerCmd.ModifyAmount(choiceContext, this, -consumeAmount, base.Owner, null, silent: true);
 
             int remaining = consumeAmount;
             foreach (PowerModel buffPower in buffPowers)
@@ -99,7 +100,7 @@ public class SCPower : wyuPower
                 }
 
                 remaining -= actualConsume;
-                await PowerCmd.ModifyAmount(buffPower, -actualConsume, base.Owner, null, silent: true);
+                await PowerCmd.ModifyAmount(choiceContext, buffPower, -actualConsume, base.Owner, null, silent: true);
             }
         }
         finally
@@ -108,7 +109,7 @@ public class SCPower : wyuPower
         }
     }
 
-    public override async Task BeforeTurnEndEarly(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task BeforeSideTurnEndEarly(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (base.Amount <= 0)
         {

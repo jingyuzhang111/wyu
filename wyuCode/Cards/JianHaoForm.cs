@@ -54,7 +54,7 @@ public class JianHaoForm():
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
 
-        await PowerCmd.Apply<JianHaoFormPower>(base.Owner.Creature, base.DynamicVars["JianHaoFormPower"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<JianHaoFormPower>(choiceContext, base.Owner.Creature, base.DynamicVars["JianHaoFormPower"].BaseValue, base.Owner.Creature, this);
 
 
 

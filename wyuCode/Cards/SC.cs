@@ -54,7 +54,7 @@ public class SC():
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<SCPower>(base.Owner.Creature, base.DynamicVars["SCPower"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<SCPower>(choiceContext, base.Owner.Creature, base.DynamicVars["SCPower"].BaseValue, base.Owner.Creature, this);
     }
 
     // 升级

@@ -46,7 +46,8 @@ public sealed class XiaoKeEnchantment : wyuEnchantment
                 cardPlay.Target,
                 extraDamage,
                     ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move,
-                    base.Card);
+                    base.Card,
+                    cardPlay);
         }
 
 	}

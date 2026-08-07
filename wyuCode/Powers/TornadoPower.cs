@@ -58,7 +58,7 @@ public class tornadoPower : wyuPower
         return Task.CompletedTask;
 	}
 
-	public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+	public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
 	{
         // 抽卡之前触发
         Log.Info($"BeforeHandDraw触发，准备造成伤害,层数: {base.Amount}");

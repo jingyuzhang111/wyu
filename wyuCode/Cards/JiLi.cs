@@ -61,7 +61,7 @@ public class JiLi():
         decimal currentHp = ReadCurrentHp(ownerCreature);
         decimal lossHp = currentHp * DynamicVars["percent"].BaseValue;
         Log.Info($"技能效果触发,计算失去{lossHp}点生命");
-        await CreatureCmd.Damage(choiceContext, base.Owner.Creature, lossHp, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
+        await CreatureCmd.Damage(choiceContext, base.Owner.Creature, lossHp, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
 
         await PlayerCmd.GainEnergy(base.DynamicVars.Energy.IntValue, base.Owner);
     }

@@ -57,15 +57,15 @@ public class Man():
         // 卡牌效果的实现地方,在CommonActions里有一些写好的函数,如攻防抽牌烧牌
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
         // 失去所有格挡
-        await CreatureCmd.LoseBlock(base.Owner.Creature, base.Owner.Creature.Block);
+        await CreatureCmd.LoseBlock(choiceContext, base.Owner.Creature, base.Owner.Creature.Block, base.Owner.Creature);
 
-		await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this)
+		await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, cardPlay)
             .WithWaitBeforeHit(0.05f,0.1f)
 			.Targeting(cardPlay.Target)
 			.WithHitFx("vfx/vfx_attack_slash")
 			.Execute(choiceContext);
 
-        await PowerCmd.Apply<ManPower>(base.Owner.Creature, base.DynamicVars["ManPower"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<ManPower>(choiceContext, base.Owner.Creature, base.DynamicVars["ManPower"].BaseValue, base.Owner.Creature, this);
 
 
     }

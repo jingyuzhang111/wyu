@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
@@ -25,7 +26,7 @@ public class XiaoKeSealPower : wyuPower
         await SuppressCurrentBuffs();
     }
 
-    public override async Task AfterPowerAmountChanged(PowerModel power, decimal amount, MegaCrit.Sts2.Core.Entities.Creatures.Creature? applier, MegaCrit.Sts2.Core.Models.CardModel? cardSource)
+    public override async Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
     {
         if (_isRestoring || Amount <= 0)
         {
@@ -61,7 +62,7 @@ public class XiaoKeSealPower : wyuPower
         }
     }
 
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         // Consume one stack at end of owner's side. Restore all buffs when the last stack expires.
         if (side != Owner.Side)
@@ -70,7 +71,7 @@ public class XiaoKeSealPower : wyuPower
         }
         if (Amount > 1)
         {
-            await PowerCmd.ModifyAmount(this, -1m, Applier, null, silent: true);
+            await PowerCmd.ModifyAmount(choiceContext, this, -1m, Applier, null, silent: true);
             return;
         }
 
@@ -107,7 +108,7 @@ public class XiaoKeSealPower : wyuPower
                     continue;
                 }
 
-                await PowerCmd.Apply(canonical.ToMutable(), Owner, entry.Value, Applier, null, silent: true);
+                await PowerCmd.Apply(new ThrowingPlayerChoiceContext(), canonical.ToMutable(), Owner, entry.Value, Applier, null, silent: true);
             }
         }
         finally

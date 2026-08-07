@@ -64,7 +64,8 @@ public class XiaoKeAttack():
             cardPlay.Target,
             base.DynamicVars.Damage.BaseValue,
                 ValueProp.Unblockable | ValueProp.Move,
-                this);
+                this,
+                cardPlay);
 
     }
 

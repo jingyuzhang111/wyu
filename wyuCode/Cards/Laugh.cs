@@ -58,7 +58,7 @@ public class Laugh():
         // 卡牌效果的实现地方,在CommonActions里有一些写好的函数,如攻防抽牌烧牌
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
 
-        await PowerCmd.Apply<VulnerablePower>(cardPlay.Target, base.DynamicVars["VulnerablePower"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<VulnerablePower>(choiceContext, cardPlay.Target, base.DynamicVars["VulnerablePower"].BaseValue, base.Owner.Creature, this);
 
 
         Creature targetCreature = (Creature)cardPlay.Target;
@@ -76,7 +76,7 @@ public class Laugh():
         {
             return;
         }
-        await PowerCmd.Apply<StrengthPower>(cardPlay.Target, -base.DynamicVars["StrengthPower"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<StrengthPower>(choiceContext, cardPlay.Target, -base.DynamicVars["StrengthPower"].BaseValue, base.Owner.Creature, this);
 
 
 

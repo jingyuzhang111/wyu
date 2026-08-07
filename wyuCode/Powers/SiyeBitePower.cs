@@ -15,6 +15,7 @@ using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 using MegaCrit.Sts2.Core.Combat;
 using wyu.wyuCode.Cards;
+using MegaCrit.Sts2.Core.Models;
 
 namespace wyu.wyuCode.Powers;
 
@@ -27,7 +28,7 @@ public class SiyeBitePower : wyuPower
 	public override PowerStackType StackType => PowerStackType.Counter;
 
     public override decimal ModifyDamageAdditive(Creature? target, decimal amount, 
-    ValueProp props, Creature? dealer, MegaCrit.Sts2.Core.Models.CardModel? cardSource)
+    ValueProp props, Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
     {
         // target:受到伤害的家伙
         // dealer:造成伤害的家伙
@@ -56,7 +57,7 @@ public class SiyeBitePower : wyuPower
     }
 
 
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
 	{
 		if (side == CombatSide.Enemy)
 		{

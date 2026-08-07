@@ -67,7 +67,7 @@ public class XiaoKeLove():
         }
 
         // 将生成的卡牌添加至战斗中
-        await CardPileCmd.AddGeneratedCardsToCombat(list, PileType.Hand, addedByPlayer: true);
+        await CardPileCmd.AddGeneratedCardsToCombat(list, PileType.Hand, base.Owner);
     }
 
     // 升级

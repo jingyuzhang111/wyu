@@ -29,34 +29,19 @@ public class OpertionPower : wyuPower
 
     public override async Task AfterCurrentHpChanged(Creature creature, decimal delta)
     {
+        // 只关心持有者被扣血(任何回合、任何来源都触发)
+        if (creature != Owner) return;
+        if (delta >= 0) return;  // 只响应扣血
+        if (creature.Player is not { } player) return;
 
-        // 得到当前状态
-        var combatState = Traverse.Create(CombatManager.Instance)
-        .Field<CombatState>("_state").Value;
-
-        // 在 AfterCurrentHpChanged 里
         var context = new HookPlayerChoiceContext(
-            creature.Player,                    // Player owner
-            LocalContext.NetId.Value,           // local player net id
+            player,                             // Player owner
+            LocalContext.NetId.GetValueOrDefault(),  // local player net id
             GameActionType.Combat               // game action type
         );
 
-        if (!creature.IsPlayer)
-                return;
-            
-        if (delta >= 0)
-            return;  // 只响应扣血
-
-        if (combatState?.CurrentSide != CombatSide.Player)
-            return;  // 不是自己回合不管
-
-        // 找 creature 身上的 OpertionPower
-        var power = creature.Powers.OfType<OpertionPower>().FirstOrDefault();
-        if (power == null) return;
-
-        // 执行抽牌
-        await CardPileCmd.Draw(context, Amount, creature.Player);
-
+        // 每次扣血抽 [层数] 张牌
+        await CardPileCmd.Draw(context, Amount, player);
     }
     // public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
 	// {

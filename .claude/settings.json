@@ -3,7 +3,9 @@
     "allow": [
       "Bash(ls \"E:\\\\明日方舟\\\\杀戮尖塔2Mod教程\\\\塔2解包\\\\Slay the Spire 2\\\\\" | head -40)",
       "Read(//e/明日方舟/杀戮尖塔2Mod教程/塔2解包/**)",
-      "Bash(mkdir -p \"d:/demo/C#/wyu/wyuCode/SeedFinder\")"
+      "Bash(mkdir -p \"d:/demo/C#/wyu/wyuCode/SeedFinder\")",
+      "Bash(ilspycmd \"E:/SteamLibrary/steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/sts2.dll\" -t \"MegaCrit.Sts2.Core.Models.AbstractModel\")",
+      "Bash(ilspycmd \"E:/SteamLibrary/steamapps/common/Slay the Spire 2/data_sts2_windows_x86_64/sts2.dll\" -t \"MegaCrit.Sts2.Core.Commands.PowerCmd\")"
     ],
     "additionalDirectories": [
       "d:\\demo\\C#\\wyu\\wyuCode"

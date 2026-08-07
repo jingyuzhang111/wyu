@@ -67,7 +67,7 @@ public class XiaoKeFoodGood():XiaoKeFood
         }
 
         Isxiaokeeat = false;
-        await PowerCmd.Apply<StrengthPower>(base.Owner.Creature, base.DynamicVars["StrengthPower"].BaseValue, base.Owner.Creature, null);
+        await PowerCmd.Apply<StrengthPower>(choiceContext, base.Owner.Creature, base.DynamicVars["StrengthPower"].BaseValue, base.Owner.Creature, null);
     }
 
     // 升级

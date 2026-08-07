@@ -63,15 +63,15 @@ public class XiaoKeSteal():
 
         Log.Info("添加一张蜜饼到弃牌堆");
         CardModel food = base.CombatState!.CreateCard<XiaoKeFood>(base.Owner);
-        CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(food, PileType.Draw, addedByPlayer: true));
+        CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(food, PileType.Draw, base.Owner));
         await Cmd.Wait(0.1f);
 
         Log.Info("添加一张小刻饿到抽牌堆");
         CardModel xiaoke = base.CombatState!.CreateCard<XiaoKeEat>(base.Owner);
-        CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(xiaoke, PileType.Draw, addedByPlayer: true));
+        CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(xiaoke, PileType.Draw, base.Owner));
         await Cmd.Wait(0.1f);
 
-        await PowerCmd.Apply<XiaoKeEatPower>(base.Owner.Creature, base.DynamicVars["XiaoKeEatPower"].BaseValue, base.Owner.Creature, null);
+        await PowerCmd.Apply<XiaoKeEatPower>(choiceContext, base.Owner.Creature, base.DynamicVars["XiaoKeEatPower"].BaseValue, base.Owner.Creature, null);
     }
 
     // 升级

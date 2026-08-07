@@ -55,7 +55,7 @@ public class SangShenAttack():
     {
         // 卡牌效果的实现地方,在CommonActions里有一些写好的函数,如攻防抽牌烧牌
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
-		await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this)
+		await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, cardPlay)
             .WithWaitBeforeHit(0.05f,0.1f)
 			.Targeting(cardPlay.Target)
 			.WithHitFx("vfx/vfx_attack_slash")
@@ -82,7 +82,7 @@ public class SangShenAttack():
             if (leader is not null && leader.IsPrimaryEnemy)
             {
                 Log.Info($"对主人造成双倍伤害: {base.DynamicVars.Damage.BaseValue * 2}");
-                await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue * 2).FromCard(this)
+                await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue * 2).FromCard(this, cardPlay)
                     .WithWaitBeforeHit(0.05f,0.1f)
                     .Targeting(leader)
                     .WithHitFx("vfx/vfx_attack_slash")
@@ -99,7 +99,7 @@ public class SangShenAttack():
                     .FirstOrDefault(c => c != target && c.IsPrimaryEnemy && c.IsAlive && c.IsHittable);
                 Log.Info($"次级敌人，尝试搜寻主要敌人并直接造成伤害: {leader?.Name}");
                 Log.Info($"对主人造成双倍伤害: {base.DynamicVars.Damage.BaseValue * 2}");
-                await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue * 2).FromCard(this)
+                await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue * 2).FromCard(this, cardPlay)
                     .WithWaitBeforeHit(0.05f,0.1f)
                     .Targeting(leader)
                     .WithHitFx("vfx/vfx_attack_slash")

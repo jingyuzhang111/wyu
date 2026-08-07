@@ -39,6 +39,8 @@
 "WYU-HE_LA_GE.description": "失去当前生命的{HplossPercent:diff()}%({HpLoss:diff()})。\n清除自身所有负面效果\n对全体敌人造成{Damage:diff()}点伤害",
 "WYU-ZHAN_XUE_LIU2.title": "强攻",
 "WYU-ZHAN_XUE_LIU2.description": "失去当前生命的{HplossPercent:diff()}%({HpLoss:diff()})。\n造成{Damage:diff()}点伤害。",
+"WYU-OPERTION.title": "运筹帷幄",
+"WYU-OPERTION.description": "在自己回合扣血时, 抽{OpertionPower:diff()}张牌",
 
 
 "WYU-THORNS.title": "棘刺",
@@ -65,9 +67,8 @@
 "WYU-SIYE_GEI.description": "对目标造成{Damage:diff()}点伤害。\n获得{SiyeBitePower:diff()}层[gold]狼咬[/gold]\n抽{Cards:diff()}张牌。",
 "WYU-XUE_LANG_BITE.title": "全军出击，我咬死你！",
 "WYU-XUE_LANG_BITE.description": "给予{SiyeBitePower:diff()}层[gold]狼咬[/gold]\n{IfUpgraded:show:[gold]升级[/gold]并|}打出消耗区,弃牌区,抽牌区的所有[gold]狼咬[/gold]。",
-"WYU-XVLAGU_ANGRY.title": "叙拉古人的愤怒",
-"WYU-XVLAGU_ANGRY.description": "所有敌人获得{SiyeBitePower:diff()}层[gold]狼咬[/gold],所有攻击牌都视为[gold]狼咬[/gold]。",
-
+"WYU-GEILAGU_ANGRY.title": "给拉古人的愤怒",
+"WYU-GEILAGU_ANGRY.description": "所有敌人获得{SiyeBitePower:diff()}层[gold]狼咬[/gold],所有攻击牌都视为[gold]狼[/gold]。",
 
 "WYU-SHENG_ZANG_ATTACK.title": "圣葬",
 "WYU-SHENG_ZANG_ATTACK.description": "对所有敌人造成{Damage:diff()}点伤害。\n对目标施加{WeakPower:diff()}层[gold]虚弱[/gold]",
@@ -109,7 +110,7 @@
 "WYU-XIAO_KE_EAT.title": "小刻饿",
 "WYU-XIAO_KE_EAT.description": "无视敌方护甲造成{Damage:diff()}点伤害。\n选择1张牌消耗掉\n本回合内获得{FlexPotionPower:diff()}点力量.",
 "WYU-XIAO_KE_COOK.title": "制作蜜饼",
-"WYU-XIAO_KE_COOK.description": "消耗所有手牌,获得等量[gold]蜜饼[/gold]\n若抽牌堆有[gold]小刻[/gold]，则[gold]蜜饼[/gold]被消耗，所有[gold]小刻[/gold]加入手牌,且费用为0\n每消耗一[gold]蜜饼[/gold],本回合获得{TemporaryStrengthPower:diff()}力量",
+"WYU-XIAO_KE_COOK.description": "消耗所有手牌,获得等量[gold]蜜饼[/gold]\n若抽牌堆有[gold]小刻[/gold]，则[gold]蜜饼[/gold]被消耗，所有[gold]小刻[/gold]加入手牌,且费用为0\n每消耗一[gold]蜜饼[/gold],本回合获得{FlexPotionPower:diff()}力量",
 "WYU-XIAO_KE_STEAL.title": "偷蜜饼！",
 "WYU-XIAO_KE_STEAL.description": "将一张[gold]蜜饼[/gold]与[gold]小刻饿[/gold]放入弃牌堆\n当第一次[gold]小刻[/gold]与[gold]蜜饼[/gold]同时在手牌时，蜜饼被小刻吃掉！",
 "WYU-XIAO_KE_FOOD_HOUSE.title": "小刻的蜜饼战略储备",
@@ -168,6 +169,8 @@
 "WYU-KA_MI3.description": "每回合开始将两张[gold]链术平A[/gold]加入手牌,持续4回合",
 "WYU-PEI_PEI.title":"希望时代的涂鸦",
 "WYU-PEI_PEI.description":"将战斗音乐替换为[gold]Mystic Light Quest[/gold],抽{Cards:diff()}张牌",
+"WYU-ALL.title": "ALL",
+"WYU-ALL.description": "随机获得{PowerNum:diff()}种效果1层.",
 
 
 "not_finished":"下面是还没实现具体功能，或还没测试的卡牌",
@@ -177,8 +180,7 @@
 
 "WYU-TF799.title": "799",
 "WYU-TF799.description": "",
-"WYU-ALL.title": "ALL",
-"WYU-ALL.description": "",
+
 
 "WYU-1.title": "快速整备",
 "WYU-1.description": "失去当前生命的20%({HpLoss:diff()})。\n抽3张牌。",
@@ -186,8 +188,6 @@
 "WYU-SHOU_GE_ZHE.title": "收割者",
 "WYU-SHOU_GE_ZHE.description": "你的所有攻击变为群攻",
 
-"WYU-OPERTION.title": "运筹帷幄",
-"WYU-OPERTION.description": "在自己回合扣血时, 抽{OpertionPower:diff()}张牌",
 
 "zhanweifu": "占位符"
 }

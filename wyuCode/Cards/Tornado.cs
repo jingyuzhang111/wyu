@@ -55,7 +55,7 @@ public class Tornado():
         // 卡牌效果的实现地方,在CommonActions里有一些写好的函数,如攻防抽牌烧牌
 
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
-        await PowerCmd.Apply<tornadoPower>(cardPlay.Target, base.DynamicVars["tornadoPower"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<tornadoPower>(choiceContext, cardPlay.Target, base.DynamicVars["tornadoPower"].BaseValue, base.Owner.Creature, this);
     }
 
     // 升级

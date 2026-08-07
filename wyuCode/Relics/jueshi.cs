@@ -45,10 +45,10 @@ public sealed class JueShi : wyuRelic
 
 	public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
-		if (base.Owner.Creature.GetPower<warriorPower>() != null)
-		{
-			return;
-		}
+		// if (base.Owner.Creature.GetPower<warriorPower>() != null)
+		// {
+		// 	return;
+		// }
 
 		if (cardPlay.Card.Owner != base.Owner || cardPlay.Card.Type != CardType.Attack)
 		{
@@ -59,7 +59,6 @@ public sealed class JueShi : wyuRelic
 		if (cardPlay.Card.Owner == base.Owner && cardPlay.Card.Type == CardType.Attack)
 		{
 			Flash();
-			Log.Info("绝食效果触发,回复1点生命");
 			await CreatureCmd.Heal(base.Owner.Creature, 1m);
 		}
 	}
@@ -82,33 +81,33 @@ public sealed class JueShi : wyuRelic
 			return;
 		
 		
-		if (base.Owner.Creature.GetPower<warriorPower>() == null)
-		{
-			return;
-		}
+		// if (base.Owner.Creature.GetPower<warriorPower>() == null)
+		// {
+		// 	return;
+		// }
 
-		// 过滤掉自己掉血的情况
-		if (target == Owner.Creature) return;
+		// // 过滤掉自己掉血的情况
+		// if (target == Owner.Creature) return;
 
-		// 如果伤害来自封烟, 且为无来源伤害,就加血
-		bool fromFengYanPower = cardSource == null && dealer.GetPower<FengYanPower>() != null;
-		if (fromFengYanPower && cardSource == null){
-			Flash();
-			await CreatureCmd.Heal(Owner.Creature, 1m, playAnim: false);
-			return;
-		}
-		// 无来源伤害,但不是封烟伤害,过滤
-		if (!fromFengYanPower && cardSource == null) return;
+		// // 如果伤害来自封烟, 且为无来源伤害,就加血
+		// bool fromFengYanPower = cardSource == null && dealer.GetPower<FengYanPower>() != null;
+		// if (fromFengYanPower && cardSource == null){
+		// 	Flash();
+		// 	await CreatureCmd.Heal(Owner.Creature, 1m, playAnim: false);
+		// 	return;
+		// }
+		// // 无来源伤害,但不是封烟伤害,过滤
+		// if (!fromFengYanPower && cardSource == null) return;
 
-		// 只在伤害敌方目标时触发，避免自己挨打也回血
-		if (target.Side == Owner.Creature.Side)
-			return;
+		// // 只在伤害敌方目标时触发，避免自己挨打也回血
+		// if (target.Side == Owner.Creature.Side)
+		// 	return;
 
-		// 玩家造成了伤害,就回血
-		if (cardSource != null && cardSource.Owner == Owner){
-			Flash();
-			await CreatureCmd.Heal(Owner.Creature, 1m, playAnim: false);
-		}
+		// // 玩家造成了伤害,就回血
+		// if (cardSource != null && cardSource.Owner == Owner){
+		// 	Flash();
+		// 	await CreatureCmd.Heal(Owner.Creature, 1m, playAnim: false);
+		// }
 		
 	}
 

@@ -51,7 +51,7 @@ public class XiaoKeFoodFuRong():XiaoKeFood
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         // 卡牌效果的实现地方,在CommonActions里有一些写好的函数,如攻防抽牌烧牌
-        await CreatureCmd.Damage(choiceContext, base.Owner.Creature, base.DynamicVars["Hploss"].BaseValue, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
+        await CreatureCmd.Damage(choiceContext, base.Owner.Creature, base.DynamicVars["Hploss"].BaseValue, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
 
 
     }
@@ -65,8 +65,8 @@ public class XiaoKeFoodFuRong():XiaoKeFood
         }
 
         Isxiaokeeat = false;
-        await PowerCmd.Apply<StrengthPower>(base.Owner.Creature, base.DynamicVars["StrengthPower"].BaseValue, base.Owner.Creature, null);
-        await PowerCmd.Apply<WeakPower>(base.Owner.Creature, base.DynamicVars["WeakPower"].BaseValue, base.Owner.Creature, null);
+        await PowerCmd.Apply<StrengthPower>(choiceContext, base.Owner.Creature, base.DynamicVars["StrengthPower"].BaseValue, base.Owner.Creature, null);
+        await PowerCmd.Apply<WeakPower>(choiceContext, base.Owner.Creature, base.DynamicVars["WeakPower"].BaseValue, base.Owner.Creature, null);
     }
 
     // 升级

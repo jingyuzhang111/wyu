@@ -32,7 +32,7 @@ using wyu.wyuCode.Enchantments;
 namespace wyu.wyuCode.Cards;
 
 public class XiaoKeFor():
-    wyuCard(cost: 2, 
+    wyuCard(cost: 1, 
     type: CardType.Attack,
     rarity: CardRarity.Uncommon,
     target: TargetType.AnyEnemy
@@ -84,7 +84,8 @@ public class XiaoKeFor():
             cardPlay.Target,
             CalculatedHits,
             ValueProp.Unblockable | ValueProp.Move,
-            this);
+            this,
+            cardPlay);
     }
 
     public override void AfterCreated()

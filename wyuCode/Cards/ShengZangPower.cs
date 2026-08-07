@@ -54,7 +54,7 @@ public class ShengZangPower():
     {
         // 卡牌效果的实现地方,在CommonActions里有一些写好的函数,如攻防抽牌烧牌
 
-        await PowerCmd.Apply<ArtifactPower>(base.Owner.Creature, base.DynamicVars["ArtifactPower"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<ArtifactPower>(choiceContext, base.Owner.Creature, base.DynamicVars["ArtifactPower"].BaseValue, base.Owner.Creature, this);
     }
 
     // 升级

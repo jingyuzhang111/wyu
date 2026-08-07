@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnjtvskp07lwg"
-path="res://.godot/imported/xvlagu_angry.png-e32bbc610003c0641e9de0d1b437329a.ctex"
+uid="uid://yryl0ay6tj7b"
+path="res://.godot/imported/geilagu_angry.png-6c551f51f0ee0e02f8d167273ae1dd16.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://wyu/images/card_portraits/xvlagu_angry.png"
-dest_files=["res://.godot/imported/xvlagu_angry.png-e32bbc610003c0641e9de0d1b437329a.ctex"]
+source_file="res://wyu/images/card_portraits/big/geilagu_angry.png"
+dest_files=["res://.godot/imported/geilagu_angry.png-6c551f51f0ee0e02f8d167273ae1dd16.ctex"]
 
 [params]
 

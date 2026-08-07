@@ -14,7 +14,7 @@ namespace wyu.wyuCode.Patch;
 [HarmonyPatch(typeof(RunManager), nameof(RunManager.GenerateRooms))]
 public static class SeedScanner
 {
-    private static readonly HashSet<uint> SeenSeeds = [];
+    private static readonly HashSet<ulong> SeenSeeds = [];
 
     /// <summary>在这里修改筛选条件</summary>
     private static bool IsMatch(ActModel act0, ActModel act1)
@@ -29,7 +29,7 @@ public static class SeedScanner
         var state = __instance.DebugOnlyGetState();
         if (state == null) return;
 
-        uint seed = state.Rng.Seed;
+        ulong seed = state.Rng.Seed;
         if (!SeenSeeds.Add(seed)) return;
 
         var acts = state.Acts;

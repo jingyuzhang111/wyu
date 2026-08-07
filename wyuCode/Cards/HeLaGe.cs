@@ -61,7 +61,7 @@ public class HeLaGe():
         var ownerCreature = Owner.Creature;
         decimal currentHp = ReadCurrentHp(ownerCreature);
         decimal lossHp = currentHp * DynamicVars["hplosspercent"].BaseValue;
-        await CreatureCmd.Damage(choiceContext, base.Owner.Creature, lossHp, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
+        await CreatureCmd.Damage(choiceContext, base.Owner.Creature, lossHp, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
 
         // 清除所有负面效果 + 值为负的正面效果
         var debuffs = ownerCreature.Powers
@@ -72,7 +72,7 @@ public class HeLaGe():
 
         await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue)
             // .WithHitCount(2)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .TargetingAllOpponents(base.CombatState)    // 目标设为全体敌人
             .Execute(choiceContext);                    // 执行动作
 

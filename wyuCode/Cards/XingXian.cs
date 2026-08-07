@@ -60,7 +60,7 @@ public class XingXian():
         decimal lossHp = currentHp * 0.25m;
         var xingxianHpLoss = DynamicVars["xingxianHpLoss"];
         Log.Info($"行险效果触发,计算失去{lossHp}点生命");
-        await CreatureCmd.Damage(choiceContext, base.Owner.Creature, lossHp, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
+        await CreatureCmd.Damage(choiceContext, base.Owner.Creature, lossHp, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
 
         await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
     }

@@ -114,7 +114,7 @@ public class MuchCard():
         AbstractRoom currentRoom = base.CombatState.RunState.CurrentRoom;
 		if (currentRoom is CombatRoom combatRoom && threadnum > 0)
 		{
-            await PowerCmd.Apply<MuchCardPower>(base.Owner.Creature, threadnum, base.Owner.Creature, null);
+            await PowerCmd.Apply<MuchCardPower>(choiceContext, base.Owner.Creature, threadnum, base.Owner.Creature, null);
 		}
     }
 

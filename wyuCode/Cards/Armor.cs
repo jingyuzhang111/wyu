@@ -43,7 +43,7 @@ public class Armor():
     // 添加打击标签(Strike)
     protected override HashSet<CardTag> CanonicalTags => [CardTag.Defend];
 
-    // 数值调整的地方, 可添加各种具体效果,定义牌的可变数值
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new BlockVar(15, ValueProp.Move),
@@ -57,14 +57,13 @@ public class Armor():
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        // 卡牌效果的实现地方,在CommonActions里有一些写好的函数,如攻防抽牌烧牌
 
         await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
         foreach (var enemy in base.CombatState!.HittableEnemies)
         {
             await CreatureCmd.GainBlock(enemy, base.DynamicVars.Block, cardPlay);
         }
-        await PowerCmd.Apply<ArmorPower>(base.CombatState!.HittableEnemies, base.DynamicVars["ArmorPower"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<ArmorPower>(choiceContext, base.CombatState!.HittableEnemies, base.DynamicVars["ArmorPower"].BaseValue, base.Owner.Creature, this);
     }
 
     // 升级

@@ -66,7 +66,7 @@ public class ZuoLeT1():
         decimal hpPercent = currentHp / ownerCreature.MaxHp;
         // 攻击
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
-        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this)            
+        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, cardPlay)            
             .WithWaitBeforeHit(0.005f,0.01f)
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")

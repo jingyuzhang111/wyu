@@ -54,7 +54,7 @@ public class XianYu():
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
 
-        await PowerCmd.Apply<SiyeBitePower>(base.CombatState.HittableEnemies, base.DynamicVars["SiyeBitePower"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<SiyeBitePower>(choiceContext, base.CombatState.HittableEnemies, base.DynamicVars["SiyeBitePower"].BaseValue, base.Owner.Creature, this);
 
     }
 

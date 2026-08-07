@@ -71,7 +71,8 @@ public class XiaoKeEat():
             cardPlay.Target,
             base.DynamicVars.Damage.BaseValue,
                 ValueProp.Unblockable | ValueProp.Move,
-                this);
+                this,
+                cardPlay);
         
         CardModel cardModel = (await CardSelectCmd.FromHand(prefs: new CardSelectorPrefs(CardSelectorPrefs.ExhaustSelectionPrompt, 1), context: choiceContext, player: base.Owner, filter: null, source: this)).FirstOrDefault();
 		if (cardModel != null)
@@ -84,7 +85,7 @@ public class XiaoKeEat():
 			await CardCmd.Exhaust(choiceContext, cardModel);
 		}
 
-        await PowerCmd.Apply<FlexPotionPower>(base.Owner.Creature, base.DynamicVars["FlexPotionPower"].BaseValue, base.Owner.Creature, null);
+        await PowerCmd.Apply<FlexPotionPower>(choiceContext, base.Owner.Creature, base.DynamicVars["FlexPotionPower"].BaseValue, base.Owner.Creature, null);
 
 
     }

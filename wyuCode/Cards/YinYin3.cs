@@ -64,11 +64,11 @@ public class YinYin3():
             Creature summonedMinion = base.CombatState!.CreateCreature(minionModel, CombatSide.Enemy, null);
             await CreatureCmd.Add(summonedMinion);
             // 给新召唤单位挂“爪牙”效果，并将效果来源设为当前卡牌指定的敌方目标。
-            await PowerCmd.Apply<MinionPower>(summonedMinion, 1m, cardPlay.Target, this);
+            await PowerCmd.Apply<MinionPower>(choiceContext, summonedMinion, 1m, cardPlay.Target, this);
         }
 
         await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .TargetingAllOpponents(base.CombatState!)    // 目标设为全体敌人
             .Execute(choiceContext);                    // 执行动作
     }

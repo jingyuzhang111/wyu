@@ -59,11 +59,11 @@ public class ZhanXueLiu2():
         var ownerCreature = Owner.Creature;
         decimal currentHp = ReadCurrentHp(ownerCreature);
         decimal lossHp = currentHp * DynamicVars["hplosspercent"].BaseValue;
-        await CreatureCmd.Damage(choiceContext, base.Owner.Creature, lossHp, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
+        await CreatureCmd.Damage(choiceContext, base.Owner.Creature, lossHp, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
         
         // 攻击
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
-        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this)            
+        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, cardPlay)            
             .WithWaitBeforeHit(0.005f,0.01f)
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")

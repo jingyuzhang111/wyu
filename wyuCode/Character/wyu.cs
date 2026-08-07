@@ -26,24 +26,24 @@ public class wyu : PlaceholderCharacterModel
 	public override IEnumerable<CardModel> StartingDeck => [
 
 		// 基础卡牌暂定为这四种
-		// ModelDb.Card<Warrior>(),
-		// ModelDb.Card<JianHao>(),
-		// ModelDb.Card<Attack>(),
-		// ModelDb.Card<Attack>(),
-		// ModelDb.Card<Attack>(),
-		// ModelDb.Card<Attack>(),
-		// ModelDb.Card<Block>(),
-		// ModelDb.Card<Block>(),
-		// ModelDb.Card<Block>(),
-		// ModelDb.Card<Block>(),
+		ModelDb.Card<Warrior>(),
+		ModelDb.Card<JianHao>(),
+		ModelDb.Card<Attack>(),
+		ModelDb.Card<Attack>(),
+		ModelDb.Card<Attack>(),
+		ModelDb.Card<Attack>(),
+		ModelDb.Card<Block>(),
+		ModelDb.Card<Block>(),
+		ModelDb.Card<Block>(),
+		ModelDb.Card<Block>(),
 
 
-		ModelDb.Card<Laugh>(),
-		ModelDb.Card<MaEnNa>(),
+		// ModelDb.Card<Laugh>(),
+		// ModelDb.Card<MaEnNa>(),
 
-		ModelDb.Card<GreatWall>(),
-		ModelDb.Card<Zc325>(),
-		ModelDb.Card<PeiPei>(),
+		// ModelDb.Card<GreatWall>(),
+		// ModelDb.Card<Zc325>(),
+		// ModelDb.Card<PeiPei>(),
 
 
 	];

@@ -29,7 +29,7 @@ using wyu.wyuCode.Powers;
 namespace wyu.wyuCode.Cards;
 
 public class XiaoKeEatKitchen():
-    wyuCard(cost: 2, 
+    wyuCard(cost: 1, 
     type: CardType.Skill,
     rarity: CardRarity.Uncommon,
     target: TargetType.Self

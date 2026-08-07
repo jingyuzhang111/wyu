@@ -69,9 +69,9 @@ public sealed class YinYinPlaceholderMinion : CustomMonsterModel
         return new MonsterMoveStateMachine(new List<MonsterState> { idleMove }, idleMove);
     }
 
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
-        // 敌方回合结束后立即移除，实现“只存在一回合”。
+        // 敌方回合结束后立即移除，实现”只存在一回合”。
         if (side == CombatSide.Enemy && base.Creature.IsAlive)
         {
             await CreatureCmd.Kill(base.Creature, force: true);
@@ -93,7 +93,7 @@ public sealed class YinYinPlaceholderMinion : CustomMonsterModel
         }
 
         await CreatureCmd.Damage(choiceContext, Leader, result.UnblockedDamage,
-            ValueProp.Unblockable | ValueProp.Unpowered, dealer ?? base.Creature, null);
+            ValueProp.Unblockable | ValueProp.Unpowered, dealer ?? base.Creature, null, null);
     }
 
     private static Task NothingMove(IReadOnlyList<Creature> _)

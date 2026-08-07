@@ -24,7 +24,7 @@ using MegaCrit.Sts2.Core.Nodes.CommonUi;
 
 namespace wyu.wyuCode.Cards;
 
-public class XvlaguAngry() : wyuCard(
+public class GeilaguAngry() : wyuCard(
     cost: 1,
     type: CardType.Power,
     rarity: CardRarity.Rare,
@@ -43,7 +43,7 @@ public class XvlaguAngry() : wyuCard(
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<SiyeBitePower>(base.CombatState.HittableEnemies, base.DynamicVars["SiyeBitePower"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<SiyeBitePower>(choiceContext, base.CombatState.HittableEnemies, base.DynamicVars["SiyeBitePower"].BaseValue, base.Owner.Creature, this);
         IEnumerable<CardModel> enumerable = PileType.Draw.GetPile(base.Owner).Cards// 抽牌堆
             .Concat(PileType.Hand.GetPile(base.Owner).Cards)        // 手牌
             .Concat(PileType.Discard.GetPile(base.Owner).Cards)     // 弃牌堆

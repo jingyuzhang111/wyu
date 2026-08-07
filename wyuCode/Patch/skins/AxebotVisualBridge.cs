@@ -31,7 +31,8 @@ public partial class AxebotVisualBridge : WyuCreatureVisualBradge
         if (_deathSpriteTriggered || _deathSprite == null || SpineBody == null)
             return;
 
-        string? currentAnim = SpineBody.GetAnimationState()?.GetCurrent(0)?.GetAnimation()?.GetName();
+        // TODO: GetAnimationState 返回类型变化, 待修复
+        string? currentAnim = null; // SpineBody.GetAnimationState()?.GetCurrent(0)?.GetAnimation()?.GetName();
         if (!_deathDetected)
         {
             if (!string.Equals(currentAnim, DeathAnimName, System.StringComparison.OrdinalIgnoreCase))

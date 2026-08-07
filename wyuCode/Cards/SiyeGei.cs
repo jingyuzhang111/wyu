@@ -50,24 +50,24 @@ public class SiyeGei():
     {
         // 卡牌效果的实现地方,在CommonActions里有一些写好的函数,如攻防抽牌烧牌
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
-        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this)            
+        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, cardPlay)            
             .WithWaitBeforeHit(0.005f,0.01f)
 			.Targeting(cardPlay.Target)
 			.WithHitFx("vfx/vfx_attack_slash")
 			.Execute(choiceContext);
         // 加两层狼咬
-        await PowerCmd.Apply<SiyeBitePower>(cardPlay.Target, base.DynamicVars["SiyeBitePower"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<SiyeBitePower>(choiceContext, cardPlay.Target, base.DynamicVars["SiyeBitePower"].BaseValue, base.Owner.Creature, this);
         // 抽一张牌
         await CardPileCmd.Draw(choiceContext, base.DynamicVars.Cards.BaseValue, base.Owner);
     }
 
-    public static async Task<CardModel?> CreateInHand(Player owner, CombatState combatState)
+    public static async Task<CardModel?> CreateInHand(Player owner, ICombatState combatState)
 	{
 		return (await CreateInHand(owner, 1, combatState)).FirstOrDefault();
 	}
 
     // 添加到手牌
-    public static async Task<IEnumerable<CardModel>> CreateInHand(Player owner, int count, CombatState combatState)
+    public static async Task<IEnumerable<CardModel>> CreateInHand(Player owner, int count, ICombatState combatState)
 	{
 		if (count == 0)
 		{
@@ -82,7 +82,7 @@ public class SiyeGei():
 		{
 			shivs.Add(combatState.CreateCard<SiyeGei>(owner));
 		}
-		await CardPileCmd.AddGeneratedCardsToCombat(shivs, PileType.Hand, addedByPlayer: true);
+		await CardPileCmd.AddGeneratedCardsToCombat(shivs, PileType.Hand, owner);
 		return shivs;
 	}
 

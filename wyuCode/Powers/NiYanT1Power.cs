@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Combat;
@@ -15,9 +17,9 @@ public class NiYanT1Power : wyuPower
     public override PowerStackType StackType => PowerStackType.Counter;
 
     // 单例化
-    public override bool IsInstanced => true;
+    public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
-    public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side == CombatSide.Player)
         {
@@ -25,7 +27,7 @@ public class NiYanT1Power : wyuPower
             if (current <= 0)
             {
                 Flash();
-                await PowerCmd.Apply<BufferPower>(base.Owner, 1, base.Owner, null);
+                await PowerCmd.Apply<BufferPower>(new ThrowingPlayerChoiceContext(), base.Owner, 1, base.Owner, null);
                 SetAmount(4);
             }
             else

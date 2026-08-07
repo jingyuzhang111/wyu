@@ -54,10 +54,10 @@ public class NiYanT1():
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<NiYanT1Power>(base.Owner.Creature, DynamicVars["NiYanT1Power"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<NiYanT1Power>(choiceContext, base.Owner.Creature, DynamicVars["NiYanT1Power"].BaseValue, base.Owner.Creature, this);
         if(isUpgraded)
         {
-            await PowerCmd.Apply<BufferPower>(base.Owner.Creature, DynamicVars["BufferPower"].BaseValue, base.Owner.Creature, this);
+            await PowerCmd.Apply<BufferPower>(choiceContext, base.Owner.Creature, DynamicVars["BufferPower"].BaseValue, base.Owner.Creature, this);
         }
     }
 

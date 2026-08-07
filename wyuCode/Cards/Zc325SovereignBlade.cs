@@ -35,7 +35,7 @@ public class Zc325SovereignBlade() :
     // 打出：大剑飞向目标造成伤害
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        var attack = DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this)
+        var attack = DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this, cardPlay)
             .WithAttackerAnim("Attack", base.Owner.Character.AttackAnimDelay)
             .WithAttackerFx(null, _sfx)
             .Targeting(cardPlay.Target!)
@@ -149,14 +149,14 @@ public class Zc325SovereignBlade() :
 
     // ---------- 工具 ----------
 
-    public static async Task<IEnumerable<CardModel>> CreateInHand(Player owner, int count, CombatState combatState)
+    public static async Task<IEnumerable<CardModel>> CreateInHand(Player owner, int count, ICombatState combatState)
     {
         if (count <= 0 || combatState == null || CombatManager.Instance.IsOverOrEnding)
             return [];
         var blades = new List<CardModel>();
         for (int i = 0; i < count; i++)
             blades.Add(combatState.CreateCard<Zc325SovereignBlade>(owner));
-        await CardPileCmd.AddGeneratedCardsToCombat(blades, PileType.Hand, addedByPlayer: true);
+        await CardPileCmd.AddGeneratedCardsToCombat(blades, PileType.Hand, owner);
         return blades;
     }
 }

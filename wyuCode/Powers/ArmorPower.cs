@@ -28,7 +28,7 @@ public class ArmorPower : wyuPower
     // 效果堆叠类型 可堆叠与不可堆叠
 	public override PowerStackType StackType => PowerStackType.Counter;
 
-	public override async Task BeforeTurnEndEarly(PlayerChoiceContext choiceContext, CombatSide side)
+	public override async Task BeforeSideTurnEndEarly(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
 	{
 		if (side == base.Owner.Side)
 		{
