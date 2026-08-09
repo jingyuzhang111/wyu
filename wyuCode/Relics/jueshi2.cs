@@ -22,7 +22,7 @@ namespace wyu.wyuCode.Relics;
 public sealed class JueShi2 : wyuRelic
 {
 
-	public override RelicRarity Rarity => RelicRarity.Ancient;
+	public override RelicRarity Rarity => RelicRarity.Starter;
 
 	// 暂时不能扣掉，会导致升级完卡牌后游戏卡死
 	// 扣掉回血选项
@@ -99,5 +99,15 @@ public sealed class JueShi2 : wyuRelic
 		}
 
 		return amount;
+	}
+
+	public override async Task AfterObtained()
+	{
+		// 获得上位遗物(武者)时,自动移除下位遗物(绝食),二者不共存
+		var lower = Owner.Relics.OfType<JueShi>().FirstOrDefault();
+		if (lower != null)
+		{
+			await RelicCmd.Remove(lower);   // 或 RelicCmd.Replace(lower, this)
+		}
 	}
 }

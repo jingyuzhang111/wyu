@@ -11,40 +11,37 @@ namespace wyu.wyuCode.Relics;
 public sealed class XvlaguAngry : wyuRelic
 {
     // 遗物稀有度
-	public override RelicRarity Rarity => RelicRarity.Common;
+    public override RelicRarity Rarity => RelicRarity.Common;
 
-    // ---- 效果:打出能力牌后,下一张攻击牌的伤害 ×2(参照游戏内置钢笔尖 PenNib 的实现) ----
-    private bool _pendingDouble;           // 打出能力牌后置 true
-    private CardModel? _attackToDouble;    // 锁定要翻倍的那张攻击牌
+    // ---- 效果:打出能力牌后,下一张攻击牌的伤害 ×2 ----
+    // 用"状态标记"而不是"锁定某张具体牌":
+    // 卡面预览(UpdateCardPreview)和实际结算都走 ModifyDamageMultiplicative,
+    // 只要标记还在,攻击牌的伤害预览就会实时显示 ×2,打出第一张攻击牌后标记被消耗。
+    private bool _pendingDouble;
 
-    public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    public override Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        // 上一张牌已打出,清掉锁定
-        _attackToDouble = null;
-
-        // 打出能力牌 → 标记下一张攻击牌翻倍
-        if (cardPlay.Card.Type == CardType.Power)
+        switch (cardPlay.Card.Type)
         {
-            _pendingDouble = true;
+            case CardType.Power:   // 打出能力牌 → 给下一张攻击牌上标记
+                _pendingDouble = true;
+                break;
+            case CardType.Attack:  // 攻击牌已打出 → 消耗掉标记
+                _pendingDouble = false;
+                break;
         }
-    }
-
-    public override async Task BeforeCardPlayed(CardPlay cardPlay)
-    {
-        if (!_pendingDouble) return;
-        if (cardPlay.Card.Type != CardType.Attack) return;  // 只有攻击牌才锁定,标志保留
-
-        _pendingDouble = false;
-        _attackToDouble = cardPlay.Card;   // 锁定这张攻击牌(整张伤害都翻倍)
+        return Task.CompletedTask;
     }
 
     public override decimal ModifyDamageMultiplicative(
         Creature? target, decimal amount, ValueProp props,
         Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
     {
-        // 只有持有者自己打出的、被锁定的那张攻击牌才翻倍
+        // 没有标记 → 不翻倍
+        if (!_pendingDouble) return 1m;
+        // 只有持有者自己打出的攻击牌伤害才翻倍
         if (dealer != Owner.Creature) return 1m;
-        if (_attackToDouble != null && cardSource == _attackToDouble) return 2m;
-        return 1m;
+        if (cardSource == null || cardSource.Type != CardType.Attack) return 1m;
+        return 2m;
     }
 }

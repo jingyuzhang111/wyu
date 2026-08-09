@@ -1,0 +1,13 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://kk6an33q57gr"
+valid=false
+
+[deps]
+
+source_file="res://src/症结之核/enemy_2150_shchmr.skel"
+
+[params]
+

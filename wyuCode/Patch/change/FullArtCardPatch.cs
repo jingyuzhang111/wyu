@@ -42,8 +42,10 @@ public static class FullArtCardPatch
         SetVisible(__instance, _frame, false);
         SetVisible(__instance, _portraitBorder, false);
         SetVisible(__instance, _banner, false);
-        // 去掉远古装饰,只留竖版大图覆盖(若想保留 Ancient 完整样式,注释掉下面几行)
-        SetVisible(__instance, _ancientBorder, false);
+        // 全卡面配远古边框(尺寸匹配);TextBg/Banner/Glass 保持隐藏:
+        // - AncientTextBg getter 对非 Ancient 卡会抛 InvalidOperationException,不能给它贴图
+        // - AncientBanner 是顶部远古横幅(带火动画),不需要
+        SetVisible(__instance, _ancientBorder, true);
         SetVisible(__instance, _ancientTextBg, false);
         SetVisible(__instance, _ancientBanner, false);
         SetVisible(__instance, _ancientBorderGlassOverlay, false);
@@ -59,6 +61,9 @@ public static class FullArtCardPatch
 
         if (_ancientPortrait.GetValue(__instance) is TextureRect tr)
             tr.Texture = model.Portrait;
+        // AncientBorder 是共享贴图(AncientBorderPath 是 static),非 Ancient 卡也安全
+        if (_ancientBorder.GetValue(__instance) is TextureRect br)
+            br.Texture = model.AncientBorder;
     }
 
     private static void SetVisible(NCard card, FieldInfo field, bool visible)

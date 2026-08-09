@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://vfkfbay41dfg"
+path="res://.godot/imported/enemy_2150_shchmr.atlas-458a1b72108be775f6075fef88db1e45.spatlas"
+
+[deps]
+
+source_file="res://src/症结之核/enemy_2150_shchmr.atlas"
+dest_files=["res://.godot/imported/enemy_2150_shchmr.atlas-458a1b72108be775f6075fef88db1e45.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

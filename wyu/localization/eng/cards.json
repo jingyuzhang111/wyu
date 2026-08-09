@@ -43,6 +43,8 @@
 "WYU-OPERTION.description": "在自己回合扣血时, 抽{OpertionPower:diff()}张牌",
 
 
+
+
 "WYU-THORNS.title": "棘刺",
 "WYU-THORNS.description": "获得{ThornsPower:diff()}层[gold]荆棘[/gold]。",
 
@@ -70,12 +72,12 @@
 "WYU-GEILAGU_ANGRY.title": "给拉古人的愤怒",
 "WYU-GEILAGU_ANGRY.description": "所有敌人获得{SiyeBitePower:diff()}层[gold]狼咬[/gold],所有攻击牌都视为[gold]狼[/gold]。",
 
-"WYU-SHENG_ZANG_ATTACK.title": "圣葬",
+"WYU-SHENG_ZANG_ATTACK.title": "圣城的高攻蓄爆大C",
 "WYU-SHENG_ZANG_ATTACK.description": "对所有敌人造成{Damage:diff()}点伤害。\n对目标施加{WeakPower:diff()}层[gold]虚弱[/gold]",
 "WYU-SANG_SHEN_ATTACK.title": "俺要薄纱大家的麻麻",
 "WYU-SANG_SHEN_ATTACK.description": "对目标造成{Damage:diff()}点伤害。\n如果目标为爪牙，对其主人造成双倍伤害。",
 "WYU-YIN_YIN_PLACEHOLDER_MINION.name": "心烛",
-"WYU-YIN_YIN3.title": "隐隐",
+"WYU-YIN_YIN3.title": "赤色的索命夺魂血魔",
 "WYU-YIN_YIN3.description": "为目标生成一个[gold]心烛[/gold],将受到的伤害共享给主人。\n对全体敌人造成{Damage:diff()}点伤害。",
 "WYU-YA_YA.title": "牙牙",
 "WYU-YA_YA.description": "造成{Damage:diff()}点伤害。\n距离敌人越远,伤害越高\n理论伤害(整个屏幕的距离)最大为{IfUpgraded:show:25|20}点。",
@@ -188,6 +190,14 @@
 "WYU-SHOU_GE_ZHE.title": "收割者",
 "WYU-SHOU_GE_ZHE.description": "你的所有攻击变为群攻",
 
+
+"WYU-ZHEYA1.title": "绝境抵抗",
+"WYU-ZHEYA1.description": "消除身上{}层负面效果",
+"WYU-ZHEYA2.title": "生存决心",
+"WYU-ZHEYA2.description": "若对方意图为攻击, 则使其眩晕",
+
+"WYU-YINYIN_ATTACK.title": "赤色的索命夺魂血魔",
+"WYU-YINYIN_ATTACK.description": "为目标生成一个[gold]心烛[/gold],将受到的伤害共享给主人。",
 
 "zhanweifu": "占位符"
 }

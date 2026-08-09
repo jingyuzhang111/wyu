@@ -24,8 +24,13 @@ public static class MonsterAnimatorPatch
     // 记录已打过补丁的方法，避免同一方法被重复打补丁
     private static readonly HashSet<MethodBase> _patchedMethods = new();
 
-    // 怪物 ID（不区分大小写）→ 动画构建器
+    // 怪物 ID（不区分大小写）→ 动画构建器（只接收控制器）
     private static readonly Dictionary<string, Func<MegaSprite, CreatureAnimator>> _builders =
+        new(StringComparer.OrdinalIgnoreCase);
+
+    // 怪物 ID（不区分大小写）→ 动画构建器（额外接收 MonsterModel 实例，
+    // 用于需要读取怪物状态的构建器，如 TestSubject 的阶段由 Respawns 决定）
+    private static readonly Dictionary<string, Func<MonsterModel, MegaSprite, CreatureAnimator>> _modelBuilders =
         new(StringComparer.OrdinalIgnoreCase);
 
     /// <summary>
@@ -38,28 +43,64 @@ public static class MonsterAnimatorPatch
         where TMonster : MonsterModel
     {
         _builders[monsterId] = build;
-
-        // 解析该怪物类型真正会被调用的 GenerateAnimator（基类或重写）
-        var method = typeof(TMonster).GetMethod(
-            nameof(MonsterModel.GenerateAnimator),
-            BindingFlags.Public | BindingFlags.Instance);
-        if (method == null)
-        {
-            Godot.GD.PushWarning($"[wyu][动画] 找不到 {typeof(TMonster).Name}.GenerateAnimator，已跳过注册。");
-            return;
-        }
-
-        // 同一个方法只打一次补丁（例如多个怪物共用基类方法时）
-        if (!_patchedMethods.Add(method)) return;
-
-        _harmony.Patch(method,
-            prefix: new HarmonyMethod(typeof(MonsterAnimatorPatch).GetMethod(nameof(Prefix))));
+        TryPatch<TMonster>();
     }
 
-    private static bool Prefix(MonsterModel __instance, MegaSprite controller, ref CreatureAnimator __result)
+    /// <summary>
+    /// 注册需要读取怪物实例状态的动画构建器（例如 TestSubject 的三阶段由 Respawns 决定）。
+    /// </summary>
+    public static void RegisterWithModel<TMonster>(string monsterId, Func<MonsterModel, MegaSprite, CreatureAnimator> build)
+        where TMonster : MonsterModel
     {
-        if (_builders.TryGetValue(__instance.Id.Entry, out var build))
+        _modelBuilders[monsterId] = build;
+        TryPatch<TMonster>();
+    }
+
+    private static void TryPatch<TMonster>() where TMonster : MonsterModel
+    {
+        try
         {
+            // 解析该怪物类型真正会被调用的 GenerateAnimator（基类或重写）
+            var method = typeof(TMonster).GetMethod(
+                nameof(MonsterModel.GenerateAnimator),
+                BindingFlags.Public | BindingFlags.Instance);
+            if (method == null)
+            {
+                Godot.GD.PushWarning($"[wyu][动画] 找不到 {typeof(TMonster).Name}.GenerateAnimator，已跳过注册。");
+                return;
+            }
+            Godot.GD.Print($"[wyu][动画] TryPatch {typeof(TMonster).Name}: method={method.DeclaringType?.Name}.{method.Name}");
+
+            // 同一个方法只打一次补丁（例如多个怪物共用基类方法时）
+            if (!_patchedMethods.Add(method)) return;
+
+            var prefix = typeof(MonsterAnimatorPatch).GetMethod(
+                nameof(Prefix),
+                BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
+            Godot.GD.Print($"[wyu][动画] TryPatch {typeof(TMonster).Name}: prefix={prefix?.Name} (null? {prefix == null})");
+            _harmony.Patch(method,
+                prefix: new HarmonyMethod(prefix));
+            Godot.GD.Print($"[wyu][动画] TryPatch {typeof(TMonster).Name}: Patch 成功");
+        }
+        catch (System.Exception ex)
+        {
+            Godot.GD.Print($"[wyu][动画] TryPatch {typeof(TMonster).Name} 抛异常: {ex}");
+        }
+    }
+
+    public static bool Prefix(MonsterModel __instance, MegaSprite controller, ref CreatureAnimator __result)
+    {
+        string id = __instance.Id.Entry;
+        Godot.GD.Print($"[wyu][动画] GenerateAnimator 被拦截: monsterId={id}");
+        if (_modelBuilders.TryGetValue(id, out var modelBuild))
+        {
+            Godot.GD.Print($"[wyu][动画] 命中 modelBuild: {id}");
+            __result = modelBuild(__instance, controller);
+            return false; // 跳过原 GenerateAnimator
+        }
+        if (_builders.TryGetValue(id, out var build))
+        {
+            Godot.GD.Print($"[wyu][动画] 命中 builder: {id}");
             __result = build(controller);
             return false; // 跳过原 GenerateAnimator
         }

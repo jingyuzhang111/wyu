@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://6dby3rxymq28"]
+
+[ext_resource type="SpineSkeletonDataResource" uid="uid://chao0okmv0qh5" path="res://src/症结之核/new_spine_skeleton_data_resource.tres" id="1_v4aqs"]
+
+[node name="TestSubjectMod" type="Node2D"]
+
+[node name="Visuals" type="SpineSprite" parent="."]
+unique_name_in_owner = true
+rotation = 3.1415927
+scale = Vector2(0.6801357, -0.6801357)
+skeleton_data_res = ExtResource("1_v4aqs")
+preview_skin = "Default"
+preview_animation = "C_Idle"
+preview_frame = false
+preview_time = 0.0
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -293.0
+offset_top = -575.0
+offset_right = 386.0
+mouse_filter = 2
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-6, -269)
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(3, -301)

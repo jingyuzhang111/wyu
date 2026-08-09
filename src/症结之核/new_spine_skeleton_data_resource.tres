@@ -1,0 +1,8 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://chao0okmv0qh5"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://vfkfbay41dfg" path="res://src/症结之核/enemy_2150_shchmr.atlas" id="1_4gsfa"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://b3kmd76d7td8p" path="res://src/症结之核/enemy_2150_shchmr2.skel" id="2_gma8v"]
+
+[resource]
+atlas_res = ExtResource("1_4gsfa")
+skeleton_file_res = ExtResource("2_gma8v")
