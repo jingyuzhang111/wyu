@@ -43,8 +43,8 @@ public class Man():
     // 数值调整的地方, 可添加各种具体效果,定义牌的可变数值
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(25, ValueProp.Move),
-        new PowerVar<ManPower>(5),
+        new DamageVar(32, ValueProp.Move),
+        new PowerVar<ManPower>(6),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -73,7 +73,7 @@ public class Man():
     // 升级
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(5m);
+        DynamicVars.Damage.UpgradeValueBy(8m);
     }
 
 

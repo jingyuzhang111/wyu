@@ -30,7 +30,7 @@ using wyu.wyuCode.Powers;
 namespace wyu.wyuCode.Cards;
 
 public class XiaoKeLove():
-    wyuCard(cost: 2, 
+    wyuCard(cost: 1, 
     type: CardType.Skill,
     rarity: CardRarity.Common,
     target: TargetType.Self
@@ -48,7 +48,7 @@ public class XiaoKeLove():
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
-		HoverTipFactory.FromCard<XiaoKeFood>(),
+		HoverTipFactory.FromCard<XiaoKeFood>(base.IsUpgraded),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -73,7 +73,6 @@ public class XiaoKeLove():
     // 升级
     protected override void OnUpgrade()
     {
-        base.EnergyCost.UpgradeBy(-1);
     }
 
 

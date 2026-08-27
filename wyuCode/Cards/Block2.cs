@@ -33,7 +33,7 @@ namespace wyu.wyuCode.Cards;
 public class Block2():
     wyuCard(cost: 1, 
     type: CardType.Skill,
-    rarity: CardRarity.Common,
+    rarity: CardRarity.Uncommon,
     target: TargetType.Self
     )
 {

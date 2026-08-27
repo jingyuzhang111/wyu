@@ -39,7 +39,6 @@ public class JiaWeiGroup():
     [
         new CardsVar(1),
         new DamageVar(6, ValueProp.Move),
-        new PowerVar<SiyeBitePower>("SiyeBitePower", 1m)
     ];
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [

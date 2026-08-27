@@ -1,6 +1,8 @@
 using BaseLib.Abstracts;
 using wyu.wyuCode.Extensions;
 using Godot;
+using MegaCrit.Sts2.Core.Animation;
+using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
@@ -74,4 +76,31 @@ public class wyu : PlaceholderCharacterModel
 
 	// 角色选择页面替换
 	public override string CustomCharacterSelectBg => "res://scenes/screens/char_select/char_select_bg_wyu.tscn";
+
+	// 玩家(羽毛笔/yumaobi2)动画：与怪物替换(MonsterAnimatorPatch)完全相同的 AnimState + AddAnyState 写法。
+	// 羽毛笔 char_421_crow.skel 动画名：idle_loop / attack / hurt / die / Skill_1 / Skill_2_*。
+	// 游戏默认名 idle_loop/attack/hurt/die 全部匹配，只有 cast 缺失 → 用 Skill_1 兜底，避免播放不存在动画卡 default。
+	public override CreatureAnimator? SetupCustomAnimationStates(MegaSprite controller)
+	{
+		AnimState idle   = new AnimState("idle_loop", isLooping: true);   // 待机(循环)
+		AnimState attack = new AnimState("attack", isLooping: false);     // 攻击
+		AnimState hurt   = new AnimState("hurt", isLooping: false);       // 受击(羽毛笔有 hurt)
+		AnimState die    = new AnimState("die", isLooping: false);        // 死亡(播完停末尾)
+		AnimState cast   = new AnimState("Skill_1", isLooping: false);    // 施法(无 cast,用 Skill_1)
+
+		// 动作播完自动回到待机
+		attack.NextState = idle;
+		hurt.NextState = idle;
+		cast.NextState = idle;
+		// die 不设 NextState → 停在死亡姿势
+
+		CreatureAnimator animator = new CreatureAnimator(idle, controller);
+		animator.AddAnyState("Idle", idle);
+		animator.AddAnyState("Attack", attack);
+		animator.AddAnyState("Hit", hurt);
+		animator.AddAnyState("Dead", die);
+		animator.AddAnyState("Cast", cast);
+
+		return animator;
+	}
 }

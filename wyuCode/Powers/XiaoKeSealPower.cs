@@ -46,6 +46,9 @@ public class XiaoKeSealPower : wyuPower
 
     private async Task SuppressCurrentBuffs()
     {
+        // 压制所有 Buff(含 SkittishPower 等机制 buff)。
+        // 依赖 SkittishPower 的怪物动画(幻象园丁)已由 PhantasmalGardenerAnimatorPatch
+        // 改为 null 安全写法，因此物理移除不会再触发空引用崩溃。
         List<PowerModel> buffs = Owner.Powers.Where(p => p != this && p.Type == PowerType.Buff && p is not SandpitPower).ToList();
         foreach (PowerModel power in buffs)
         {

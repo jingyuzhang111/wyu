@@ -55,7 +55,7 @@ public class ShengZang3():
     {
         // 卡牌效果的实现地方,在CommonActions里有一些写好的函数,如攻防抽牌烧牌
 
-        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).WithHitCount(2)
+        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).WithHitCount(3)
             .FromCard(this, cardPlay)
             .TargetingAllOpponents(base.CombatState)    // 目标设为全体敌人
             .Execute(choiceContext);                    // 执行动作
