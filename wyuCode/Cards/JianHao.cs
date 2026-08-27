@@ -65,7 +65,10 @@ public class JianHao():
 
 
         await PowerCmd.Apply<VulnerablePower>(choiceContext, cardPlay.Target, base.DynamicVars["VulnerablePower"].BaseValue, base.Owner.Creature, this);
-        await CreatureCmd.Damage(choiceContext, base.Owner.Creature, base.DynamicVars["HpLoss"].BaseValue, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
+
+        // 失去生命：改为直接设置 HP，绕开伤害系统（ModifyDamage / ModifyHpLost），避免被任何增伤 buff（力量、易伤等）影响
+        var self = base.Owner.Creature;
+        await CreatureCmd.SetCurrentHp(self, Math.Max(0m, (decimal)self.CurrentHp - base.DynamicVars["HpLoss"].BaseValue));
 
 
 

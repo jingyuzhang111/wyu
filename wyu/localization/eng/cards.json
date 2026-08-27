@@ -3,20 +3,20 @@
 "WYU-ATTACK.description": "造成{Damage:diff()}点伤害。" ,
 "WYU-BLOCK.title": "防御",
 "WYU-BLOCK.description": "获得{Block:diff()}点[gold]格挡[/gold]。",
-"WYU-BLOCK2.title":"大防御",
-"WYU-BLOCK2.description":"获得{Block:diff()}点[gold]格挡[/gold]。",
+"WYU-BLOCK2.title":"神奇肋骨",
+"WYU-BLOCK2.description":"清除自身{BufferDeath:diff()}层可叠层的负面效果.\n获得{Block:diff()}点[gold]格挡[/gold].",
 "WYU-GET_ENERGY.title": "技力光环",
 "WYU-GET_ENERGY.description": "下一回合开始，每回合获得{Energy:energyIcons()}。",
 "WYU-JI_LI.title": "回复技力",
 "WYU-JI_LI.description": "失去当前生命的{percentInt:diff()}%({HpLoss:diff()})。\n获得{Energy:energyIcons()}。",
 
 
-"WYU-WARRIOR.title": "武者",
+"WYU-WARRIOR.title": "坚忍",
 "WYU-WARRIOR.description": "本场战斗中，你的攻击伤害会随当前生命降低而线性提高，最高至200%。",
 "WYU-XING_XIAN.title": "行险",
 "WYU-XING_XIAN.description": "失去当前生命的25%({xingxianHpLoss:diff()})。\n获得{Block:diff()}点[gold]格挡[/gold]。",
 "WYU-YOU_XU_YOU_YAN.title": "佑序有炎",
-"WYU-YOU_XU_YOU_YAN.description": "造成{Damage:diff()}点伤害4次。",
+"WYU-YOU_XU_YOU_YAN.description": "造成{Damage:diff()}点伤害4次\n获得{Block:diff()}点[gold]格挡[/gold]",
 "WYU-HARVEST.title": "收割",
 "WYU-HARVEST.description": "对全体敌人造成{Damage:diff()}点伤害.",
 "WYU-INTIMIDATION.title": "恁但敢造次!",
@@ -79,7 +79,7 @@
 "WYU-YIN_YIN_PLACEHOLDER_MINION.name": "心烛",
 "WYU-YIN_YIN3.title": "赤色的索命夺魂血魔",
 "WYU-YIN_YIN3.description": "为目标生成一个[gold]心烛[/gold],将受到的伤害共享给主人。\n对全体敌人造成{Damage:diff()}点伤害。",
-"WYU-YA_YA.title": "牙牙",
+"WYU-YA_YA.title": "光羽箭",
 "WYU-YA_YA.description": "造成{Damage:diff()}点伤害。\n距离敌人越远,伤害越高\n理论伤害(整个屏幕的距离)最大为{IfUpgraded:show:25|20}点。",
 
 "WYU-DRINK_HOT_WATER.title": "多喝热水",
@@ -141,7 +141,7 @@
 "WYU-YAO_YAO.title": "羽生萌萌香",
 "WYU-YAO_YAO.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n对攻击自己的敌人给予{YaoYaoPower:diff()}层[gold]浮空[/gold]。",
 "WYU-MAN.title": "鱼声manman响",
-"WYU-MAN.description": "\n造成{Damage:diff()}点伤害.\n打出后本回合受击时回复{ManPower:diff()}点生命,但护甲强制为0.",
+"WYU-MAN.description": "\n造成{Damage:diff()}点伤害.\n本回合损失血量时回复{ManPower:diff()}点生命,但护甲强制为0.",
 
 
 "WYU-EW.title": "维什戴尔",

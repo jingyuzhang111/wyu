@@ -32,7 +32,7 @@ namespace wyu.wyuCode.Cards;
 public class ShengZangAttack():
     wyuCard(cost: 1, 
     type: CardType.Power,
-    rarity: CardRarity.Rare,
+    rarity: CardRarity.Uncommon,
     target: TargetType.Self
     )
 {
@@ -43,7 +43,7 @@ public class ShengZangAttack():
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<WeakPower>(1m),
-        new DamageVar(5, ValueProp.Move),
+        new DamageVar(10, ValueProp.Move),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

@@ -24,6 +24,7 @@ using MegaCrit.Sts2.Core.Nodes.Rooms;
 
 
 using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.Entities.Powers;
 
 
 
@@ -32,7 +33,7 @@ namespace wyu.wyuCode.Cards;
 public class Block2():
     wyuCard(cost: 1, 
     type: CardType.Skill,
-    rarity: CardRarity.Basic,
+    rarity: CardRarity.Common,
     target: TargetType.Self
     )
 {
@@ -47,6 +48,7 @@ public class Block2():
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new BlockVar(10, ValueProp.Move),
+        new DynamicVar("BufferDeath", 1),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -56,15 +58,31 @@ public class Block2():
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        // 卡牌效果的实现地方,在CommonActions里有一些写好的函数,如攻防抽牌烧牌
-
+        var creature = base.Owner.Creature;
+        var powers = creature.Powers.ToList();
+        foreach (var power in powers)
+        {
+            if (power.Type == PowerType.Debuff && power.StackType == PowerStackType.Counter){
+                await PowerCmd.ModifyAmount(choiceContext, power, 
+                                            -DynamicVars["BufferDeath"].BaseValue, 
+                                            creature, this, silent: true);
+            }
+            // 负的力量/敏捷归正：最多归到 0（不会产生正增益）
+            if ((power is StrengthPower or DexterityPower) && power.Amount < 0)
+            {
+                decimal correction = DynamicVars["BufferDeath"].BaseValue;
+                decimal target = Math.Min(0m, power.Amount + correction); // 上限钳到 0
+                await PowerCmd.ModifyAmount(choiceContext, power, target - power.Amount, creature, this, silent: true);
+            }
+        }
         await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
     }
 
     // 升级
     protected override void OnUpgrade()
     {
-        DynamicVars.Block.UpgradeValueBy(3m);
+        DynamicVars.Block.UpgradeValueBy(2m);
+        DynamicVars["BufferDeath"].UpgradeValueBy(1m);
     }
 
 

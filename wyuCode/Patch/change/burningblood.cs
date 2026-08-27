@@ -36,7 +36,7 @@ public static class BurningBloodPatch
     {
         if (delta >= 0 || creature.IsDead || !Has(creature)) return;
         Find(creature)?.Flash();
-        TaskHelper.RunSafely(CreatureCmd.Heal(creature, 6m));
+        TaskHelper.RunSafely(CreatureCmd.Heal(creature, 3m));
     }
 
     // ---- 文本：劫持 LocString 渲染出口 ----
@@ -49,7 +49,7 @@ public static class BurningBloodPatch
 
         __result = __instance.LocEntryKey.Contains(".title")
             ? "曼巴之血"
-            : "每当损失生命值时，恢复[green]6[/green]点生命。\n你无法获得格挡。";
+            : "每当损失生命值时，恢复[green]3[/green]点生命。\n你无法获得格挡。";
         return false;
     }
 
