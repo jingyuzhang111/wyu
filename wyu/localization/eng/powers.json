@@ -98,5 +98,10 @@
 "WYU-OPERTION_POWER.smartDescription": "在自己回合扣血时, 抽{Amount}张牌",
 "WYU-OPERTION_POWER.flavor": "这个力量的细节将在未来揭晓……",
 
+"WYU-YIN_YIN_DAMAGE_TRANSFER_POWER.title": "心烛",
+"WYU-YIN_YIN_DAMAGE_TRANSFER_POWER.description": "受到的伤害会传递给领袖。",
+"WYU-YIN_YIN_DAMAGE_TRANSFER_POWER.smartDescription": "受到的伤害会传递给领袖。",
+"WYU-YIN_YIN_DAMAGE_TRANSFER_POWER.flavor": "[purple]心烛与本体共担伤痛。[/purple]",
+
 "zhanwei":"占位"
 }

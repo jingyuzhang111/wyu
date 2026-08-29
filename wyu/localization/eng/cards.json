@@ -96,13 +96,13 @@
 "WYU-JIAN_HAO.description": "造成{Damage:diff()}点伤害2次。\n给予{VulnerablePower:diff()}层易伤。\n失去{HpLoss:diff()}点生命。",
 
 "WYU-ARMOR.title": "和平共处",
-"WYU-ARMOR.description": "自己与敌人获得{Block:diff()}点[gold]格挡[/gold]。\n所有敌人获得{ArmorPower:diff()}层[gold]提前起防[/gold]",
-"WYU-ARMOR_SMALL.title": "互相叠甲",
-"WYU-ARMOR_SMALL.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n所有敌人获得{ArmorPower:diff()}层[gold]提前起防[/gold]",
+"WYU-ARMOR.description": "自己与敌人获得{Block:diff()}点[gold]格挡[/gold]。\n所有敌人下回合获得{ArmorPower:diff()}点格挡",
+"WYU-ARMOR_SMALL.title": "小苹果~",
+"WYU-ARMOR_SMALL.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n所有敌人下回合获得{ArmorPower:diff()}点格挡",
 "WYU-ARMOR_PREPARE.title": "防守准备",
-"WYU-ARMOR_PREPARE.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n所有敌人获得{ArmorPower:diff()}层[gold]提前起防[/gold]\n抽{Cards:diff()}张牌。",
+"WYU-ARMOR_PREPARE.description": "获得{Block:diff()}点[gold]格挡[/gold]。\n所有敌人下回合获得{ArmorPower:diff()}点格挡\n抽{Cards:diff()}张牌。",
 "WYU-HEARTER.title": "好心人",
-"WYU-HEARTER.description": "获得{Energy:energyIcons()}。\n自己与敌人获得{Block:diff()}点[gold]格挡[/gold]。\n所有敌人获得{ArmorPower:diff()}层[gold]提前起防[/gold]",
+"WYU-HEARTER.description": "获得{Energy:energyIcons()}。\n自己与敌人获得{Block:diff()}点[gold]格挡[/gold]。\n所有敌人下回合获得{ArmorPower:diff()}点格挡",
 
 
 "WYU-XIAO_KE_ATTACK.title": "很傻的狗",
@@ -203,9 +203,6 @@
 
 "WYU-SIYE_GEI3.title": "清算",
 "WYU-SIYE_GEI3.description": "",
-
-"WYU-YINYIN_ATTACK.title": "赤色的索命夺魂血魔",
-"WYU-YINYIN_ATTACK.description": "为目标生成一个[gold]心烛[/gold],将受到的伤害共享给主人。",
 
 "WYU-XIAO_KE_SWOARD.title": "很热的刀",
 "WYU-XIAO_KE_SWOARD.description": "无视敌方护甲造成{Damage:diff()}点伤害。\n将{}张[gold]我打的刀[/gold]加入手牌",

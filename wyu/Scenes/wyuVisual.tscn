@@ -1,58 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://1sb3yjut1s62"]
+[gd_scene load_steps=2 format=3 uid="uid://1sb3yjut1s62"]
 
-[ext_resource type="Texture2D" uid="uid://x7y2sve2blxv" path="res://src/xinzhu/头像_召唤物_投递坐标.png" id="1_h0ego"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_tldgi"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_h0ego")
-}],
-"loop": false,
-"name": &"attack",
-"speed": 12.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_h0ego")
-}],
-"loop": false,
-"name": &"cast",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_h0ego")
-}],
-"loop": false,
-"name": &"die",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_h0ego")
-}],
-"loop": false,
-"name": &"hurt",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_h0ego")
-}],
-"loop": true,
-"name": &"idle_loop",
-"speed": 12.0
-}]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://chkxgn7r4rkgp" path="res://src/yumaobi2/new_spine_skeleton_data_resource.tres" id="1_h0ego"]
 
 [node name="wyu" type="Node2D"]
 metadata/_edit_group_ = true
 
-[node name="Visuals" type="AnimatedSprite2D" parent="."]
+[node name="Visuals" type="SpineSprite" parent="."]
 unique_name_in_owner = true
 position = Vector2(-3, -60)
-sprite_frames = SubResource("SpriteFrames_tldgi")
-animation = &"cast"
+scale = Vector2(0.2, 0.2)
+skeleton_data_res = ExtResource("1_h0ego")
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true

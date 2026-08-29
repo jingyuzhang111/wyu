@@ -44,7 +44,7 @@ public class KaMiAttack():
     [
         new DamageVar(4, ValueProp.Move),
         new DynamicVar("JumpCount", 3m),
-        new DynamicVar("rate", 20m),
+        new DynamicVar("rate", 25m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -70,11 +70,15 @@ public class KaMiAttack():
 			}
             decimal baseRate = 1 - (base.DynamicVars["rate"].BaseValue / 100m);
             decimal rate = (decimal)Math.Pow((double)baseRate, i+1);
-            VfxCmd.PlayOnCreature(enemy, "vfx/vfx_attack_lightning");
-            await CreatureCmd.Damage(choiceContext, enemy,
-                base.DynamicVars.Damage.BaseValue * rate,
-                ValueProp.Unpowered,
-                dealer: null, cardSource: null, cardPlay: null);
+
+            // 连段也走标准攻击：FromCard(this, cardPlay) 让它吃到力量加成和易伤增伤，
+            // 不再用 CreatureCmd.Damage(Unpowered, null, null)（那会跳过力量和易伤）。
+            await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue * rate)
+                .FromCard(this, cardPlay)
+                .WithWaitBeforeHit(0.05f, 0.1f)
+                .Targeting(enemy)
+                .WithHitFx("vfx/vfx_attack_lightning")
+                .Execute(choiceContext);
         }
     }
 
