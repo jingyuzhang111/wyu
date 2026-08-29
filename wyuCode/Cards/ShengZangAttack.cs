@@ -31,9 +31,9 @@ namespace wyu.wyuCode.Cards;
 
 public class ShengZangAttack():
     wyuCard(cost: 1, 
-    type: CardType.Power,
+    type: CardType.Attack,
     rarity: CardRarity.Uncommon,
-    target: TargetType.Self
+    target: TargetType.AllEnemies
     )
 {
     // 自定义边框
@@ -43,7 +43,7 @@ public class ShengZangAttack():
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<WeakPower>(1m),
-        new DamageVar(10, ValueProp.Move),
+        new DamageVar(13, ValueProp.Move),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -56,15 +56,17 @@ public class ShengZangAttack():
         // 卡牌效果的实现地方,在CommonActions里有一些写好的函数,如攻防抽牌烧牌
         await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue)
             .FromCard(this, cardPlay)
-            .TargetingAllOpponents(base.CombatState)    // 目标设为全体敌人
+            .TargetingAllOpponents(base.CombatState!)    // 目标设为全体敌人
             .Execute(choiceContext);                    // 执行动作
-        await PowerCmd.Apply<WeakPower>(choiceContext, base.Owner.Creature, base.DynamicVars["WeakPower"].BaseValue, base.Owner.Creature, this);
+        // 给所有敌人施加虚弱
+        await PowerCmd.Apply<WeakPower>(choiceContext, base.CombatState!.HittableEnemies, base.DynamicVars["WeakPower"].BaseValue, base.Owner.Creature, this);
     }
 
     // 升级
     protected override void OnUpgrade()
     {
         base.DynamicVars["WeakPower"].BaseValue += 1m;
+        base.DynamicVars["Damage"].BaseValue += 3;
     }
 
 

@@ -54,8 +54,15 @@ public static class RestSiteSpinePatch
         }
 
         // 3. 把 SpineSprite 搬进 NRestSiteCharacter
+        //    注意：不能直接挂在 __result 下 —— 游戏的 GetChildSpineNodes() 会扫描
+        //    所有直接子节点，只要是 SpineSprite 就尝试播放当前幕动画
+        //    (overgrowth_loop/hive_loop/glory_loop)，找不到会报错。
+        //    所以包一层普通 Node2D 容器，让它不被扫描到。
         root.RemoveChild(customSpine);
-        __result.AddChild(customSpine);
+
+        var container = new Node2D { Name = "WyuRestSpineContainer" };
+        container.AddChild(customSpine);
+        __result.AddChild(container);
         root.QueueFree();
 
         // 4. 延迟播 Relax（等 _Ready 跑完，下一帧覆盖动画）
