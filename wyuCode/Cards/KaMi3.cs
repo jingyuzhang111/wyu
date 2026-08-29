@@ -30,7 +30,7 @@ namespace wyu.wyuCode.Cards;
 public class KaMi3():
     wyuCard(cost: 1, 
     type: CardType.Skill,
-    rarity: CardRarity.Rare,
+    rarity: CardRarity.Uncommon,
     target: TargetType.Self
     )
 {
@@ -56,8 +56,6 @@ public class KaMi3():
 
         await KaMiAttack.CreateZeroCostInHand(base.Owner, 2, base.CombatState, base.IsUpgraded);
         await PowerCmd.Apply<KaMiPower>(choiceContext, base.Owner.Creature, base.DynamicVars["KaMiPower"].BaseValue, base.Owner.Creature, this);
-
-
     }
 
     // 升级

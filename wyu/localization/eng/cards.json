@@ -84,8 +84,11 @@
 "WYU-DRINK_HOT_WATER.title": "多喝热水",
 "WYU-DRINK_HOT_WATER.description": "获得{Energy:energyIcons()}。\n回复{Hp:diff()}点生命。",
 "WYU-JIA_WEI_GROUP.title": "贾维团伙",
-"WYU-JIA_WEI_GROUP.description": "造成{Damage:diff()}点伤害。\n抽{Cards:diff()}张牌\n从弃牌区选择一张牌加入手牌。",
+"WYU-JIA_WEI_GROUP.description": "造成{Damage:diff()}点伤害。\n抽{Cards:diff()}张牌\n从弃牌区选择1张牌加入手牌。",
 "WYU-JIA_WEI_GROUP.selectionScreenPrompt": "选择一张牌加入你的手牌",
+"WYU-SIYE_MONEY.title": "新城贸易",
+"WYU-SIYE_MONEY.description": "抽{Cards:diff()}张牌,将1张手牌置于抽牌堆顶部",
+"WYU-SIYE_MONEY.selectionScreenPrompt": "选择一张手牌放回抽牌堆顶部",
 
 "WYU-DA_YI_ATTACK.title": "大姨偷防",
 "WYU-DA_YI_ATTACK.description": "造成{Damage:diff()}点伤害。\n获得{Block:diff()}点[gold]格挡[/gold]。\n获得{StealDefencePower:diff()}层[gold]偷防[/gold]",
@@ -119,7 +122,7 @@
 "WYU-XIAO_KE_LOVE.title": "小刻大丰收",
 "WYU-XIAO_KE_LOVE.description": "将[gold]蜜饼{IfUpgraded:show:+|}[/gold]塞满手牌",
 "WYU-XIAO_KE_EAT_KITCHEN.title": "厨房失守",
-"WYU-XIAO_KE_EAT_KITCHEN.description": "[gold]小刻[/gold]将消耗所有[gold]蜜饼[/gold]并离开。",
+"WYU-XIAO_KE_EAT_KITCHEN.description": "[gold]小刻[/gold]将消耗所有[gold]蜜饼[/gold]并离开。\n(所有小刻与蜜饼都会消失哦)",
 "WYU-XIAO_KE_FOR.title": "为了蜜饼！",
 "WYU-XIAO_KE_FOR.description": "牌组里每有一张[gold]蜜饼[/gold],造成{Damage:diff()}点伤害。\n[red]造成伤害{CalculatedHits:diff()}点[/red]",
 
@@ -153,21 +156,23 @@
 "WYU-MUCH_CARD.title": "多线程",
 "WYU-MUCH_CARD.description": "后台有[gold]明日方舟[/gold]运行时，战斗结束后卡牌奖励多预览2张卡牌",
 "WYU-GREAT_WALL.title": "筑墙",
-"WYU-GREAT_WALL.description": "古战场每有10万评论，获得1点[gold]格挡[/gold]。当前格挡为{CalculatedBlock:diff()}点",
-"WYU-S_C.title": "不要发SC",
+"WYU-GREAT_WALL.description": "古战场每有20万评论，获得1点[gold]格挡[/gold]。当前格挡为{CalculatedBlock:diff()}点",
+"WYU-S_C.title": "公益直播",
 "WYU-S_C.description": "获得{SCPower:diff()}层[gold]效果转化[/gold]",
 "WYU-SHENG_ZANG_POWER.title": "人机",
 "WYU-SHENG_ZANG_POWER.description": "获得{ArtifactPower:diff()}层[gold]人工制品[/gold]。",
 "WYU-LAUGH.title": "哈哈大笑",
 "WYU-LAUGH.description": "给予{VulnerablePower:diff()}层[gold]易伤[/gold]\n当目标意图为攻击且总伤害低于{targetDamage:diff()}点时，鉴定为大杯，使其失去{StrengthPower:diff()}点力量",
 "WYU-ZC325.title": "325",
-"WYU-ZC325.description": "检测除手牌外的所有数字\n每有一组325,将一张[gold]周哥神力[/gold]加入手牌\n[red]3[/red]的个数：{Count3:diff()}\n[red]2[/red]的个数：{Count2:diff()}\n[red]5[/red]的个数：{Count5:diff()}",
-"WYU-ZC325_SOVEREIGN_BLADE.title": "周哥神力",
+"WYU-ZC325.description": "检测除手牌外的所有数字\n每有一组325,将一张[gold]命运之数[/gold]加入手牌\n[red]3[/red]的个数：{Count3:diff()}\n[red]2[/red]的个数：{Count2:diff()}\n[red]5[/red]的个数：{Count5:diff()}",
+"WYU-ZC325_SOVEREIGN_BLADE.title": "命运之数",
 "WYU-ZC325_SOVEREIGN_BLADE.description": "造成3+2+5点伤害\n(实际{Damage:diff()}点伤害)",
 "WYU-KA_MI_ATTACK.title": "链术平A",
 "WYU-KA_MI_ATTACK.description": "造成{Damage:diff()}点伤害。\n伤害会随机跳跃{JumpCount:diff()}次,每次跳跃伤害降低{rate:diff()}%.",
 "WYU-KA_MI3.title": "辉煌裂片",
-"WYU-KA_MI3.description": "每回合开始将两张[gold]链术平A[/gold]加入手牌,持续4回合",
+"WYU-KA_MI3.description": "每回合将两张免费带消耗的[gold]链术平A[/gold]加入手牌,持续{KaMiPower:diff()}回合\n立即获得两张[gold]链术平A[/gold]",
+"WYU-KA_MI_HAND.title": "神之手",
+"WYU-KA_MI_HAND.description": "将{Cards:diff()}张[purple]播种[/purple][gold]辉煌裂片[/gold]加入手牌",
 "WYU-PEI_PEI.title":"希望时代的涂鸦",
 "WYU-PEI_PEI.description":"将战斗音乐替换为[gold]Mystic Light Quest[/gold],抽{Cards:diff()}张牌",
 "WYU-ALL.title": "ALL",
@@ -195,14 +200,18 @@
 "WYU-ZHEYA2.title": "生存决心",
 "WYU-ZHEYA2.description": "若对方意图为攻击, 则使其眩晕",
 
-"WYU-SIYE_MONEY.title": "新城贸易",
-"WYU-SIYE_MONEY.description": "抽{Cards:diff()}张牌,将1张手牌置于抽牌堆顶部",
-"WYU-SIYE_MONEY.selectionScreenPrompt": "选择一张手牌放回抽牌堆顶部",
+
 "WYU-SIYE_GEI3.title": "清算",
 "WYU-SIYE_GEI3.description": "",
 
 "WYU-YINYIN_ATTACK.title": "赤色的索命夺魂血魔",
 "WYU-YINYIN_ATTACK.description": "为目标生成一个[gold]心烛[/gold],将受到的伤害共享给主人。",
+
+"WYU-XIAO_KE_SWOARD.title": "很热的刀",
+"WYU-XIAO_KE_SWOARD.description": "无视敌方护甲造成{Damage:diff()}点伤害。\n将{}张[gold]我打的刀[/gold]加入手牌",
+"WYU-XIAO_KE_SWOARD_SELF.title": "我打的刀",
+"WYU-XIAO_KE_SWOARD_SELF.description": "无视敌方护甲造成{Damage:diff()}点伤害。",
+
 
 "zhanweifu": "占位符"
 }

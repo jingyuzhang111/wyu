@@ -26,7 +26,7 @@ namespace wyu.wyuCode.Cards;
 public class PeiPei():
     wyuCard(cost: 0, 
     type: CardType.Skill,
-    rarity: CardRarity.Event,
+    rarity: CardRarity.Uncommon,
     target: TargetType.Self
     )
 {

@@ -39,7 +39,7 @@ public class GreatWall():
     target: TargetType.Self
     )
 {
-    private const decimal ReplyDivisor = 100000m;
+    private const decimal ReplyDivisor = 200000m;
     private static readonly HttpClient ReplyHttpClient = new();
     private static readonly object ReplyCacheLock = new();  // 锁对象
     private static decimal? ReplyCountCache;
@@ -59,7 +59,7 @@ public class GreatWall():
     // 数值调整的地方, 可添加各种具体效果,定义牌的可变数值
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(50m, ValueProp.Move),
+        new BlockVar(20m, ValueProp.Move),
         new CalculationBaseVar(0m),
 		new CalculationExtraVar(1m),
         // 读取缓存评论数
@@ -126,7 +126,7 @@ public class GreatWall():
         {
             decimal replyCount = root.GetProperty("data").GetProperty("stat").GetProperty("reply").GetInt64();
             Log.Info($"视频 {bvid} 的评论数为: {replyCount}");
-            return replyCount/100000m; // 返回评论数除以10万
+            return replyCount/ReplyDivisor; // 返回评论数除以20万
         }
 
         string? message = root.GetProperty("message").GetString();

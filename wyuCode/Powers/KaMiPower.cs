@@ -24,7 +24,7 @@ public class KaMiPower : wyuPower
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DynamicVar("Count", 2m),
+        new DynamicVar("Count", 1m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

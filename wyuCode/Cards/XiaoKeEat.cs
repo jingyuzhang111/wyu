@@ -41,7 +41,7 @@ public class XiaoKeEat():
     // 数值调整的地方, 可添加各种具体效果,定义牌的可变数值
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(3, ValueProp.Move),
+        new DamageVar(5, ValueProp.Move),
         new DynamicVar("ExtraDamage", 0),
         new DynamicVar("BlocktoDamage", 0.5m),
         new DynamicVar("BlocktoDamagePct", 50m),

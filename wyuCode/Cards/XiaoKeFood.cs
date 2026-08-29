@@ -82,6 +82,7 @@ public class XiaoKeFood():
     protected override void OnUpgrade()
     {
         DynamicVars["StrengthPower"].UpgradeValueBy(1);
+        DynamicVars["Hp"].UpgradeValueBy(2);
     }
 
 

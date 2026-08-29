@@ -35,7 +35,7 @@ public class XiaoKeFoodGood():XiaoKeFood
     // 数值调整的地方, 可添加各种具体效果,定义牌的可变数值
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("Hp",2),
+        new IntVar("Hp",3),
         new PowerVar<StrengthPower>(2m),
         new EnergyVar(1),
         new CardsVar(1),
@@ -52,7 +52,6 @@ public class XiaoKeFoodGood():XiaoKeFood
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        // 卡牌效果的实现地方,在CommonActions里有一些写好的函数,如攻防抽牌烧牌
         await CreatureCmd.Heal(Owner.Creature, base.DynamicVars["Hp"].IntValue);
         await PlayerCmd.GainEnergy(base.DynamicVars.Energy.IntValue, base.Owner);
         await CardPileCmd.Draw(choiceContext, base.DynamicVars.Cards.BaseValue, base.Owner);
@@ -74,6 +73,7 @@ public class XiaoKeFoodGood():XiaoKeFood
     protected override void OnUpgrade()
     {
         DynamicVars["Hp"].UpgradeValueBy(2);
+        DynamicVars["StrengthPower"].UpgradeValueBy(1);
     }
 
 
