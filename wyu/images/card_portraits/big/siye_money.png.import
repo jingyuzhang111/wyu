@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c56y26lpxpksw"
-path="res://.godot/imported/card.png-d8eed311d79483462dae08b1d9fc8da2.ctex"
+uid="uid://c6repj3iwen2c"
+path="res://.godot/imported/siye_money.png-cac4208d25341a22fbc373170ff06343.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://wyu/images/card_portraits/big/card.png"
-dest_files=["res://.godot/imported/card.png-d8eed311d79483462dae08b1d9fc8da2.ctex"]
+source_file="res://wyu/images/card_portraits/big/siye_money.png"
+dest_files=["res://.godot/imported/siye_money.png-cac4208d25341a22fbc373170ff06343.ctex"]
 
 [params]
 

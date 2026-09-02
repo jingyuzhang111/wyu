@@ -33,7 +33,7 @@ using wyu.wyuCode.Powers;
 namespace wyu.wyuCode.Cards;
 
 public class MuchCard():
-    wyuCard(cost: 1, 
+    wyuCard(cost: 0, 
     type: CardType.Power,
     rarity: CardRarity.Uncommon,
     target: TargetType.Self
@@ -46,7 +46,7 @@ public class MuchCard():
     // 数值调整的地方, 可添加各种具体效果,定义牌的可变数值
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-
+        new CardsVar(1),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -103,7 +103,7 @@ public class MuchCard():
 
             if (arknightsRunning)
             {
-                threadnum += 2;
+                threadnum += DynamicVars.Cards.IntValue;
             }
         }
         catch (Exception e)
@@ -124,7 +124,7 @@ public class MuchCard():
     // 升级
     protected override void OnUpgrade()
     {
-        base.EnergyCost.UpgradeBy(-1);
+        DynamicVars.Cards.UpgradeValueBy(1m);
     }
 
 }

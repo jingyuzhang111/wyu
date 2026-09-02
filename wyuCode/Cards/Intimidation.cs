@@ -35,8 +35,8 @@ public class Intimidation():
     // 数值调整的地方, 可添加各种具体效果,定义牌的可变数值
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<VulnerablePower>(2m),
-        new PowerVar<WeakPower>(1m),
+        new PowerVar<VulnerablePower>(3m),
+        new PowerVar<WeakPower>(2m),
     ];
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [

@@ -120,8 +120,16 @@
     
     <Target Name="CopyToModsFolderOnBuild" AfterTargets="PostBuildEvent">
         <Message Text="Copying .dll and manifest to mods folder." Importance="high" />
+        <!-- 只复制 Mod 自身的 .dll；过滤掉 BaseLib / GodotSharp 等运行时依赖：
+             BaseLib 由玩家单独订阅安装、GodotSharp 由游戏自带，复制过去只会造成重复与目录杂乱。 -->
+        <ItemGroup>
+            <_ModLocalDll Include="@(ReferenceCopyLocalPaths)"
+                          Condition="'%(ReferenceCopyLocalPaths.Filename)' != 'BaseLib'
+                                     and '%(ReferenceCopyLocalPaths.Filename)' != 'GodotSharp'
+                                     and '%(ReferenceCopyLocalPaths.Filename)' != 'GodotSharpEditor'" />
+        </ItemGroup>
         <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" />
-        <Copy SourceFiles="@(ReferenceCopyLocalPaths)" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" SkipUnchangedFiles="true" Condition="'@(ReferenceCopyLocalPaths)' != ''" />
+        <Copy SourceFiles="@(_ModLocalDll)" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" SkipUnchangedFiles="true" Condition="'@(_ModLocalDll)' != ''" />
         <Copy SourceFiles="wyu.json" DestinationFolder="$(ModsPath)$(MSBuildProjectName)/" />
     </Target>
 

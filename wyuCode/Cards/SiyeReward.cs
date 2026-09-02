@@ -64,6 +64,7 @@ public class SiyeReward():
     protected override void OnUpgrade()
     {
         DynamicVars.Energy.UpgradeValueBy(1m);
+        DynamicVars.Cards.UpgradeValueBy(1m);
     }
 
 

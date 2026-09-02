@@ -46,7 +46,7 @@ public class MaEnNa():
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(45, ValueProp.Move),
+        new DamageVar(60, ValueProp.Move),
         new CardsVar(20),
         new IntVar("attackCount", 0),   // 用于卡面显示当前攻击牌计数
     ];

@@ -39,12 +39,12 @@ public class Ew3():
         await CommonActions.CardAttack(this, cardPlay.Target).Execute(choiceContext);
         await DamageCmd.Attack(base.DynamicVars["ExtraDamage"].BaseValue)
             .FromCard(this, cardPlay)
-            .TargetingAllOpponents(base.CombatState)    // 目标设为全体敌人
+            .TargetingAllOpponents(base.CombatState!)    // 目标设为全体敌人
             .Execute(choiceContext);                    // 执行动作
     }
 
 
-    public static async Task<IEnumerable<CardModel>> CreateInHand(Player owner, int count, ICombatState combatState)
+    public static async Task<IEnumerable<CardModel>> CreateInHand(Player owner, int count, ICombatState combatState, bool upgraded = false)
 	{
 		if (count == 0)
 		{
@@ -57,13 +57,18 @@ public class Ew3():
 		List<CardModel> shivs = new List<CardModel>();
 		for (int i = 0; i < count; i++)
 		{
-			shivs.Add(combatState.CreateCard<Ew3>(owner));
+			CardModel card = combatState.CreateCard<Ew3>(owner);
+			if (upgraded && card.CurrentUpgradeLevel == 0)
+			{
+				card.UpgradeInternal();
+			}
+			shivs.Add(card);
 		}
 		await CardPileCmd.AddGeneratedCardsToCombat(shivs, PileType.Hand, owner);
 		return shivs;
 	}
 
-    public static async Task<IEnumerable<CardModel>> CreateInDraw(Player owner, int count, ICombatState combatState)
+    public static async Task<IEnumerable<CardModel>> CreateInDraw(Player owner, int count, ICombatState combatState, bool upgraded = false)
 	{
 		if (count == 0)
 		{
@@ -76,13 +81,19 @@ public class Ew3():
 		List<CardModel> shivs = new List<CardModel>();
 		for (int i = 0; i < count; i++)
 		{
-			shivs.Add(combatState.CreateCard<Ew3>(owner));
+			CardModel card = combatState.CreateCard<Ew3>(owner);
+			if (upgraded && card.CurrentUpgradeLevel == 0)
+			{
+				card.UpgradeInternal();
+			}
+			shivs.Add(card);
 		}
-		await CardPileCmd.AddGeneratedCardsToCombat(shivs, PileType.Draw, owner);
+		var addResults = (await CardPileCmd.AddGeneratedCardsToCombat(shivs, PileType.Draw, owner, CardPilePosition.Random)).ToList();
+		CardCmd.PreviewCardPileAdd(addResults);
 		return shivs;
 	}
 
-    public static async Task<IEnumerable<CardModel>> CreateInDiscard(Player owner, int count, ICombatState combatState)
+    public static async Task<IEnumerable<CardModel>> CreateInDiscard(Player owner, int count, ICombatState combatState, bool upgraded = false)
 	{
 		if (count == 0)
 		{
@@ -95,9 +106,15 @@ public class Ew3():
 		List<CardModel> shivs = new List<CardModel>();
 		for (int i = 0; i < count; i++)
 		{
-			shivs.Add(combatState.CreateCard<Ew3>(owner));
+			CardModel card = combatState.CreateCard<Ew3>(owner);
+			if (upgraded && card.CurrentUpgradeLevel == 0)
+			{
+				card.UpgradeInternal();
+			}
+			shivs.Add(card);
 		}
-		await CardPileCmd.AddGeneratedCardsToCombat(shivs, PileType.Discard, owner);
+		var addResults = (await CardPileCmd.AddGeneratedCardsToCombat(shivs, PileType.Discard, owner)).ToList();
+		CardCmd.PreviewCardPileAdd(addResults);
 		return shivs;
 	}
 

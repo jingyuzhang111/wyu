@@ -6,7 +6,7 @@
 "WYU-BLOCK2.title":"神奇肋骨",
 "WYU-BLOCK2.description":"清除自身{BufferDeath:diff()}层可叠层的负面效果.\n获得{Block:diff()}点[gold]格挡[/gold].",
 "WYU-GET_ENERGY.title": "技力光环",
-"WYU-GET_ENERGY.description": "下一回合开始，每回合获得{Energy:energyIcons()}。",
+"WYU-GET_ENERGY.description": "下一回合开始，每回合获得{Energy:energyIcons()}。\n",
 "WYU-JI_LI.title": "回复技力",
 "WYU-JI_LI.description": "失去当前生命的{percentInt:diff()}%({HpLoss:diff()})。\n获得{Energy:energyIcons()}。",
 
@@ -63,7 +63,7 @@
 "WYU-SIYE_DIGNITY.title": "领袖的尊严",
 "WYU-SIYE_DIGNITY.description": "向手牌中加入{Cards:diff()}张[gold]狼咬[/gold]。{IfUpgraded:show:\n将卡牌[gold]贝洛内[/gold]放入手牌。|}",
 "WYU-SIYE_CALL.title": "领袖的呼唤",
-"WYU-SIYE_CALL.description": "{IfUpgraded:show:\n获得{Energy:energyIcons(),}。|}\n所有敌人获得{SiyeBitePower:diff()}层[gold]狼咬[/gold]。",
+"WYU-SIYE_CALL.description": "将所有手牌变为[gold]{IfUpgraded:show:狼咬+|狼咬}[/gold]\n所有敌人获得{SiyeBitePower:diff()}层[gold]狼咬[/gold]。",
 "WYU-SIYE_GEI.title": "贝洛内",
 "WYU-SIYE_GEI.description": "对目标造成{Damage:diff()}点伤害。\n获得{SiyeBitePower:diff()}层[gold]狼咬[/gold]\n抽{Cards:diff()}张牌。",
 "WYU-XUE_LANG_BITE.title": "全军出击，我咬死你！",
@@ -93,15 +93,15 @@
 "WYU-DA_YI_ATTACK.title": "大姨偷防",
 "WYU-DA_YI_ATTACK.description": "造成{Damage:diff()}点伤害。\n获得{Block:diff()}点[gold]格挡[/gold]。\n获得{StealDefencePower:diff()}层[gold]偷防[/gold]",
 "WYU-JIAN_HAO.title": "剑豪",
-"WYU-JIAN_HAO.description": "造成{Damage:diff()}点伤害2次。\n给予{VulnerablePower:diff()}层易伤。\n失去{HpLoss:diff()}点生命。",
+"WYU-JIAN_HAO.description": "失去{HpLoss:diff()}点生命。\n造成{Damage:diff()}点伤害2次。\n给予{VulnerablePower:diff()}层易伤。",
 
-"WYU-ARMOR.title": "和平共处",
+"WYU-ARMOR.title": "悲鸣",
 "WYU-ARMOR.description": "自己与敌人获得{Block:diff()}点[gold]格挡[/gold]。\n所有敌人下回合获得{ArmorPower:diff()}点格挡",
 "WYU-ARMOR_SMALL.title": "小苹果~",
 "WYU-ARMOR_SMALL.description": "所有人获得{Block:diff()}点[gold]格挡[/gold]。\n所有敌人下回合获得{ArmorPower:diff()}点格挡",
-"WYU-ARMOR_PREPARE.title": "防守准备",
+"WYU-ARMOR_PREPARE.title": "去码头整点薯条",
 "WYU-ARMOR_PREPARE.description": "所有人获得{Block:diff()}点[gold]格挡[/gold]。\n所有敌人下回合获得{ArmorPower:diff()}点格挡\n抽{Cards:diff()}张牌。",
-"WYU-HEARTER.title": "好心人",
+"WYU-HEARTER.title": "支援号令",
 "WYU-HEARTER.description": "获得{Energy:energyIcons()}。\n自己与敌人获得{Block:diff()}点[gold]格挡[/gold]。\n所有敌人下回合获得{ArmorPower:diff()}点格挡",
 
 
@@ -128,7 +128,7 @@
 
 "WYU-XIAO_KE_FOOD.title": "蜜饼",
 "WYU-XIAO_KE_FOOD.description":"回复{Hp:diff()}点生命。\n被[gold]小刻[/gold]消耗时，获得{StrengthPower:diff()}点[gold]力量[/gold]。",
-"WYU-XIAO_KE_FOOD_FU_RONG.title": "芙蓉做的蜜饼",
+"WYU-XIAO_KE_FOOD_FU_RONG.title": "芙蓉营养蜜饼",
 "WYU-XIAO_KE_FOOD_FU_RONG.description":"失去{Hploss:diff()}点生命。\n被[gold]小刻[/gold]消耗时，获得{StrengthPower:diff()}点[gold]力量[/gold],[green]{WeakPower:diff()}层虚弱[/green]",
 "WYU-XIAO_KE_FOOD_GOOD.title": "好蜜饼",
 "WYU-XIAO_KE_FOOD_GOOD.description":"回复{Hp:diff()}点生命。获得{Energy:energyIcons()},抽{Cards:diff()}张牌\n被[gold]小刻[/gold]消耗时，获得{StrengthPower:diff()}点[gold]力量[/gold]。",
@@ -147,14 +147,14 @@
 
 
 "WYU-EW.title": "维什戴尔",
-"WYU-EW.description": "在手牌,弃牌区,抽牌区分别添加2张[red]爆裂黎明[/red],立即结束本回合,维什戴尔接管接下来{turn:diff()}个回合",
+"WYU-EW.description": "在手牌,弃牌区,抽牌区分别添加2张[red]爆裂黎明{IfUpgraded:show:+|}[/red],立即结束本回合,维什戴尔接管接下来{turn:diff()}个回合",
 "WYU-EW3.title": "爆裂黎明",
 "WYU-EW3.description": "造成{Damage:diff()}点伤害,对全体造成{ExtraDamage:diff()}点伤害",
 "WYU-MA_EN_NA.title": "攻回解放者",
 "WYU-MA_EN_NA.description": "对全体敌人造成{Damage:diff()}点伤害\n打出{Cards:diff()}张攻击牌后才能打出\n打出后重新计数\n已打出{attackCount:diff()}张攻击牌",
 
 "WYU-MUCH_CARD.title": "多线程",
-"WYU-MUCH_CARD.description": "后台有[gold]明日方舟[/gold]运行时，战斗结束后卡牌奖励多预览2张卡牌",
+"WYU-MUCH_CARD.description": "后台有[gold]明日方舟[/gold]运行时，战斗结束后卡牌奖励多预览{Cards:diff()}张卡牌",
 "WYU-GREAT_WALL.title": "筑墙",
 "WYU-GREAT_WALL.description": "古战场每有20万评论，获得1点[gold]格挡[/gold]。当前格挡为{CalculatedBlock:diff()}点",
 "WYU-S_C.title": "公益直播",
@@ -208,6 +208,8 @@
 "WYU-XIAO_KE_SWOARD.description": "无视敌方护甲造成{Damage:diff()}点伤害。\n将{}张[gold]我打的刀[/gold]加入手牌",
 "WYU-XIAO_KE_SWOARD_SELF.title": "我打的刀",
 "WYU-XIAO_KE_SWOARD_SELF.description": "无视敌方护甲造成{Damage:diff()}点伤害。",
+"WYU-XIAO_KE_EAT2.title": "小刻吃饭",
+"WYU-XIAO_KE_EAT2.description": "消耗所有手牌,每消耗1张获得2点力量",
 
 
 "zhanweifu": "占位符"

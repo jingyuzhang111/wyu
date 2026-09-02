@@ -11,13 +11,22 @@ namespace wyu.wyuCode.Patch;
 [HarmonyPatch(typeof(NMerchantRoom), "AfterRoomIsLoaded")]
 public static class MerchantSpinePatch
 {
-    private const string CustomScenePath = "res://wyu/Scenes/creatureVisual/yumaobi_jijian.tscn";
-    private const string IdleAnimName = "Relax";
+    // 玩家休闲视觉场景与商店动画名由当前皮肤决定
+    private static string CustomScenePath => PlayerSkinRegistry.Current.LeisureVisualScenePath;
+    private static string IdleAnimName => PlayerSkinRegistry.Current.ShopAnim;
 
     static void Postfix(NMerchantRoom __instance)
     {
+        RefreshLocalPlayer(__instance);
+    }
+
+    /// <summary>把当前皮肤的玩家休闲形象应用到商店（进店 &amp; 点换肤按钮时都可调用）。</summary>
+    public static void RefreshLocalPlayer(NMerchantRoom merchant)
+    {
+        if (merchant == null) return;
+
         // 通过反射拿 _players 私有字段，确认本地玩家是 wyu
-        var players = Traverse.Create(__instance).Field<List<Player>>("_players").Value;
+        var players = Traverse.Create(merchant).Field<List<Player>>("_players").Value;
         if (players == null || players.Count == 0)
             return;
 
@@ -30,7 +39,7 @@ public static class MerchantSpinePatch
             return;
 
         // PlayerVisuals[0] 就是本地玩家的 NMerchantCharacter
-        var visuals = __instance.PlayerVisuals;
+        var visuals = merchant.PlayerVisuals;
         if (visuals.Count == 0)
             return;
 

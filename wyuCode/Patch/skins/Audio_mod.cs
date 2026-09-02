@@ -19,28 +19,7 @@ using wyu.wyuCode.Cards;
 [HarmonyPatch(typeof(Hook), nameof(Hook.BeforeCardPlayed), new[] { typeof(CombatState), typeof(CardPlay) })]
 public static class AudioMod
 {
-    private sealed record VoiceLineOption(string LocKey, string AudioPath);
-
     private static readonly LocString FallbackLine = new("characters", "WYU-ATTACK.test");
-    private static readonly Dictionary<CardType, VoiceLineOption[]> VoiceLinePools = new()
-    {
-        [CardType.Attack] =
-        [
-            new VoiceLineOption("WYU-ATTACK.type.attack", "res://src/yumaobi2/audio/作战中1.wav"),
-            new VoiceLineOption("WYU-ATTACK.type.attack.alt1", "res://src/yumaobi2/audio/作战中2.wav"),
-            new VoiceLineOption("WYU-ATTACK.type.skill.alt1", "res://src/yumaobi2/audio/行动开始.wav")
-        ],
-        [CardType.Skill] =
-        [
-            new VoiceLineOption("WYU-ATTACK.type.skill", "res://src/yumaobi2/audio/作战中4.wav"),
-            new VoiceLineOption("WYU-ATTACK.type.skill.alt1", "res://src/yumaobi2/audio/行动开始.wav")
-        ],
-        [CardType.Power] =
-        [
-            new VoiceLineOption("WYU-ATTACK.type.power", "res://src/yumaobi2/audio/部署1.wav"),
-            new VoiceLineOption("WYU-ATTACK.type.power.alt1", "res://src/yumaobi2/audio/选中干员2.wav")
-        ]
-    };
 
     private static void Postfix(CombatState combatState, CardPlay cardPlay)
     {
@@ -134,13 +113,14 @@ public static class AudioMod
 
 
         CardType cardType = cardPlay.Card.Type;
-        if (!VoiceLinePools.TryGetValue(cardType, out VoiceLineOption[]? candidates) || candidates.Length == 0)
+        var voiceLines = PlayerSkinRegistry.Current.VoiceLines;
+        if (!voiceLines.TryGetValue(cardType, out PlayerVoiceLine[]? candidates) || candidates.Length == 0)
         {
             return (GetDefaultLineForCardType(cardType), null);
         }
 
-        List<VoiceLineOption> valid = new(candidates.Length);
-        foreach (VoiceLineOption option in candidates)
+        List<PlayerVoiceLine> valid = new(candidates.Length);
+        foreach (PlayerVoiceLine option in candidates)
         {
             if (LocString.Exists("characters", option.LocKey) && ResourceLoader.Exists(option.AudioPath))
             {
@@ -153,7 +133,7 @@ public static class AudioMod
             return (GetDefaultLineForCardType(cardType), null);
         }
 
-        VoiceLineOption selected = valid[Random.Shared.Next(valid.Count)];
+        PlayerVoiceLine selected = valid[Random.Shared.Next(valid.Count)];
         return (new LocString("characters", selected.LocKey), selected.AudioPath);
     }
 

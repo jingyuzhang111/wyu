@@ -55,6 +55,11 @@ public class JianHao():
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+
+        // 失去生命：改为直接设置 HP，绕开伤害系统（ModifyDamage / ModifyHpLost），避免被任何增伤 buff（力量、易伤等）影响
+        var self = base.Owner.Creature;
+        await CreatureCmd.SetCurrentHp(self, Math.Max(0m, (decimal)self.CurrentHp - base.DynamicVars["HpLoss"].BaseValue));
+        
         // 卡牌效果的实现地方,在CommonActions里有一些写好的函数,如攻防抽牌烧牌
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
 		await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).WithHitCount(2).FromCard(this, cardPlay)
@@ -65,12 +70,6 @@ public class JianHao():
 
 
         await PowerCmd.Apply<VulnerablePower>(choiceContext, cardPlay.Target, base.DynamicVars["VulnerablePower"].BaseValue, base.Owner.Creature, this);
-
-        // 失去生命：改为直接设置 HP，绕开伤害系统（ModifyDamage / ModifyHpLost），避免被任何增伤 buff（力量、易伤等）影响
-        var self = base.Owner.Creature;
-        await CreatureCmd.SetCurrentHp(self, Math.Max(0m, (decimal)self.CurrentHp - base.DynamicVars["HpLoss"].BaseValue));
-
-
 
     }
 
