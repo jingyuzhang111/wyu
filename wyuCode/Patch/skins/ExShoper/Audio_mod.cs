@@ -1,6 +1,7 @@
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
+using MegaCrit.Sts2.Core.Nodes.Events.Custom; // NFakeMerchant（假商人事件）
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Nodes.Screens.Shops;
 using MegaCrit.Sts2.Core.Commands;
@@ -66,6 +67,13 @@ public static class ShoperAudioManager
         if (!IsMappedMerchantSfx(sfx))
         {
             return true; // 继续原方法
+        }
+
+        // 假商人事件（反转商人/坎诺特）内不接管：交回原版商人语音，
+        // 只有真商店（可露希尔）才替换语音。
+        if (MerchantAudioContext.InsideFakeMerchantEvent())
+        {
+            return true;
         }
 
         PlayAudio(sfx);
@@ -161,6 +169,12 @@ public static class ShoperDialogueManager
 {
     static bool Prefix(NMerchantDialogue __instance, IEnumerable<LocString> lines)
     {
+        // 假商人事件：不替换对白，走原版（避免残留可露希尔台词显示在坎诺特头上）
+        if (MerchantAudioContext.InsideFakeMerchantEvent())
+        {
+            return true;
+        }
+
         var customLine = ShoperAudioManager.linePath;
         if (customLine == null)
             return true;
@@ -216,6 +230,40 @@ public static class ShoperDialogueManager
         // ── ⑤ 存回 _tween 字段 ──
         _tweenTraverse.Value = tween;
 
+        return false;
+    }
+}
+
+/// <summary>
+/// 判断当前是否处于"假商人事件"（反转商人）中：事件场景里会实例化 NFakeMerchant。
+/// 真商店场景不含它，据此区分真假商人，决定语音是否接管。
+/// </summary>
+internal static class MerchantAudioContext
+{
+    public static bool InsideFakeMerchantEvent()
+    {
+        var tree = (SceneTree)Engine.GetMainLoop();
+        if (tree == null || !GodotObject.IsInstanceValid(tree.Root))
+        {
+            return false;
+        }
+        return ContainsNode<NFakeMerchant>(tree.Root);
+    }
+
+    private static bool ContainsNode<T>(Node root) where T : Node
+    {
+        if (root is T)
+        {
+            return true;
+        }
+        for (int i = 0; i < root.GetChildCount(); i++)
+        {
+            Node child = root.GetChild(i);
+            if (ContainsNode<T>(child))
+            {
+                return true;
+            }
+        }
         return false;
     }
 }
