@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
@@ -24,6 +25,13 @@ public static class MonsterAnimatorPatch
     // 记录已打过补丁的方法，避免同一方法被重复打补丁
     private static readonly HashSet<MethodBase> _patchedMethods = new();
 
+    // 无 override GenerateAnimator 的怪 ID：基类虚方法打不上，需走 NCreature._Ready 兜底接管
+    private static readonly HashSet<string> _fallbackToReadyIds = new(StringComparer.OrdinalIgnoreCase);
+
+    // 已被 GenerateAnimator 补丁成功接管的怪物实例（避免 _Ready 兜底重复接管）
+    private static readonly ConditionalWeakTable<MonsterModel, object> _intercepted = new();
+    private static readonly object _sentinel = new();
+
     // 怪物 ID（不区分大小写）→ 动画构建器（只接收控制器）
     private static readonly Dictionary<string, Func<MegaSprite, CreatureAnimator>> _builders =
         new(StringComparer.OrdinalIgnoreCase);
@@ -43,7 +51,7 @@ public static class MonsterAnimatorPatch
         where TMonster : MonsterModel
     {
         _builders[monsterId] = build;
-        TryPatch<TMonster>();
+        TryPatch<TMonster>(monsterId);
     }
 
     /// <summary>
@@ -53,10 +61,10 @@ public static class MonsterAnimatorPatch
         where TMonster : MonsterModel
     {
         _modelBuilders[monsterId] = build;
-        TryPatch<TMonster>();
+        TryPatch<TMonster>(monsterId);
     }
 
-    private static void TryPatch<TMonster>() where TMonster : MonsterModel
+    private static void TryPatch<TMonster>(string monsterId) where TMonster : MonsterModel
     {
         try
         {
@@ -69,7 +77,14 @@ public static class MonsterAnimatorPatch
                 Godot.GD.PushWarning($"[wyu][动画] 找不到 {typeof(TMonster).Name}.GenerateAnimator，已跳过注册。");
                 return;
             }
-            Godot.GD.Print($"[wyu][动画] TryPatch {typeof(TMonster).Name}: method={method.DeclaringType?.Name}.{method.Name}");
+            // 解析到基类 = 该怪没有 override GenerateAnimator。
+            // Harmony 打基类虚方法拦不住"无 override 子类实例"的调用（Fabricator 等 override 能拦），
+            // 所以这类怪改为由 NCreature._Ready 的 Postfix 兜底接管（登记到 _fallbackToReadyIds）。
+            if (method.DeclaringType == typeof(MonsterModel))
+            {
+                _fallbackToReadyIds.Add(monsterId);
+                return;
+            }
 
             // 同一个方法只打一次补丁（例如多个怪物共用基类方法时）
             if (!_patchedMethods.Add(method)) return;
@@ -77,33 +92,55 @@ public static class MonsterAnimatorPatch
             var prefix = typeof(MonsterAnimatorPatch).GetMethod(
                 nameof(Prefix),
                 BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
-            Godot.GD.Print($"[wyu][动画] TryPatch {typeof(TMonster).Name}: prefix={prefix?.Name} (null? {prefix == null})");
             _harmony.Patch(method,
                 prefix: new HarmonyMethod(prefix));
-            Godot.GD.Print($"[wyu][动画] TryPatch {typeof(TMonster).Name}: Patch 成功");
         }
         catch (System.Exception ex)
         {
-            Godot.GD.Print($"[wyu][动画] TryPatch {typeof(TMonster).Name} 抛异常: {ex}");
+            Godot.GD.PrintErr($"[wyu][动画] TryPatch {typeof(TMonster).Name} 异常: {ex}");
         }
     }
 
     public static bool Prefix(MonsterModel __instance, MegaSprite controller, ref CreatureAnimator __result)
     {
         string id = __instance.Id.Entry;
-        Godot.GD.Print($"[wyu][动画] GenerateAnimator 被拦截: monsterId={id}");
         if (_modelBuilders.TryGetValue(id, out var modelBuild))
         {
-            Godot.GD.Print($"[wyu][动画] 命中 modelBuild: {id}");
+            _intercepted.Remove(__instance);
+            _intercepted.Add(__instance, _sentinel);
             __result = modelBuild(__instance, controller);
             return false; // 跳过原 GenerateAnimator
         }
         if (_builders.TryGetValue(id, out var build))
         {
-            Godot.GD.Print($"[wyu][动画] 命中 builder: {id}");
+            _intercepted.Remove(__instance);
+            _intercepted.Add(__instance, _sentinel);
             __result = build(controller);
             return false; // 跳过原 GenerateAnimator
         }
         return true; // 非目标怪物，走原逻辑
+    }
+
+    /// <summary>该怪是否需要走 _Ready 兜底接管（无 override GenerateAnimator）。</summary>
+    public static bool IsFallbackToReady(string monsterId) => _fallbackToReadyIds.Contains(monsterId);
+
+    /// <summary>该怪物是否已被 GenerateAnimator 补丁成功接管。</summary>
+    public static bool IsIntercepted(MonsterModel monster) => _intercepted.TryGetValue(monster, out _);
+
+    /// <summary>用已注册的构建器为指定怪生成自定义 CreatureAnimator。</summary>
+    public static bool TryBuild(string monsterId, MonsterModel model, MegaSprite controller, out CreatureAnimator animator)
+    {
+        if (_modelBuilders.TryGetValue(monsterId, out var modelBuild))
+        {
+            animator = modelBuild(model, controller);
+            return true;
+        }
+        if (_builders.TryGetValue(monsterId, out var build))
+        {
+            animator = build(controller);
+            return true;
+        }
+        animator = null!;
+        return false;
     }
 }

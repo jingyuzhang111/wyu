@@ -103,6 +103,9 @@ public class YinYin3():
         Creature summonedMinion = base.CombatState!.CreateCreature(copiedModel, CombatSide.Enemy, null);
         await CreatureCmd.Add(summonedMinion);
 
+        // 心烛固定生命值为 40（满血进场）：不管领袖原本多少血，心烛始终 40/40
+        await CreatureCmd.SetMaxAndCurrentHp(summonedMinion, 40m);
+
         // 清除心烛自带的能力 buff：复制出的怪物会继承 Leader 的"生成后自动挂 buff"钩子
         //（如某些怪物的特殊能力），这些不该出现在干净的心烛上。
         // 此时我们自己的 MinionPower / YinYinDamageTransferPower 还没挂，可安全全清。

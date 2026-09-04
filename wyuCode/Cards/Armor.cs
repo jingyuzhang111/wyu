@@ -46,7 +46,7 @@ public class Armor():
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(15, ValueProp.Move),
+        new BlockVar(16, ValueProp.Move),
         new PowerVar<ArmorPower>(20),
     ];
 

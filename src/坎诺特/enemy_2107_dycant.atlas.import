@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://f3vfxfce35o0"
+path="res://.godot/imported/enemy_2107_dycant.atlas-64e7c4ce30f872485346e59f4946490b.spatlas"
+
+[deps]
+
+source_file="res://src/坎诺特/enemy_2107_dycant.atlas"
+dest_files=["res://.godot/imported/enemy_2107_dycant.atlas-64e7c4ce30f872485346e59f4946490b.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

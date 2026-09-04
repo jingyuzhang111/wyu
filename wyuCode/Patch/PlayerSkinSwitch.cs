@@ -17,17 +17,22 @@ namespace wyu.wyuCode.Patch;
 [HarmonyPatch(typeof(NGlobalUi), "_Ready")]
 public static class PlayerSkinSwitch
 {
+    /// <summary>发布开关：false = 不创建换肤按钮（皮肤系统仍生效，默认皮肤展示）。改回 true 即恢复按钮。</summary>
+    private const bool Enabled = false;
+
     private const string LayerNodeName = "WyuPlayerSkinSwitch";
     private static Button? _button;
 
     static void Postfix(NGlobalUi __instance)
     {
+        if (!Enabled) return;
         EnsureButton(__instance);
     }
 
     /// <summary>在给定父节点下（若无则）创建左上角换肤按钮。</summary>
     public static void EnsureButton(Node parent)
     {
+        if (!Enabled) return;
         if (parent == null || !GodotObject.IsInstanceValid(parent)) return;
         if (parent.GetNodeOrNull<CanvasLayer>(LayerNodeName) != null) return;
 

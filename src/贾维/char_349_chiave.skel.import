@@ -1,0 +1,13 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://cnwj7mkikpstb"
+valid=false
+
+[deps]
+
+source_file="res://src/贾维/char_349_chiave.skel"
+
+[params]
+

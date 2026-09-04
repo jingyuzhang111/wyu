@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://cad4da05qs373"
+path="res://.godot/imported/build_char_427_vigil2.skel-e779303881f362c42884da7226dec060.spskel"
+
+[deps]
+
+source_file="res://src/伺夜/基建/build_char_427_vigil2.skel"
+dest_files=["res://.godot/imported/build_char_427_vigil2.skel-e779303881f362c42884da7226dec060.spskel"]
+
+[params]
+

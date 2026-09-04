@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://dbj6d3t54ade7"
+path="res://.godot/imported/char_349_chiave_2.skel-1aa4986664435c5037c6d52fa6b86ee0.spskel"
+
+[deps]
+
+source_file="res://src/贾维/char_349_chiave_2.skel"
+dest_files=["res://.godot/imported/char_349_chiave_2.skel-1aa4986664435c5037c6d52fa6b86ee0.spskel"]
+
+[params]
+

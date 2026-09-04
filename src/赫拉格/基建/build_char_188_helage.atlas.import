@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://6taxwvi506w4"
+path="res://.godot/imported/build_char_188_helage.atlas-756e94c8233e94d62066cb948f62d3af.spatlas"
+
+[deps]
+
+source_file="res://src/赫拉格/基建/build_char_188_helage.atlas"
+dest_files=["res://.godot/imported/build_char_188_helage.atlas-756e94c8233e94d62066cb948f62d3af.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

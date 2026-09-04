@@ -43,7 +43,7 @@ public class SiyeGei():
     ];
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [
-        
+        wyuKeywords.WOLF,
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

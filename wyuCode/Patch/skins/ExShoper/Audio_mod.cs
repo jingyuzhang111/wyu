@@ -28,6 +28,9 @@ public static class ShoperAudioManager
 {
     private sealed record VoiceLineOption(string LocKey, string AudioPath);
 
+    /// <summary>总开关：置 true 可完全关闭本 mod 的商人语音接管，避免与其它商人语音 mod 冲突。</summary>
+    private const bool DisableMerchantAudio = false;
+
     public static LocString linePath = new LocString("characters", "NULL");
 
     private static Dictionary<string, VoiceLineOption[]> merchantSfx = new()
@@ -51,15 +54,35 @@ public static class ShoperAudioManager
 
     public static bool Prefix(string sfx, float volume)
     {
+        // 总开关：置 true 完全关闭本 mod 的商人语音接管（交给原版/其它 mod）
+        if (DisableMerchantAudio)
+        {
+            return true;
+        }
 
-
-        if(!sfx.Contains("merchant"))
+        // 只接管"我们确有映射"的商人语音 key。原先用 Contains("merchant") 过宽，
+        // 会静音/误伤一切含 merchant 但未映射的音效（含其它 mod 的 merchant 语音），
+        // 现在未命中映射的（含其它 merchant 音效）一律放行原方法。
+        if (!IsMappedMerchantSfx(sfx))
         {
             return true; // 继续原方法
         }
 
         PlayAudio(sfx);
         return false; // 阻止原方法执行
+    }
+
+    /// <summary>sfx 名是否命中我们映射的任一商人语音 key（即确实有对应音频可播）。</summary>
+    private static bool IsMappedMerchantSfx(string sfx)
+    {
+        foreach (string key in merchantSfx.Keys)
+        {
+            if (sfx.Contains(key))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private static void PlayAudio(string sfx)

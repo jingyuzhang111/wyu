@@ -1,0 +1,13 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://csq1am77s0g6o"
+valid=false
+
+[deps]
+
+source_file="res://src/坎诺特/enemy_2107_dycant.skel"
+
+[params]
+

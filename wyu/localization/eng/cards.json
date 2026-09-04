@@ -28,7 +28,7 @@
 "WYU-DEATH.title": "狂暴锄地组长",
 "WYU-DEATH.description": "造成{Damage:diff()}点伤害{CountVar:diff()}次。\n如果目标死亡，获得{StrengthPower:diff()}层[gold]力量[/gold]和{DexterityPower:diff()}层[gold]敏捷[/gold]。",
 "WYU-FAST_HARVEST.title": "高速切割",
-"WYU-FAST_HARVEST.description": "失去当前生命的{HplossPercent:diff()}%({HpLoss:diff()})。\n对所有敌人造成{Damage:diff()}点伤害2次。",
+"WYU-FAST_HARVEST.description": "失去当前生命的{HplossPercent:diff()}%({HpLoss:diff()})。\n对所有敌人造成{Damage:diff()}点伤害2次。\n若目标死亡，获得{StrengthPower:diff()}层[gold]力量[/gold]和{DexterityPower:diff()}层[gold]敏捷[/gold]。",
 "WYU-ZUO_LE_T1.title": "守正自明",
 "WYU-ZUO_LE_T1.description": "造成{Damage:diff()}点伤害\n若血量低于{percentInt:diff()}%({HpPercentInt:diff()})，获得{Energy:energyIcons()}",
 "WYU-JIAN_HAO_FORM.title": "剑豪形态",
@@ -147,7 +147,7 @@
 
 
 "WYU-EW.title": "维什戴尔",
-"WYU-EW.description": "在手牌,弃牌区,抽牌区分别添加2张[red]爆裂黎明{IfUpgraded:show:+|}[/red],立即结束本回合,维什戴尔接管接下来{turn:diff()}个回合",
+"WYU-EW.description": "在弃牌区,抽牌区分别添加{Cards:diff()}张[red]爆裂黎明{IfUpgraded:show:+|}[/red],立即结束本回合,维什戴尔接管接下来{turn:diff()}个回合",
 "WYU-EW3.title": "爆裂黎明",
 "WYU-EW3.description": "造成{Damage:diff()}点伤害,对全体造成{ExtraDamage:diff()}点伤害",
 "WYU-MA_EN_NA.title": "攻回解放者",

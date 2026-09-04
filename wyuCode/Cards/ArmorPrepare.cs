@@ -30,7 +30,7 @@ using wyu.wyuCode.Powers;
 namespace wyu.wyuCode.Cards;
 
 public class ArmorPrepare():
-    wyuCard(cost: 1, 
+    wyuCard(cost: 0, 
     type: CardType.Skill,
     rarity: CardRarity.Common,
     target: TargetType.AllAllies
@@ -72,6 +72,7 @@ public class ArmorPrepare():
     protected override void OnUpgrade()
     {
         DynamicVars.Cards.UpgradeValueBy(1m);
+        DynamicVars.Block.UpgradeValueBy(4m);
     }
 
 

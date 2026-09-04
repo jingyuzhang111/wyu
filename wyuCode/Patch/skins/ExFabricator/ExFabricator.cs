@@ -11,7 +11,7 @@ public static class FabricatorVisualReplacePatch
 {
     private const string TargetMonsterId = "FABRICATOR";
     private const string CustomScenePath = "res://wyu/Scenes/creatureVisual/fabricator_mod.tscn";
-    private static readonly bool VerboseAllMonsters = true;
+    private static readonly bool VerboseAllMonsters = false;
 
     private static bool Prefix(MonsterModel __instance, ref NCreatureVisuals __result)
     {

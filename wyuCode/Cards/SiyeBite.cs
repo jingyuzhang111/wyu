@@ -44,7 +44,8 @@ public class SiyeBite():
     ];
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [
-        CardKeyword.Exhaust
+        CardKeyword.Exhaust,
+        wyuKeywords.WOLF,
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://byqdj6gsllvdn"
+path="res://.godot/imported/enemy_2107_dycant_2.skel-75dc6702558a99e0fc88b40497384334.spskel"
+
+[deps]
+
+source_file="res://src/坎诺特/enemy_2107_dycant_2.skel"
+dest_files=["res://.godot/imported/enemy_2107_dycant_2.skel-75dc6702558a99e0fc88b40497384334.spskel"]
+
+[params]
+

@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://bujkr5entqsqd"
+path="res://.godot/imported/build_char_427_vigil_epoque#27.atlas-283f097b2e73112a09f5a4ba1cc3f01a.spatlas"
+
+[deps]
+
+source_file="res://src/伺夜一皮/基建/build_char_427_vigil_epoque#27.atlas"
+dest_files=["res://.godot/imported/build_char_427_vigil_epoque#27.atlas-283f097b2e73112a09f5a4ba1cc3f01a.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

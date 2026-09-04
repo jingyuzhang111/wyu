@@ -1,0 +1,13 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://tokvevb8l6xu"
+valid=false
+
+[deps]
+
+source_file="res://src/赫拉格/char_188_helage.skel"
+
+[params]
+

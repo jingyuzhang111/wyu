@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://dng2duy51qmbp"
+path="res://.godot/imported/char_427_vigil.atlas-816e2400ba0795642f5180e0d8b7a28d.spatlas"
+
+[deps]
+
+source_file="res://src/伺夜/char_427_vigil.atlas"
+dest_files=["res://.godot/imported/char_427_vigil.atlas-816e2400ba0795642f5180e0d8b7a28d.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

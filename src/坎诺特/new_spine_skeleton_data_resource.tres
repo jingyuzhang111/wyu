@@ -1,0 +1,8 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://dux4b5tevuviy"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://f3vfxfce35o0" path="res://src/坎诺特/enemy_2107_dycant.atlas" id="1_dfd8l"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://byqdj6gsllvdn" path="res://src/坎诺特/enemy_2107_dycant_2.skel" id="2_lhbul"]
+
+[resource]
+atlas_res = ExtResource("1_dfd8l")
+skeleton_file_res = ExtResource("2_lhbul")

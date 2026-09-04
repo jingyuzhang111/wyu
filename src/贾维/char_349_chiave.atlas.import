@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://by8syxhfwqbq6"
+path="res://.godot/imported/char_349_chiave.atlas-513c33e0154fe31a287055067d40153d.spatlas"
+
+[deps]
+
+source_file="res://src/贾维/char_349_chiave.atlas"
+dest_files=["res://.godot/imported/char_349_chiave.atlas-513c33e0154fe31a287055067d40153d.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

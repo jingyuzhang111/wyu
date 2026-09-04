@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://cscerykwmyqof"]
+
+[ext_resource type="SpineSkeletonDataResource" uid="uid://dux4b5tevuviy" path="res://src/坎诺特/new_spine_skeleton_data_resource.tres" id="1_q2mbu"]
+
+[node name="Kannuote" type="Node2D"]
+
+[node name="Visuals" type="SpineSprite" parent="."]
+unique_name_in_owner = true
+position = Vector2(-5, 0)
+scale = Vector2(-0.805, 0.805)
+skeleton_data_res = ExtResource("1_q2mbu")
+preview_skin = "Default"
+preview_animation = "Idle"
+preview_frame = false
+preview_time = 0.0
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -155.0
+offset_top = -361.0
+offset_right = 138.0
+mouse_filter = 2
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-4, 1)
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-7, -356)

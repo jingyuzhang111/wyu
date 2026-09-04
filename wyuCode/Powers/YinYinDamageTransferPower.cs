@@ -43,4 +43,23 @@ public class YinYinDamageTransferPower : wyuPower
         await CreatureCmd.Damage(choiceContext, Leader, result.UnblockedDamage,
             ValueProp.Unblockable | ValueProp.Unpowered, dealer ?? base.Owner, null, null);
     }
+
+    public override async Task AfterDamageGiven(PlayerChoiceContext choiceContext, Creature? dealer, DamageResult result,
+        ValueProp props, Creature target, CardModel? cardSource)
+    {
+        // 只补"心烛被这一击杀死"的场景
+        if (target != base.Owner || Leader == null || !Leader.IsAlive)
+        {
+            return;
+        }
+
+        // 未致死 → AfterDamageReceived 已经处理过，这里不能重复传
+        if (!result.WasTargetKilled || result.UnblockedDamage <= 0)
+        {
+            return;
+        }
+
+        await CreatureCmd.Damage(choiceContext, Leader, result.UnblockedDamage,
+            ValueProp.Unblockable | ValueProp.Unpowered, dealer ?? base.Owner, null, null);
+    }
 }

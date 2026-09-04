@@ -41,7 +41,7 @@ public class Ew():
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new CardsVar(2),
+        new CardsVar(3),
         new DynamicVar("turn", 3),
     ];
 
@@ -54,8 +54,6 @@ public class Ew():
     {
         // 添加塞牌动画
         await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.CastAnimDelay);
-
-        await Ew3.CreateInHand(base.Owner, DynamicVars.Cards.IntValue, base.CombatState!, base.IsUpgraded);
 
         await Ew3.CreateInDraw(base.Owner, DynamicVars.Cards.IntValue, base.CombatState!, base.IsUpgraded);
 

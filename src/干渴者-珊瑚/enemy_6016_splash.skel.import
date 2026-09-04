@@ -1,0 +1,13 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://3ftcsbj1lx07"
+valid=false
+
+[deps]
+
+source_file="res://src/干渴者-珊瑚/enemy_6016_splash.skel"
+
+[params]
+

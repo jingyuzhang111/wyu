@@ -1,0 +1,13 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://c2dyi21m5cw3u"
+valid=false
+
+[deps]
+
+source_file="res://src/伺夜/char_427_vigil.skel"
+
+[params]
+

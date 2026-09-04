@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://rb263non76v8"
+path="res://.godot/imported/char_188_helage_2.skel-621c900e4c9652ba32e7a6e535fdbc6f.spskel"
+
+[deps]
+
+source_file="res://src/赫拉格/char_188_helage_2.skel"
+dest_files=["res://.godot/imported/char_188_helage_2.skel-621c900e4c9652ba32e7a6e535fdbc6f.spskel"]
+
+[params]
+

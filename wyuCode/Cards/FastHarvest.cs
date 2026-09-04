@@ -16,10 +16,12 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using System.Collections.Concurrent;
+using System.Linq;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.ValueProps;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using Godot;
+using MegaCrit.Sts2.Core.Models.Powers;
 
 using wyu.wyuCode.Powers;
 using MegaCrit.Sts2.Core.Models.Events;
@@ -45,6 +47,8 @@ public class FastHarvest():
         new DynamicVar("hplosspercent", 0.3m),
 
         new DamageVar(8m, ValueProp.Move),
+        new PowerVar<StrengthPower>(1m),
+        new PowerVar<DexterityPower>(2m),
 
     ];
 
@@ -61,11 +65,23 @@ public class FastHarvest():
         decimal lossHp = currentHp * DynamicVars["hplosspercent"].BaseValue;
         await CreatureCmd.Damage(choiceContext, base.Owner.Creature, lossHp, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
 
+        // 快照攻击前在场的活敌（用于统计本卡击杀数——全体攻击不能用单一 target 判断）
+        var victims = base.CombatState!.HittableEnemies.Where(e => !e.IsDead).ToList();
+
         await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue)
             .WithHitCount(2)
             .FromCard(this, cardPlay)
             .TargetingAllOpponents(base.CombatState)
             .Execute(choiceContext);
+
+        // DamageCmd 执行完时本卡击杀已完成结算；每击杀一只单独触发一次力/敏
+        int kills = victims.Count(e => e.IsDead);
+        var self = base.Owner.Creature;
+        for (int i = 0; i < kills; i++)
+        {
+            await PowerCmd.Apply<StrengthPower>(choiceContext, self, base.DynamicVars["StrengthPower"].BaseValue, self, this);
+            await PowerCmd.Apply<DexterityPower>(choiceContext, self, base.DynamicVars["DexterityPower"].BaseValue, self, this);
+        }
     }
 
 

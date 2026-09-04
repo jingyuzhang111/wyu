@@ -1,3 +1,4 @@
+using System.Linq;
 using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using BaseLib.Utils;
@@ -43,7 +44,9 @@ public class Harvest():
     // 数值调整的地方, 可添加各种具体效果,定义牌的可变数值
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(5m, ValueProp.Move),
+        new DamageVar(7m, ValueProp.Move),
+        new PowerVar<StrengthPower>(1m),
+        new PowerVar<DexterityPower>(2m),
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
@@ -55,10 +58,25 @@ public class Harvest():
     {
         // 卡牌效果的实现地方,在CommonActions里有一些写好的函数,如攻防抽牌烧牌
 
+        // 记录攻击前在场且活着的敌人（全体攻击要按“本卡击杀几只”结算 buff，不能用单一 target 判断）
+        var victims = base.CombatState!.HittableEnemies.Where(e => !e.IsDead).ToList();
+
         await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue)
             .FromCard(this, cardPlay)
             .TargetingAllOpponents(base.CombatState)    // 目标设为全体敌人
             .Execute(choiceContext);                    // 执行动作
+
+        // DamageCmd 执行完时本卡击杀的敌人已完成死亡结算（IsDead 已置位），
+        // 对比快照即可得到这次到底杀了几只。
+        int kills = victims.Count(e => e.IsDead);
+
+        // 每击杀一个敌人，就单独触发一次 apply（力量 +base、敏捷 +base）
+        var self = base.Owner.Creature;
+        for (int i = 0; i < kills; i++)
+        {
+            await PowerCmd.Apply<StrengthPower>(choiceContext, self, base.DynamicVars["StrengthPower"].BaseValue, self, this);
+            await PowerCmd.Apply<DexterityPower>(choiceContext, self, base.DynamicVars["DexterityPower"].BaseValue, self, this);
+        }
 
     }
 

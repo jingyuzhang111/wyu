@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://bhb2tcp5ntkmg"
+path="res://.godot/imported/enemy_6016_splash.atlas-114057542624c2f68fe93dcdff6ebb84.spatlas"
+
+[deps]
+
+source_file="res://src/干渴者-珊瑚/enemy_6016_splash.atlas"
+dest_files=["res://.godot/imported/enemy_6016_splash.atlas-114057542624c2f68fe93dcdff6ebb84.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

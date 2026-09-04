@@ -422,9 +422,4 @@ public class Zc325() :
 
     }
 
-    // 升级：基础伤害 +4
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(2m);
-    }
 }
