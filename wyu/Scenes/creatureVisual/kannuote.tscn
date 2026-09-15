@@ -25,7 +25,7 @@ mouse_filter = 2
 
 [node name="CenterPos" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-4, 1)
+position = Vector2(6, -219)
 
 [node name="IntentPos" type="Marker2D" parent="."]
 unique_name_in_owner = true

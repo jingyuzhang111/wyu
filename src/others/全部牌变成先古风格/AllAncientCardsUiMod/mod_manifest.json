@@ -1,0 +1,11 @@
+{
+  "pck_name": "AllAncientCardsUiMod",
+  "id": "AllAncientCardsUiMod",
+  "name": "All Ancient Cards UI",
+  "author": "Kayla",
+  "description": "将所有卡牌 UI 统一显示为先古卡风格。",
+  "version": "0.1",
+  "has_pck": true,
+  "has_dll": true,
+  "affects_gameplay": false
+}
