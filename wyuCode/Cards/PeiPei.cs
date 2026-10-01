@@ -41,6 +41,7 @@ public class PeiPei():
     ];
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [
+        CardKeyword.Exhaust
     ];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>

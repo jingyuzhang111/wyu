@@ -30,7 +30,8 @@ public class wyu : PlaceholderCharacterModel
 
 		// 基础卡牌暂定为这四种
 		ModelDb.Card<Warrior>(),
-		ModelDb.Card<JianHao>(),
+		ModelDb.Card<ZhanXueLiu>(),
+		ModelDb.Card<Attack>(),
 		ModelDb.Card<Attack>(),
 		ModelDb.Card<Attack>(),
 		ModelDb.Card<Attack>(),

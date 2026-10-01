@@ -2,10 +2,15 @@
   "id": "wyu",
   "name": "wyu",
   "author": "meow",
-  "description": "Slay the Spire 2 character mod created from a template for use with BaseLib",
+  "description": "咸瑜的超大杯编队, 夹杂着一些奇奇怪怪的小玩意",
   "version": "v0.1.1",
   "has_pck": true,
   "has_dll": true,
-  "dependencies": ["BaseLib"],
+  "dependencies": [
+    {
+      "id": "BaseLib",
+      "min_version": "3.4.5"
+    }
+  ],
   "affects_gameplay": true
 }

@@ -1,11 +1,9 @@
-//领袖的馈赠
 using BaseLib.Abstracts;
 using BaseLib.Extensions;
 using BaseLib.Utils;
 using wyu.wyuCode.Character;
 using wyu.wyuCode.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Logging;
 
 using MegaCrit.Sts2.Core.Commands;
@@ -20,30 +18,34 @@ using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.ValueProps;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
+
+
+using MegaCrit.Sts2.Core.Helpers;
+using wyu.wyuCode.Powers;
 
 
 namespace wyu.wyuCode.Cards;
 
-public class SiyeMoney():
-    wyuCard(cost: 1, 
+public class LuckyCoin():
+    wyuCard(cost: 2, 
     type: CardType.Skill,
     rarity: CardRarity.Uncommon,
-    target: TargetType.Self
+    target: TargetType.AnyEnemy
     )
 {
     // 自定义边框
     // public override bool HasBuiltInOverlay => true;
 
+
     // 数值调整的地方, 可添加各种具体效果,定义牌的可变数值
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new CardsVar(3),
+        new EnergyVar(4),
+        new EnergyVar(2),
     ];
-
-	public override IEnumerable<CardKeyword> CanonicalKeywords => [
-
-    ];
-
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips =>
     [
@@ -51,24 +53,16 @@ public class SiyeMoney():
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        // 抽牌
-        await CardPileCmd.Draw(choiceContext, base.DynamicVars.Cards.BaseValue, base.Owner);
-
-        // 与隐秘匕首相同的"从手牌选择"方法（FromHand 家族），选 1 张手牌
-        CardSelectorPrefs prefs = new CardSelectorPrefs(base.SelectionScreenPrompt, 1);
-        CardModel? cardModel = (await CardSelectCmd.FromHand(choiceContext, base.Owner, prefs, null, this)).FirstOrDefault();
-
-        // 放到抽牌堆顶（不是弃掉）
-        if (cardModel != null)
-        {
-            await CardPileCmd.Add(cardModel, PileType.Draw, CardPilePosition.Top);
-        }
+        // 卡牌效果的实现地方,在CommonActions里有一些写好的函数,如攻防抽牌烧牌
+        ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
     }
 
     // 升级
     protected override void OnUpgrade()
     {
-        DynamicVars.Cards.UpgradeValueBy(1m);
+
+        DynamicVars["VulnerablePower"].UpgradeValueBy(1m);
+        DynamicVars["targetDamage"].UpgradeValueBy(4m);
     }
 
 

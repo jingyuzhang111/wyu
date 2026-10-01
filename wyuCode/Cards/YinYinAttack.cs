@@ -36,7 +36,7 @@ using wyu.wyuCode.Monsters;
 
 namespace wyu.wyuCode.Cards;
 
-public class Yinyin4():
+public class YinYinAttack():
     wyuCard(cost: 1, 
     type: CardType.Attack,
     rarity: CardRarity.Uncommon,
@@ -59,25 +59,37 @@ public class Yinyin4():
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
+        // 群攻：给场上【每一个】敌人各立一个心烛。
+        // 必须先 ToList() 快照再遍历，原因有两个：
+        //   1. 召唤会把新单位加进 CombatState.Enemies，直接遍历 HittableEnemies 会在迭代中改集合；
+        //   2. 否则刚召唤出来的心烛也会被当成"领袖"再立一遍（心烛套心烛）。
+        // 注意 TargetType.AllEnemies 下 cardPlay.Target 只是"某一个"敌人，不能拿它当目标。
+        List<Creature> leaders = base.CombatState!.HittableEnemies.ToList();
 
-        if (cardPlay.Target.Side == CombatSide.Enemy)
+        foreach (Creature leader in leaders)
         {
+            if (!leader.IsAlive)
+            {
+                continue;
+            }
+
             // 设计约束：心烛不能再拥有心烛（目标本身是心烛则不能作为生成源）
-            if (cardPlay.Target.GetPower<YinYinDamageTransferPower>() != null)
+            if (leader.GetPower<YinYinDamageTransferPower>() != null)
             {
                 Godot.GD.Print("[wyu][心烛] 目标是心烛，不能再生成心烛。");
+                continue;
             }
+
             // 设计约束：每个怪物只能有一个心烛（目标已存在心烛则不能重复生成）
-            else if (base.CombatState!.HittableEnemies.Any(e =>
-                e.GetPower<YinYinDamageTransferPower>() is { } p && p.Leader == cardPlay.Target))
+            // 这里必须重新查一遍，不能用上面的快照：前面几轮刚立的心烛已经在场上了。
+            if (base.CombatState!.HittableEnemies.Any(e =>
+                e.GetPower<YinYinDamageTransferPower>() is { } p && p.Leader == leader))
             {
                 Godot.GD.Print("[wyu][心烛] 该怪物已有心烛，不重复生成。");
+                continue;
             }
-            else
-            {
-                await SummonShadow(choiceContext, cardPlay);
-            }
+
+            await SummonShadow(choiceContext, leader);
         }
 
         await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue)
@@ -89,11 +101,9 @@ public class Yinyin4():
     /// <summary>
     /// 生成心烛：复制领袖同名怪物 → 呆立 → 变黑 → 伤害传递。
     /// </summary>
-    private async Task SummonShadow(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    private async Task SummonShadow(PlayerChoiceContext choiceContext, Creature leader)
     {
-        Creature leader = cardPlay.Target!;
-
-        // 复制领袖(被选中的怪物)同名怪物作为心烛：视觉/骨架/皮肤/动画天然一致
+        // 复制领袖(指定为领袖的那只怪物)同名怪物作为心烛：视觉/骨架/皮肤/动画天然一致
         MonsterModel? copiedModel = CloneMonster(leader);
         if (copiedModel == null)
         {
